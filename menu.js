@@ -72,7 +72,6 @@ fetch(url,{mode: "cors"})
             createSubMenuItem(one, descriptionText, link, imgLink, rowID, ingredientsText, sizesText, pricesText, detailsText)
         }
     }
-    $('hr:last').remove();
     filterButtonColor();
     if (showErrorFlag) {
         displayError();
@@ -217,14 +216,11 @@ function displayError() {
 
 function filterButtonColor() {
     if (urlFilter != null) {
-        // $( ".filterbutton" ).css( "display", "none" );
-        // document.getElementById(urlFilter).style.display = "inline-block";
-        $( ".filterbutton" ).css( "backgroundColor", "#DDD" );
-        $( ".filterbutton" ).css( "borderColor", "#FFF" );
-    }
-    else {
-        $( ".filterbutton" ).css( "backgroundColor", "#FFF" );
-        $( ".filterbutton" ).css( "borderColor", "#DDD" );
+        $( ".filterbutton" ).addClass( "clickedFilter" );
+        $( ".filterbutton" ).removeClass( "unclickedFilter" );
+    } else {
+        $( ".filterbutton" ).addClass( "unclickedFilter" );
+        $( ".filterbutton" ).removeClass( "clickedFilter" );
     }
 }
 

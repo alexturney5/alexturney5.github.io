@@ -49,6 +49,14 @@
   transition: transform 0.5s;
 }
 
+.clickedFilter {
+  background-color: #CCC;
+}
+
+.unclickedFilter {
+  background-color: #F7F7F7;
+}
+
 a {
   box-sizing: border-box;
   text-decoration: none;
@@ -268,10 +276,9 @@ p.ingredients {
 }
 
 .filterbutton {
-  background-color: #FFF;
   z-index:99999;
   position: relative;
-  border: 2px solid;
+/*  border: 2px solid;*/
   border-radius: 1px;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
