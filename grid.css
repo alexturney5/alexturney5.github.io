@@ -1,0 +1,431 @@
+@import url('https://fonts.googleapis.com/css?family=Heebo:700|Open+Sans:800');
+
+.carousel {
+  /* line them up horizontally */
+  display: flex;
+  height: 35vH;
+  border-radius: 10px;
+  margin: 24px 24px 0px 24px;
+  position: relative;
+
+  /* allow for scrolling */
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+
+  /* make it smooth on iOS */
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+
+}
+
+.carousel::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+.carousel::-webkit-scrollbar-thumb {
+  background: #EEE;
+  border-radius: 10px;
+}
+.carousel::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.carousel > .innerCarousel {
+  /* make sure the width is honored */
+  flex-shrink: 0;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  scroll-snap-align: start;
+  flex-shrink: 0;
+
+  transform-origin: center center;
+  transform: scale(1);
+  transition: transform 0.5s;
+}
+
+a {
+  box-sizing: border-box;
+  text-decoration: none;
+  color: black;
+  height:100%;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+.errorLabel {
+  text-align: center;
+  width: 100%;
+}
+
+.circleContainer {
+  margin: 10px 0px 20px;
+  width: 100%;
+   -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+.circleInnerContainer {
+  display: block;
+  margin: 0 auto;
+}
+
+.circle {
+  float: left;
+  height: 10px;
+  width: 10px;
+  background-color: white;
+  z-index: 99999;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  bottom: 21%;
+  display: inline-block;
+  margin: 0px 5px;
+  top: 380px;
+}
+
+#spinner {
+  visibility: hidden;
+  width: 80px;
+  height: 80px;
+
+  border: 2px solid #f3f3f3;
+  border-top:3px solid #f25a41;
+  border-radius: 100%;
+
+  position: absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  right: 0;
+  margin: auto;
+
+  animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+  from {
+      transform: rotate(0deg);
+  } to {
+      transform: rotate(360deg);
+  }
+}
+
+.spacebreak {
+  height: 0px;
+}
+
+#spinner.show {
+  visibility: visible;
+}
+
+#mainTitle {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 0.4em;
+  line-height: 0.4em;
+  margin: 14px 0px 0px;
+}
+
+#topTitle {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 20px;
+  margin: 60px 24px 24px;
+}
+
+.details {
+  font-size: 20px;
+  margin:  0px;
+  padding: 0px 24px 12px;
+  line-height: 1em;
+}
+
+hr {
+  border: 1.5px dashed #A9A9A9;
+}
+
+.sizes {
+  font-size: .6em;
+  padding: 0px 24px 12px 36px;
+  margin:  0px;
+}
+
+.prices {
+  font-size: .6em;
+  padding: 0px 24px 12px 36px;
+  margin:  0px;
+}
+
+body {
+  margin: 0;
+  font-family: "Helvetica Neue";
+  font-size: 2vw;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  min-height: width;
+  vertical-align: middle;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Create four equal columns that sits next to each other */
+.column {
+  flex: 25%;
+  max-width: 25%;
+}
+
+.column img {
+  margin-top: 0px;
+  vertical-align: middle;
+}
+
+/* this is for text overlay */
+.containAll {
+  position: relative;
+}
+
+.topDiv {
+  height: 35vH;
+  border-radius: 10px;
+  margin: 24px 24px 0px 24px;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.topDivExpanded {
+    height: 100vH;
+}
+
+.bottomDiv {
+  background: white;
+}
+
+
+p.name {
+  padding: 12px 24px;
+  vertical-align: middle;
+  text-align: left;
+  margin: 0px 0px 0px 0px;
+  font-weight: bold;
+  text-decoration: underline;
+  font-size: 20px;
+}
+
+p.menuName {
+  padding: 20px 24px 20px;
+  vertical-align: middle;
+  text-align: left;
+  margin: 0px 0px 0px 0px;
+  font-weight: bold;
+}
+
+p.ingredients {
+  padding: 0px 24px 12px;
+  vertical-align: middle;
+  text-align: left;
+  margin: 0px;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+/* this is for text overlay */
+.containName {
+  z-index: 5;
+  background-color: rgba(20,20,20,0.3);
+  position: absolute;
+  color: white;
+  font-weight: bold;
+  bottom: 15%;
+  width: 100%;
+  height: auto;
+}
+
+.backButton {
+  position: fixed;
+  z-index: 10;
+  left: 16px;
+  top: 16px;
+  width: 40px;
+  height: 40px;
+}
+
+.filterContainerStyling {
+  margin: 16px 8px 0px 60px;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 0.4em;
+  line-height: 0.4em;
+}
+
+.filterbutton {
+  background-color: #FFF;
+  z-index:99999;
+  position: relative;
+  border: 2px solid;
+  border-radius: 1px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  padding: 16px 20px;
+  display: inline-block;
+  margin-left: 16px;
+  margin-bottom: 14px;
+}
+
+
+/* this is for text overlay */
+.tapToLearn {
+  z-index: 5;
+  font-size: 14px;
+  color: grey;
+  padding: 0px 24px 24px 24px;
+  margin: 0px;
+  height: auto;
+  bottom: 0px;
+  text-align: right;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #F0F0F0;
+  border: 2px solid #F0F0F0;
+  border-radius: 14px;
+  -webkit-border-radius: 14px;
+  -moz-border-radius: 14px;
+}
+
+button:hover,
+button.hover {
+  background-color: #F0F0F0;
+}
+button:active,
+button.active {
+  background-color: #F0F0F0;
+}
+
+/* div that holds the button */
+/* rename this to "buttonContainer" */
+.buttonfirst {
+  display: inline-block;
+  width: calc( 50% - 36px );
+  margin: 0px 12px 12px 24px ;
+  background-color: #F0F0F0;
+  border: 0px solid white;
+  border-radius: 14px;
+  -webkit-border-radius: 14px;
+  -moz-border-radius: 14px;
+  -safari-border-radius: 14px;
+  -webkit-box-shadow: 0 0 5px rgba(50, 50, 50, 0.3);
+        box-shadow: 0 0 5px rgba(50, 50, 50, 0.3);
+}
+
+.buttonsecond {
+  display: inline-block;
+  width: calc( 50% - 36px );
+  margin: 0px 24px 12px 12px ;
+  background-color: #F0F0F0;
+  border: 0px solid white;
+  border-radius: 14px;
+  -webkit-border-radius: 14px;
+  -moz-border-radius: 14px;
+  -safari-border-radius: 14px;
+  -webkit-box-shadow: 0 0 5px rgba(50, 50, 50, 0.3);
+        box-shadow: 0 0 5px rgba(50, 50, 50, 0.3);
+}
+
+#gifContainer {
+  visibility: hidden;
+  position: fixed;
+  right: 16px;
+  top: 16px;
+  width: 50px;
+  height: 50px;
+  z-index: 999;
+}
+
+#gif {
+  z-index: 999;
+}
+
+.buttonContainer {
+  width: 100%;
+  display: table;
+}
+
+.menuButton {
+    font-size: 20px;
+    display: table-cell;
+    vertical-align: middle;
+    /*text-align: center;*/
+    word-wrap: break-word;
+    font-weight: normal;
+    padding: 0px 16px;
+}
+
+/* Responsivde layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 800px) {
+  .column {
+    flex: 50%;
+    max-width: 50%;
+  }
+  body {
+    font-size: 8vw;
+  }
+  .menuButton {
+    font-size: 20px;
+    display: table-cell;
+    vertical-align: middle;
+    /*text-align: center;*/
+    word-wrap: break-word;
+    font-weight: normal;
+    padding: 0px 16px;
+  }
+
+  .circle {
+    float: left;
+    height: 10px;
+    width: 10px;
+    background-color: white;
+    z-index: 99999;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    bottom: 2%;
+    display: inline-block;
+    margin: 0px 5px;
+    top: 380px;
+  }
+}
+
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    flex: 100%;
+    max-width: 100%;
+  }
+  body {
+    font-size: 8vw;
+  }
+  .menuButton {
+    font-size: 20px;
+    display: table-cell;
+    vertical-align: middle;
+    /*text-align: center;*/
+    word-wrap: break-word;
+    font-weight: normal;
+    padding: 0px 16px;
+  }
+}
