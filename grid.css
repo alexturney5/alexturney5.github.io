@@ -23,7 +23,7 @@
   height: 5px;
 }
 .carousel::-webkit-scrollbar-thumb {
-  background: #EEE;
+  background: #CCC;
   border-radius: 10px;
 }
 .carousel::-webkit-scrollbar-track {
@@ -40,7 +40,8 @@
   background-size: cover;
   background-repeat: no-repeat;
 
-  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  scroll-snap-align: center;
   flex-shrink: 0;
 
   transform-origin: center center;
@@ -196,9 +197,6 @@ img {
 }
 
 .topDiv {
-  height: 35vH;
-  border-radius: 10px;
-  margin: 24px 24px 0px 24px;
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
