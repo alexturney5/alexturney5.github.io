@@ -4,7 +4,7 @@ function createMenuCarouselAndName(masterContainer, descriptionText, imgLink, ro
     containAll.setAttribute('class', 'containAll');
     let carousel = createNode('div');
     carousel.setAttribute('class', 'carousel');
-    let name = createNode('p'); // name of the menu item
+    let name = createNode('p');
     name.setAttribute('class', 'menuName');
     //attach buttons
     append(masterContainer, containAll);
@@ -37,7 +37,7 @@ function createMenuButton(masterContainer, descriptionText, link, rowCompany){
     a.setAttribute('id',rowCompany + ":" + descriptionText);
 }
 
-function createSubMenuItem(masterContainer, descriptionText, link, imgLink, rowID, ingredientsText, sizesText, pricesText, detailsText){
+function createSubMenuItem(masterContainer, descriptionText, link, imgLink, rowID, ingredientsText, sizesText, pricesText, detailsText, disclaimerText){
     //create temp divs
     let containAll = createNode('div');
     containAll.setAttribute('class', 'containAll');
@@ -64,6 +64,8 @@ function createSubMenuItem(masterContainer, descriptionText, link, imgLink, rowI
     let newTopTitle = createNode('div');
     newTopTitle.setAttribute('class', 'column');
     newTopTitle.setAttribute('id','topTitle')
+    let disclaimerContainer = createNode('div');
+    disclaimerContainer.setAttribute('class', 'disclaimerContainer');
     //topTitle Spacing
     if (titleText != "n/a") {
         if (!subheads.includes(titleText)) {
@@ -95,18 +97,30 @@ function createSubMenuItem(masterContainer, descriptionText, link, imgLink, rowI
     }
     append(containAll,bottomDiv);
     append(bottomDiv,name);
+    append(bottomDiv,disclaimerContainer);
     append(containAll,spacebreak);
     //assign data
-    name.innerText = descriptionText;
-    if (ingredientsText != "n/a") {
-        append(bottomDiv,ingredients);
-        ingredients.innerText=ingredientsText;
+    if (descriptionText != "n/a") {
+        name.innerText = descriptionText;
     }
     if ( detailsText != "n/a" ) {
         append(bottomDiv,details);
         details.innerText = detailsText;
     }
-    if (sizesText != "n/a") {
+    if (ingredientsText[0] != "n/a") {
+        append(bottomDiv,ingredients);
+        for (i = 0; i < ingredientsText.length; i++) {
+            let tempP = createNode('p');
+            append(ingredients,tempP);
+            tempP.innerText=ingredientsText[i];
+            if (i==0) {
+                tempP.setAttribute('class','ingredient')
+            } else {
+                tempP.setAttribute('class','ingredientDisclaimer')
+            }
+        }
+    }
+    if ( sizesText != "n/a" ) {
         append(bottomDiv,sizes);
         sizes.innerText=sizesText;
     }
@@ -114,12 +128,18 @@ function createSubMenuItem(masterContainer, descriptionText, link, imgLink, rowI
         append(containAll,prices);
         prices.innerText = pricesText;
     }
-    if (link != "n/a") {
+    if ( link != "n/a" ) {
         a.setAttribute('href', link);
         append(bottomDiv,a);
         append(a,tapToLearn);
         tapToLearn.innerText="tap to learn more.";
         tapToLearn.setAttribute('class','tapToLearn');
+    }
+    if ( disclaimerText != "n/a" ) {
+        let tempP = createNode('p');
+        append(disclaimerContainer,tempP);
+        tempP.innerText=disclaimerText;
+        tempP.setAttribute('class','disclaimer');
     }
 }
 

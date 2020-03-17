@@ -69,7 +69,7 @@ fetch(url,{mode: "cors"})
             backButton.setAttribute("href","?grouping=menu&company="+urlCompany);
             backImg.src = "http://alexturney.com/imgBin/xcta.png"
             createButtonFilters(filterText,filters);
-            createSubMenuItem(one, descriptionText, link, imgLink, rowID, ingredientsText, sizesText, pricesText, detailsText)
+            createSubMenuItem(one, descriptionText, link, imgLink, rowID, ingredientsText, sizesText, pricesText, detailsText, disclaimerText);
         }
     }
     filterButtonColor();
@@ -147,16 +147,30 @@ function createCirclesTwo(rowID, a){
 }
 
 function createSwipingCarousel(rowID, key, imageArray, appendTo){
+  if (imageArray.length == 1) {
+      let singleImage = createNode('div');
+      singleImage.setAttribute('class', 'singleImage');
+      singleImage.setAttribute('id',0)
+      var tempCSS = "background-image: url("+imageArray[0]+");"
+      singleImage.setAttribute("style",tempCSS);
+      append(appendTo,singleImage);
+  } else {
     for (i = 0; i < imageArray.length; i++) {
-        let innerCarousel = createNode('div');
-        innerCarousel.setAttribute('class', 'innerCarousel');
-        innerCarousel.setAttribute('id',i)
-        var tempCSS = "background-image: url("+imageArray[i]+");"
-        myDict[rowID] = {"key":key,"imageArray":imageArray,"indexImage":0,"numberOfImages":imageArray.length};
-        numberOfImages++; // this is redundant if we keep the dictionary;
-        innerCarousel.setAttribute("style",tempCSS);
-        append(appendTo,innerCarousel);
+      let innerCarousel = createNode('div');
+      innerCarousel.setAttribute('class', 'innerCarousel');
+      innerCarousel.setAttribute('id',i)
+      var tempCSS = "background-image: url("+imageArray[i]+");"
+      myDict[rowID] = {"key":key,"imageArray":imageArray,"indexImage":0,"numberOfImages":imageArray.length};
+      numberOfImages++; // this is redundant if we keep the dictionary;
+      innerCarousel.setAttribute("style",tempCSS);
+      append(appendTo,innerCarousel);
+      if (i==imageArray.length - 1 && imageArray.length > 1) {
+        let dummyDiv = createNode('p');
+        dummyDiv.setAttribute('class', 'dummyDiv');
+        append(appendTo,dummyDiv);
+      }
     }
+  }
 }
 
 function createImageCarouselTwo(rowID, key, imageArray){
@@ -274,6 +288,7 @@ function setJsonVariables(jsonresponse,i){
   sizesText = jsonresponse[i][8];
   titleText = jsonresponse[i][9];
   ingredientsText = jsonresponse[i][10];
+  ingredientsText = ingredientsText.split('//');
   filterText = jsonresponse[i][11];
   filterText = filterText.split(',');
   disclaimerText = jsonresponse[i][12];
