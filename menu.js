@@ -57,9 +57,9 @@ fetch(url,{mode: "cors"})
             incrementOddEvenCount()
             showErrorFlag = false;
             if (rowType=="menu") {
-                createMenuCarouselAndName(one, descriptionText, imgLink, rowID);
+                createMenuCarouselAndName(one, descriptionText, imgLink, rowID, wifiText, detailsText, hoursText);
             } else if (rowType=="section") {
-                createMenuButton(one, descriptionText, link, rowCompany);
+                createMenuButton(one, descriptionText, link, rowCompany,imgLink);
             }
         }
         // SUB MENU
@@ -78,8 +78,17 @@ fetch(url,{mode: "cors"})
     }
 }) // END DOING WORK ON JSON
 .then(() => {
-    var buttonwidth = $(".buttonContainer").width();
-    $(".buttonContainer").height(buttonwidth*.75);
+    var buttonwidth = $(".buttonTable").width();
+    $(".buttonTable").height(buttonwidth*.75);
+    $(".wifiShowHide").click(function(){
+        if ($('.wifiName').hasClass("hidden")) {
+            $('.wifiName').removeClass("hidden").addClass("visible");
+            $('.wifiPass').removeClass("hidden").addClass("visible");
+        } else {
+            $('.wifiName').removeClass("visible").addClass("hidden");
+            $('.wifiPass').removeClass("visible").addClass("hidden");
+        }
+    });
 })
 .catch(function(error) {
     displayError();
@@ -259,6 +268,43 @@ function gifCreation(urlcompany, urltype) {
     $("#gif").attr("src", "icecream.gif");
     $("#gifContainer").css("visibility","visible");
   }
+}
+
+function buildAbout(detailsText, appendTo){
+  let tempAbout = createNode('div');
+  tempAbout.setAttribute('class','about')
+  tempAbout.innerText = detailsText;
+  append(appendTo,tempAbout);
+}
+
+function buildHours(hoursText, appendTo){
+  let tempHours = createNode('div');
+  tempHours.setAttribute('class','hours')
+  tempHours.innerText = hoursText;
+  append(appendTo,tempHours);
+}
+
+function buildWifi(wifi, appendTo){
+  let tempClickWifi = createNode('div');
+  tempClickWifi.setAttribute('class','wifiShowHide')
+  tempClickWifi.innerText = "Show Wifi";
+  append(appendTo,tempClickWifi);
+  let tempWifiContainer = createNode('div');
+  tempWifiContainer.setAttribute('class','wifiContainer')
+  append(appendTo,tempWifiContainer);
+  let tempWifiName = createNode('p');
+  tempWifiName.setAttribute('class','wifiName');
+  tempWifiName.classList.add('hidden');
+  let tempWifiPass = createNode('p');
+  tempWifiPass.setAttribute('class','wifiPass')
+  tempWifiPass.classList.add('hidden');
+  wifi = wifi.split('//');
+  tempString = "Wifi Network: " + wifi[0];
+  if (wifi[1] != null){
+    tempString = tempString + "\n Wifi Password: " + wifi[1];
+  }
+  tempWifiName.innerText = tempString;
+  append(tempWifiContainer,tempWifiName);
 }
 
 function incrementOddEvenCount(){

@@ -1,4 +1,4 @@
-function createMenuCarouselAndName(masterContainer, descriptionText, imgLink, rowID){
+function createMenuCarouselAndName(masterContainer, descriptionText, imgLink, rowID, wifi, aboutText, hoursText){
     //create temp divs
     let containAll = createNode('div');
     containAll.setAttribute('class', 'containAll');
@@ -13,27 +13,44 @@ function createMenuCarouselAndName(masterContainer, descriptionText, imgLink, ro
     append(containAll,name);
     //assign data
     name.innerText = descriptionText;
+    //wifi
+    if ( aboutText != "n/a" ) {
+        buildAbout(aboutText, containAll);
+    }
+    if ( hoursText != "n/a" ) {
+        buildHours(hoursText, containAll);
+    }
+    if ( wifi != "n/a" ) {
+        buildWifi(wifi, containAll);
+    }
+
 }
 
-function createMenuButton(masterContainer, descriptionText, link, rowCompany){
+function createMenuButton(masterContainer, descriptionText, link, rowCompany, imgLink){
     //create temp divs
-    let buttonContainer = createNode('div');
-    buttonContainer.setAttribute('class', 'buttonContainer');
+    let buttonTable = createNode('div');
+    buttonTable.setAttribute('class', 'buttonTable');
     let a = createNode('a');
+    a.setAttribute('class','menuButton white')
     let tempDiv = createNode('div');
     if (oddevencount%2==1) {
-        tempDiv.setAttribute('class', 'buttonsecond');
+        tempDiv.setAttribute('class', 'menuButtonContainer');
+        tempDiv.setAttribute('id', 'buttonsecond');
     } else {
-        tempDiv.setAttribute('class', 'buttonfirst');
+        tempDiv.setAttribute('class', 'menuButtonContainer');
+        tempDiv.setAttribute('id', 'buttonfirst');
+    }
+    if ( imgLink != "n/a" ) {
+        var tempCSS = "background-image: url("+imgLink+");"
+        tempDiv.setAttribute('style',tempCSS);
     }
     //attach buttons
     append(masterContainer,tempDiv);
-    append(tempDiv,buttonContainer);
-    append(buttonContainer,a);
+    append(tempDiv,buttonTable);
+    append(buttonTable,a);
     //assign data
     a.innerText = descriptionText;
     a.setAttribute('href', link);
-    a.setAttribute('class','menuButton')
     a.setAttribute('id',rowCompany + ":" + descriptionText);
 }
 

@@ -18,19 +18,6 @@
 
 }
 
-/*.carousel::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
-}
-.carousel::-webkit-scrollbar-thumb {
-  background: #CCC;
-  border-radius: 10px;
-}
-.carousel::-webkit-scrollbar-track {
-  background: transparent;
-}
-*/
-
 .dummyDiv {
   /* make sure the width is honored */
   width: 1px;
@@ -380,6 +367,39 @@ p.ingredientDisclaimer:last {
   margin-left: 16px;
   margin-bottom: 14px;
 }
+.about {
+  margin:0px 24px 20px;
+  font-size: 12px;
+}
+.hours {
+  margin:0px 24px 30px;
+  font-size: 12px;
+}
+.wifiContainer {
+  color: black;
+  margin:0px 24px 30px;
+  font-size: 12px;
+}
+.wifiShowHide {
+  color: black;
+  margin:0px 24px 0px;
+  font-size: 12px;
+  font-weight: bold;
+}
+.wifiName.hidden {
+  visibility: hidden;
+  font-size: 12px;
+  margin:0px;
+  height:0px;
+  transition: all 0.3s ease-in-out;
+}
+
+.wifiName.visible {
+  visibility: visible;
+  margin:10px 0px 0px;
+  font-size: 12px;
+  transition: all 0.3s ease-in-out;
+}
 
 
 /* this is for text overlay */
@@ -413,34 +433,30 @@ button.active {
   background-color: #F0F0F0;
 }
 
-/* div that holds the button */
-/* rename this to "buttonContainer" */
-.buttonfirst {
+.menuButtonContainer {
+  background-color: #BBB;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
   display: inline-block;
   width: calc( 50% - 36px );
   margin: 0px 12px 12px 24px ;
-  background-color: #F0F0F0;
   border: 0px solid white;
   border-radius: 14px;
   -webkit-border-radius: 14px;
   -moz-border-radius: 14px;
   -safari-border-radius: 14px;
   -webkit-box-shadow: 0 0 5px rgba(50, 50, 50, 0.3);
-        box-shadow: 0 0 5px rgba(50, 50, 50, 0.3);
+  box-shadow: 0 0 5px rgba(50, 50, 50, 0.3);
+}
+/* div that holds the button */
+/* rename this to "buttonContainer" */
+#buttonfirst {
+  margin: 0px 12px 12px 24px ;
 }
 
-.buttonsecond {
-  display: inline-block;
-  width: calc( 50% - 36px );
+#buttonsecond {
   margin: 0px 24px 12px 12px ;
-  background-color: #F0F0F0;
-  border: 0px solid white;
-  border-radius: 14px;
-  -webkit-border-radius: 14px;
-  -moz-border-radius: 14px;
-  -safari-border-radius: 14px;
-  -webkit-box-shadow: 0 0 5px rgba(50, 50, 50, 0.3);
-        box-shadow: 0 0 5px rgba(50, 50, 50, 0.3);
 }
 
 #gifContainer {
@@ -457,7 +473,7 @@ button.active {
   z-index: 999;
 }
 
-.buttonContainer {
+.buttonTable {
   width: 100%;
   display: table;
 }
@@ -468,9 +484,19 @@ button.active {
     vertical-align: middle;
     /*text-align: center;*/
     word-wrap: break-word;
-    font-weight: normal;
+    font-weight: bold;
     padding: 0px 16px;
 }
+
+.menuButton.black {
+    color: black;
+}
+
+.menuButton.white {
+    color: white;
+}
+
+
 
 /* Responsivde layout - makes a two column-layout instead of four columns */
 @media screen and (max-width: 800px) {
@@ -483,12 +509,6 @@ button.active {
   }
   .menuButton {
     font-size: 20px;
-    display: table-cell;
-    vertical-align: middle;
-    /*text-align: center;*/
-    word-wrap: break-word;
-    font-weight: normal;
-    padding: 0px 16px;
   }
 
   .circle {
@@ -519,11 +539,5 @@ button.active {
   }
   .menuButton {
     font-size: 20px;
-    display: table-cell;
-    vertical-align: middle;
-    /*text-align: center;*/
-    word-wrap: break-word;
-    font-weight: normal;
-    padding: 0px 16px;
   }
 }
