@@ -83,17 +83,17 @@ function createSubMenuItem(masterContainer, descriptionText, link, imgLink, rowI
     newTopTitle.setAttribute('id','topTitle')
     let disclaimerContainer = createNode('div');
     disclaimerContainer.setAttribute('class', 'disclaimerContainer');
-    //topTitle Spacing
+    //topTitle Spacing Margin
     if (titleText != "n/a") {
         if (!subheads.includes(titleText)) {
             if (atLeastOneFilterMade == false && atLeastOneTopTile == false) {
-                newTopTitle.style.marginTop = "80px";
+                // newTopTitle.style.marginTop = "80px";
                 append(containAll,newTopTitle);
                 newTopTitle.innerText=titleText;
                 subheads.push(titleText);
                 atLeastOneTopTile = true;
             } else if (atLeastOneFilterMade == true && atLeastOneTopTile == false) {
-                newTopTitle.style.marginTop = "24px";
+                // newTopTitle.style.marginTop = "24px";
                 append(containAll,newTopTitle);
                 newTopTitle.innerText=titleText;
                 subheads.push(titleText);

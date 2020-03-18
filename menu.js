@@ -1,15 +1,18 @@
-var foodChecks = ["chocolate", "coffee", "strawberry"];
-var flavorChecks = ["vegan", "vegetarian","gluten free","healthy choice", "pescatarian"];
+var flavorChecks = ["Chocolate", "Coffee", "Strawberry"];
+var foodChecks = ["Vegan", "Vegetarian","Gluten-Free","Healthy Choice", "Pescatarian"];
 var alcoholChecks = ["Vodka", "Whiskey", "Rum", "Tequila", "Mezcal", "Gin", "Rye", "Brandy", "Sake", "Scotch", "Bourbon"];
+var funChecks = ["I'm Feeling Lucky"];
 var filterChecks = [];
-filterChecks.push(...foodChecks, ...flavorChecks, ...alcoholChecks);
-console.log(filterChecks);
+filterChecks.push(...foodChecks, ...flavorChecks, ...alcoholChecks, ...funChecks);
 document.cookie = "SameSite = none;secure";
 var filters = [];
 var indexImage = 0;
 var numberOfImages = 0;
 var imageArray;
 var topDiv;
+// for i'm feeling lucky
+var luckyFlag = false;
+var luckydict = {};
 // for .topTitle top spacing
 var atLeastOneFilterMade = false;
 var atLeastOneTopTile = false;
@@ -40,6 +43,11 @@ var descriptionText,imgLink,rowType,detailsText,rowCompany,link,pricesText,sizes
 gifCreation(urlCompany,urlType);
 url = createURL(urlFilter, urlCompany);
 
+if ( urlFilter === "I'm Feeling Lucky" ) {
+  console.log("luckyFlag: " + luckyFlag);
+  luckyFlag = true;
+}
+
 showSpinner();
 fetch(url,{mode: "cors"})
 .then((resp) => resp.json()) // transform the data into json
@@ -51,7 +59,6 @@ fetch(url,{mode: "cors"})
     // go through each row of the google sheet
     for (var i = 0; i < arrayLength; i++) {
         setJsonVariables(jsonResponse,i);
-        if (disclaimerText != "n/a"){console.log(disclaimerText);}
         // MENU
         if (isMenu()) {
             incrementOddEvenCount()
@@ -68,11 +75,32 @@ fetch(url,{mode: "cors"})
             showErrorFlag = false;
             backButton.setAttribute("href","?grouping=menu&company="+urlCompany);
             backImg.src = "http://alexturney.com/imgBin/xcta.png"
-            createButtonFilters(filterText,filters);
-            createSubMenuItem(one, descriptionText, link, imgLink, rowID, ingredientsText, sizesText, pricesText, detailsText, disclaimerText);
+            if (luckyFlag) {
+              buildLuckyDict(jsonResponse, i);
+            } else {
+              console.log(filterText);
+              console.log(filters);
+              createButtonFilters(filterText,filters);
+              createSubMenuItem(one, descriptionText, link, imgLink, rowID, ingredientsText, sizesText, pricesText, detailsText, disclaimerText);
+            }
+        }
+    } // end for loop
+    // this section is to create top Title spacing once we know if filters were used and top title was used
+    if (subheads.length >= 1) {
+      if (atLeastOneFilterMade == false && atLeastOneTopTile == false) {
+            newTopTitle.style.marginTop = "80px";
+        } else if (atLeastOneFilterMade == true && atLeastOneTopTile == false) {
+            newTopTitle.style.marginTop = "24px";
         }
     }
-    filterButtonColor();
+    if ( luckyFlag ) {
+      console.log(luckydict);
+      console.log(Object.keys(luckydict).length);
+      var luckyNumber = Math.floor(Math.random() * Object.keys(luckydict).length) + 1;
+      createButtonFilters(["I'm Feeling Lucky"],[]);
+      buildLuckySubMenu(luckyNumber - 1);
+    }
+    filterButtonColor();  //this needs to be last  we should clean this up and remove it...
     if (showErrorFlag) {
         displayError();
     }
@@ -128,6 +156,20 @@ function createButtonFilters(filterText, filters){
             }
         }
     }
+}
+
+
+function buildLuckyDict(jsonResponse, i){
+    // excel row data
+    luckydict[i] = jsonResponse[i];
+}
+
+function buildLuckySubMenu(luckyNumber){
+    var tempArray = luckydict[luckyNumber];
+    console.log(luckyNumber);
+    console.log(tempArray);
+    setLuckyJsonVariables(tempArray);
+    createSubMenuItem(one, descriptionText, link, imgLink, rowID, ingredientsText, sizesText, pricesText, detailsText, disclaimerText);
 }
 
 function createCirclesTwo(rowID, a){
@@ -190,13 +232,10 @@ function createImageCarouselTwo(rowID, key, imageArray){
 }
 
 function changeImageCarouselTwo(rowID){
-    // console.log(images);
     incrementImageIndexTwo(rowID);
     var tempIndex = myDict[rowID]["indexImage"];
     var tempCSS = "url("+myDict[rowID]["imageArray"][tempIndex]+");"
-    console.log(tempCSS);
     tempID = "#"+rowID;
-    console.log(tempID);
     $(tempID).css("background-image","url("+myDict[rowID]["imageArray"][tempIndex]+")");
     for (i = 0; i < myDict[rowID]["numberOfImages"]; i++) {
       if (i==myDict[rowID]["indexImage"]) {
@@ -318,6 +357,32 @@ function isMenu() {
   } else {
     return false;
   }
+}
+
+function setLuckyJsonVariables(tempArray){
+  // excel row data
+  rowID = tempArray[0];
+  descriptionText = tempArray[1];
+  imgLink = tempArray[2];
+  imgLink = imgLink.split(',');
+  rowType = tempArray[3];
+  detailsText = tempArray[4];
+  rowCompany = tempArray[5];
+  link = tempArray[6];
+  pricesText = tempArray[7];
+  sizesText = tempArray[8];
+  titleText = tempArray[9];
+  ingredientsText = tempArray[10];
+  ingredientsText = ingredientsText.split('//');
+  filterText = tempArray[11];
+  filterText = filterText.split(',');
+  disclaimerText = tempArray[12];
+  OOSFlag = tempArray[13];
+  quantityText = tempArray[14];
+  caloriesText = tempArray[15];
+  markdownText = tempArray[16];
+  wifiText = tempArray[17];
+  hoursText = tempArray[18];
 }
 
 function setJsonVariables(jsonresponse,i){
