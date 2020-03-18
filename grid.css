@@ -434,7 +434,7 @@ button.active {
 }
 
 .menuButtonContainer {
-  background-color: #BBB;
+  background-color: #333;
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
