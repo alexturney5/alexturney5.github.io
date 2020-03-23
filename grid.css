@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Heebo:700|Open+Sans:800');
 
+:root {
+  --primary-color: orange;
+  --secondary-color: yellow;
+}
+
 .carousel {
   /* line them up horizontally */
   display: flex;
@@ -17,6 +22,15 @@
   scroll-behavior: smooth;
 
 }
+
+.aboutContainer > div {
+    margin:0px 24px 10px;
+}
+
+.aboutContainer > div:last-of-type {
+    margin:0px 24px 30px;
+}
+
 
 .dummyDiv {
   /* make sure the width is honored */
@@ -368,18 +382,16 @@ p.ingredientDisclaimer:last {
   margin-bottom: 14px;
 }
 .about {
-  margin:0px 24px 20px;
   font-size: 12px;
 }
 .hours {
-  margin:0px 24px 30px;
   font-size: 12px;
 }
 .wifiContainer {
   color: black;
-  margin:0px 24px 30px;
   font-size: 12px;
 }
+
 .wifiShowHide {
   color: black;
   margin:0px 24px 0px;
@@ -434,7 +446,6 @@ button.active {
 }
 
 .menuButtonContainer {
-  background-color: #333;
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -443,11 +454,11 @@ button.active {
   margin: 0px 12px 12px 24px ;
   border: 0px solid white;
   border-radius: 14px;
-  -webkit-border-radius: 14px;
+  /*-webkit-border-radius: 14px;
   -moz-border-radius: 14px;
   -safari-border-radius: 14px;
   -webkit-box-shadow: 0 0 5px rgba(50, 50, 50, 0.3);
-  box-shadow: 0 0 5px rgba(50, 50, 50, 0.3);
+  box-shadow: */0 0 5px rgba(50, 50, 50, 0.3);
 }
 /* div that holds the button */
 /* rename this to "buttonContainer" */
@@ -486,6 +497,7 @@ button.active {
     word-wrap: break-word;
     font-weight: bold;
     padding: 0px 16px;
+    color: white;
 }
 
 .menuButton.black {

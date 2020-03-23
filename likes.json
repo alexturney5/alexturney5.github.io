@@ -1,0 +1,44 @@
+{
+  "companies": {
+    "saltandstraw": {
+      "spreadsheetid": "1-hDga_96fyFMq_GUc6VsXTRZ0DFtaRuznHBMCqHCNVg",
+      "likes": {},
+      "other": {
+        "a": [255,255,255,1],
+        "b": "#000"
+      }
+    },
+    "2nw5": {
+      "spreadsheetid": "1dW-gO0KccZlB8vZMr-uKabSgppe0dZTK_yUCvoK27gA",
+      "likes": {},
+      "other": {
+        "a": [255,255,255,1],
+        "b": "#000"
+      }
+    },
+    "barista": {
+      "spreadsheetid": "1iyl0O8rFfNfHI0D6l5BJFJMlOOCuFPjAPcxad8Ez1w8",
+      "likes": {"Coffee":10,"Iced Coffee": 1},
+      "other": {
+        "a": [255,255,255,1],
+        "b": "#000"
+      }
+    },
+    "htgt": {
+      "spreadsheetid": "1SD2GT7gAgBRD3L5MbOHmhJ757DEvg5mVu7n1XyMYhR0",
+      "likes": {},
+      "other": {
+        "a": [255,255,255,1],
+        "b": "#000"
+      }
+    },
+    "lulu": {
+      "spreadsheetid": "1O9S86SnaHYck6lRVmAXpAEZAmqIi0LmVgy3iqZrbqLw",
+      "likes": {},
+      "other": {
+        "a": [255,255,255,1],
+        "b": "#000"
+      }
+    }
+  }
+}

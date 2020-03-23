@@ -1,4 +1,4 @@
-function createMenuCarouselAndName(masterContainer, descriptionText, imgLink, rowID, wifi, aboutText, hoursText){
+function createMenuCarouselAndName(masterContainer, descriptionText, imgLink, rowID, wifi, aboutText, hoursText, link){
     //create temp divs
     let containAll = createNode('div');
     containAll.setAttribute('class', 'containAll');
@@ -9,29 +9,38 @@ function createMenuCarouselAndName(masterContainer, descriptionText, imgLink, ro
     //attach buttons
     append(masterContainer, containAll);
     append(containAll,carousel);
-    createSwipingCarousel(rowID, descriptionText, imgLink, carousel);
+    //carousel work
+    if ( imgLink == "n/a" ) {
+        carousel.setAttribute('style','height:0px;');
+    } else {
+        createSwipingCarousel(rowID, descriptionText, imgLink, carousel, link);
+    }
     append(containAll,name);
     //assign data
     name.innerText = descriptionText;
-    //wifi
-    if ( aboutText != "n/a" ) {
-        buildAbout(aboutText, containAll);
+    // setting up a container for about, wifi, and hours
+    if ( aboutText != "n/a" || hoursText != "n/a" || wifi != "n/a" ) {
+        let aboutContainer = createNode('div');
+        aboutContainer.setAttribute('class', 'aboutContainer');
+        append(containAll, aboutContainer);
+        if ( aboutText != "n/a" ) {
+            buildAbout(aboutText, aboutContainer);
+        }
+        if ( hoursText != "n/a" ) {
+            buildHours(hoursText, aboutContainer);
+        }
+        if ( wifi != "n/a" ) {
+            buildWifi(wifi, aboutContainer);
+        }
     }
-    if ( hoursText != "n/a" ) {
-        buildHours(hoursText, containAll);
-    }
-    if ( wifi != "n/a" ) {
-        buildWifi(wifi, containAll);
-    }
-
 }
 
-function createMenuButton(masterContainer, descriptionText, link, rowCompany, imgLink){
+function createMenuButton(masterContainer, descriptionText, link, rowCompany, imgLink, stylingText){
     //create temp divs
     let buttonTable = createNode('div');
     buttonTable.setAttribute('class', 'buttonTable');
     let a = createNode('a');
-    a.setAttribute('class','menuButton white')
+    a.setAttribute('class','menuButton')
     let tempDiv = createNode('div');
     if (oddevencount%2==1) {
         tempDiv.setAttribute('class', 'menuButtonContainer');
@@ -43,6 +52,20 @@ function createMenuButton(masterContainer, descriptionText, link, rowCompany, im
     if ( imgLink != "n/a" ) {
         var tempCSS = "background-image: url("+imgLink+");"
         tempDiv.setAttribute('style',tempCSS);
+    } else {
+        var tempColor = "#F6A091";
+        var tempCSS = "background:"+ tempColor;
+        tempDiv.setAttribute('style',tempCSS);// do the #F6A091
+    }
+    // buton styling = black or white
+    if ( stylingText != "n/a" ) {
+        if ( stylingText == "whitetext" ) {
+            var tempClass = "white"
+            a.className += " " + tempClass;
+        } else if ( stylingText == "blacktext" ) {
+            var tempClass = "black"
+            a.className += " " + tempClass;
+        }
     }
     //attach buttons
     append(masterContainer,tempDiv);
@@ -79,12 +102,18 @@ function createSubMenuItem(masterContainer, descriptionText, link, imgLink, rowI
     let sizes = createNode('p');
     sizes.setAttribute('class', 'sizes');
     let newTopTitle = createNode('div');
-    newTopTitle.setAttribute('class', 'column');
     newTopTitle.setAttribute('id','topTitle')
+
+    // newTopTitle.setAttribute('class', 'topTitle');
+    // newTopTitle.setAttribute('id','newTopTitle')
+
     let disclaimerContainer = createNode('div');
     disclaimerContainer.setAttribute('class', 'disclaimerContainer');
     //topTitle Spacing Margin
     if (titleText != "n/a") {
+        if (subheads.length==0) {
+            newTopTitle.setAttribute('class','toptopTitle');
+        }
         if (!subheads.includes(titleText)) {
             if (atLeastOneFilterMade == false && atLeastOneTopTile == false) {
                 // newTopTitle.style.marginTop = "80px";
@@ -108,10 +137,6 @@ function createSubMenuItem(masterContainer, descriptionText, link, imgLink, rowI
     //attach buttons
     append(masterContainer, containAll);
     append(containAll,topDiv);
-    if (imgLink != "n/a") {
-        append(topDiv,carousel);
-        createSwipingCarousel(rowID, descriptionText, imgLink, carousel);
-    }
     append(containAll,bottomDiv);
     append(bottomDiv,name);
     append(bottomDiv,disclaimerContainer);
@@ -157,6 +182,10 @@ function createSubMenuItem(masterContainer, descriptionText, link, imgLink, rowI
         append(disclaimerContainer,tempP);
         tempP.innerText=disclaimerText;
         tempP.setAttribute('class','disclaimer');
+    }
+    if (imgLink != "n/a") {
+        append(bottomDiv,carousel);
+        createSwipingCarousel(rowID, descriptionText, imgLink, carousel, link);
     }
 }
 

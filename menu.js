@@ -1,3 +1,4 @@
+// const fs = require('fs');
 var flavorChecks = ["Chocolate", "Coffee", "Strawberry"];
 var foodChecks = ["Vegan", "Vegetarian","Gluten-Free","Healthy Choice", "Pescatarian"];
 var alcoholChecks = ["Vodka", "Whiskey", "Rum", "Tequila", "Mezcal", "Gin", "Rye", "Brandy", "Sake", "Scotch", "Bourbon"];
@@ -64,9 +65,9 @@ fetch(url,{mode: "cors"})
             incrementOddEvenCount()
             showErrorFlag = false;
             if (rowType=="menu") {
-                createMenuCarouselAndName(one, descriptionText, imgLink, rowID, wifiText, detailsText, hoursText);
+                createMenuCarouselAndName(one, descriptionText, imgLink, rowID, wifiText, detailsText, hoursText, link);
             } else if (rowType=="section") {
-                createMenuButton(one, descriptionText, link, rowCompany,imgLink);
+                createMenuButton(one, descriptionText, link, rowCompany,imgLink, stylingText);
             }
         }
         // SUB MENU
@@ -87,10 +88,17 @@ fetch(url,{mode: "cors"})
     } // end for loop
     // this section is to create top Title spacing once we know if filters were used and top title was used
     if (subheads.length >= 1) {
+      console.log("subheads: "+subheads);
+      console.log("atLeastOneFilterMade: "+atLeastOneFilterMade);
+      console.log("atLeastOneTopTile: "+atLeastOneTopTile);
       if (atLeastOneFilterMade == false && atLeastOneTopTile == false) {
-            newTopTitle.style.marginTop = "80px";
+            $('.toptopTitle').css("margin-top","80px");
         } else if (atLeastOneFilterMade == true && atLeastOneTopTile == false) {
-            newTopTitle.style.marginTop = "24px";
+            $('.toptopTitle').css("margin-top","24px");
+        } else if (atLeastOneFilterMade == false && atLeastOneTopTile == true) {
+            $('.toptopTitle').css("margin-top","80px");
+        } else if (atLeastOneFilterMade == true && atLeastOneTopTile == true) {
+            $('.toptopTitle').css("margin-top","20px");
         }
     }
     if ( luckyFlag ) {
@@ -117,11 +125,84 @@ fetch(url,{mode: "cors"})
             $('.wifiPass').removeClass("visible").addClass("hidden");
         }
     });
+    var clicked = false;
+    $(".name").click(function(){
+        incrementLikes($(this).text());
+    });
 })
 .catch(function(error) {
     displayError();
     console.log(error);
 });
+
+function incrementLikes(tempText) {
+  loadJSON('./likes.json', (data) => {
+    // if (err) {
+    //     console.log(err)
+    //     return
+    // }
+    if (typeof urlCompany != "undefined" || tempText != "undefined") {
+      // console.log(data['companies'][urlCompany]['likes']);
+      console.log(data);
+      console.log("pass typeof")
+      console.log(data.companies);
+      console.log(urlCompany);
+      if ( data['companies'][urlCompany]['likes'].hasOwnProperty(tempText) ){
+        console.log(data['companies'][urlCompany]['likes'][tempText]);
+        data.companies[urlCompany].likes[tempText]+=1;
+      } else {
+        var tempString = tempText;
+        var tempObj = { tempString: 1 };
+        console.log(tempObj);
+        data['companies'][urlCompany]['likes'][tempString]=1;
+      }
+    } else {
+      console.log("no company provided");
+    }
+  console.log(data);
+  // fs.writeFile('./likes.json', JSON.stringify(data), (err) => {
+  //       if (err) console.log('Error writing file:', err)
+  //   })
+  })
+}
+
+function incrementLikesOld(tempText) {
+  var tempUrl = "http://gsheets.herokuapp.com/incrementLikes?company="+urlCompany+"&name="+tempText;
+  fetch(tempUrl,{mode: "cors"})
+    .then(function(response) {
+      if (!response.ok) {
+        throw Error(response.statusText);
+      }
+      // Read the response as json.
+      return response.json();
+    })
+    .then(function(responseAsJson) {
+      // Do stuff with the JSON
+      console.log(responseAsJson);
+    })
+    .catch(function(error) {
+      console.log('Looks like there was a problem: \n', error);
+    });
+}
+
+function getLikes(tempText){
+  var tempUrl = "http://gsheets.herokuapp.com/getLikes?company="+urlCompany+"&name="+tempText;
+  fetch(tempUrl,{mode: "cors"})
+    .then(function(response) {
+      if (!response.ok) {
+        throw Error(response.statusText);
+      }
+      // Read the response as json.
+      return response.json();
+    })
+    .then(function(responseAsJson) {
+      // Do stuff with the JSON
+      console.log(responseAsJson);
+    })
+    .catch(function(error) {
+      console.log('Looks like there was a problem: \n', error);
+    });
+}
 
 //  FUNCTIONS FUNCTIONS FUNCTIONS
 function createButtonFilters(filterText, filters){
@@ -197,12 +278,15 @@ function createCirclesTwo(rowID, a){
   }
 }
 
-function createSwipingCarousel(rowID, key, imageArray, appendTo){
+function createSwipingCarousel(rowID, key, imageArray, appendTo, link){
   if (imageArray.length == 1) {
       let singleImage = createNode('div');
       singleImage.setAttribute('class', 'singleImage');
       singleImage.setAttribute('id',0)
       var tempCSS = "background-image: url("+imageArray[0]+");"
+      if ( link[0] !=  "n/a" ) {
+        singleImage.setAttribute("onclick","window.location='"+link[0]+"';");
+      }
       singleImage.setAttribute("style",tempCSS);
       append(appendTo,singleImage);
   } else {
@@ -210,9 +294,14 @@ function createSwipingCarousel(rowID, key, imageArray, appendTo){
       let innerCarousel = createNode('div');
       innerCarousel.setAttribute('class', 'innerCarousel');
       innerCarousel.setAttribute('id',i)
-      var tempCSS = "background-image: url("+imageArray[i]+");"
       myDict[rowID] = {"key":key,"imageArray":imageArray,"indexImage":0,"numberOfImages":imageArray.length};
       numberOfImages++; // this is redundant if we keep the dictionary;
+      var tempCSS = "background-image: url("+imageArray[i]+");"
+      if ( i < link.length ) {
+        if ( link[i] !=  "n/a" ) {
+          innerCarousel.setAttribute("onclick","window.location='"+link[i]+"';");
+        }
+      }
       innerCarousel.setAttribute("style",tempCSS);
       append(appendTo,innerCarousel);
       if (i==imageArray.length - 1 && imageArray.length > 1) {
@@ -395,6 +484,7 @@ function setJsonVariables(jsonresponse,i){
   detailsText = jsonresponse[i][4];
   rowCompany = jsonresponse[i][5];
   link = jsonresponse[i][6];
+  link = link.split(',');
   pricesText = jsonresponse[i][7];
   sizesText = jsonresponse[i][8];
   titleText = jsonresponse[i][9];
@@ -403,7 +493,7 @@ function setJsonVariables(jsonresponse,i){
   filterText = jsonresponse[i][11];
   filterText = filterText.split(',');
   disclaimerText = jsonresponse[i][12];
-  OOSFlag = jsonresponse[i][13];
+  stylingText = jsonresponse[i][13];
   quantityText = jsonresponse[i][14];
   caloriesText = jsonresponse[i][15];
   markdownText = jsonresponse[i][16];
@@ -421,3 +511,29 @@ function hideSpinner() {
 
 function createNode(element) { return document.createElement(element); }
 function append(parent, el) { return parent.appendChild(el); }
+
+function jsonReader(filePath, cb) {
+    fs.readFile(filePath, (err, fileData) => {
+        if (err) {
+            return cb && cb(err)
+        }
+        try {
+            const object = JSON.parse(fileData)
+            return cb && cb(null, object)
+        } catch(err) {
+            return cb && cb(err)
+        }
+    })
+}
+
+function loadJSON(filepath, callback) {
+  var xobj = new XMLHttpRequest();
+  xobj.overrideMimeType("application/json");
+  xobj.open('GET', filepath, true);
+  xobj.onreadystatechange = function () {
+    if (xobj.readyState == 4 && xobj.status == "200") {
+      callback(JSON.parse(xobj.responseText));
+    }
+  };
+  xobj.send(null);
+}
