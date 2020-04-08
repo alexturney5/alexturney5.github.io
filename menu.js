@@ -54,7 +54,8 @@ fetch(url,{mode: "cors"})
 .then((resp) => resp.json()) // transform the data into json
 .then(function(data) {
     hideSpinner();
-    let jsonResponse = data.values;
+    let jsonResponse = data.message.values; //PIPEDREAM
+    //HEROKU let jsonResponse = data.message.values;
     var arrayLength = jsonResponse.length;
     var arrayCount=0;
     // go through each row of the google sheet
@@ -75,7 +76,7 @@ fetch(url,{mode: "cors"})
             incrementOddEvenCount()
             showErrorFlag = false;
             backButton.setAttribute("href","?grouping=menu&company="+urlCompany);
-            backImg.src = "http://alexturney.com/imgBin/xcta.png"
+            backImg.src = "https://alexturney.com/imgBin/xcta.png"
             if (luckyFlag) {
               buildLuckyDict(jsonResponse, i);
             } else {
@@ -135,58 +136,39 @@ fetch(url,{mode: "cors"})
     console.log(error);
 });
 
-function incrementLikes(tempText) {
-  loadJSON('./likes.json', (data) => {
-    // if (err) {
-    //     console.log(err)
-    //     return
-    // }
-    if (typeof urlCompany != "undefined" || tempText != "undefined") {
-      // console.log(data['companies'][urlCompany]['likes']);
-      console.log(data);
-      console.log("pass typeof")
-      console.log(data.companies);
-      console.log(urlCompany);
-      if ( data['companies'][urlCompany]['likes'].hasOwnProperty(tempText) ){
-        console.log(data['companies'][urlCompany]['likes'][tempText]);
-        data.companies[urlCompany].likes[tempText]+=1;
-      } else {
-        var tempString = tempText;
-        var tempObj = { tempString: 1 };
-        console.log(tempObj);
-        data['companies'][urlCompany]['likes'][tempString]=1;
-      }
-    } else {
-      console.log("no company provided");
-    }
-  console.log(data);
-  // fs.writeFile('./likes.json', JSON.stringify(data), (err) => {
-  //       if (err) console.log('Error writing file:', err)
-  //   })
-  })
-}
-
-function incrementLikesOld(tempText) {
-  var tempUrl = "http://gsheets.herokuapp.com/incrementLikes?company="+urlCompany+"&name="+tempText;
-  fetch(tempUrl,{mode: "cors"})
-    .then(function(response) {
-      if (!response.ok) {
-        throw Error(response.statusText);
-      }
-      // Read the response as json.
-      return response.json();
-    })
-    .then(function(responseAsJson) {
-      // Do stuff with the JSON
-      console.log(responseAsJson);
-    })
-    .catch(function(error) {
-      console.log('Looks like there was a problem: \n', error);
-    });
-}
+// function incrementLikes(tempText) {
+//   loadJSON('./likes.json', (data) => {
+//     // if (err) {
+//     //     console.log(err)
+//     //     return
+//     // }
+//     if (typeof urlCompany != "undefined" || tempText != "undefined") {
+//       // console.log(data['companies'][urlCompany]['likes']);
+//       console.log(data);
+//       console.log("pass typeof")
+//       console.log(data.companies);
+//       console.log(urlCompany);
+//       if ( data['companies'][urlCompany]['likes'].hasOwnProperty(tempText) ){
+//         console.log(data['companies'][urlCompany]['likes'][tempText]);
+//         data.companies[urlCompany].likes[tempText]+=1;
+//       } else {
+//         var tempString = tempText;
+//         var tempObj = { tempString: 1 };
+//         console.log(tempObj);
+//         data['companies'][urlCompany]['likes'][tempString]=1;
+//       }
+//     } else {
+//       console.log("no company provided");
+//     }
+//   console.log(data);
+//   // fs.writeFile('./likes.json', JSON.stringify(data), (err) => {
+//   //       if (err) console.log('Error writing file:', err)
+//   //   })
+//   })
+// }
 
 function getLikes(tempText){
-  var tempUrl = "http://gsheets.herokuapp.com/getLikes?company="+urlCompany+"&name="+tempText;
+  var tempUrl = "https://gsheets.herokuapp.com/getLikes?company="+urlCompany+"&name="+tempText;
   fetch(tempUrl,{mode: "cors"})
     .then(function(response) {
       if (!response.ok) {
@@ -379,11 +361,11 @@ function createURL(urlfilter, urlcompany) {
   var return_url = "empty";
   for (var i = 0; i < filterChecks.length; i++) {
     if (urlFilter === filterChecks[i]) {
-        return_url = 'http://gsheets.herokuapp.com/menu?company='+urlCompany+'&filter='+filterChecks[i];
+        return_url = 'https://en81wl1zurcp76s.m.pipedream.net/?company='+urlCompany+'&filter='+filterChecks[i];
     }
   }
   if (return_url=="empty") {
-    return_url = 'https://gsheets.herokuapp.com/menu?company='+urlCompany;
+    return_url = 'https://en81wl1zurcp76s.m.pipedream.net/?company='+urlCompany;
     }
   return return_url;
 }
@@ -394,6 +376,9 @@ function gifCreation(urlcompany, urltype) {
     $("#gifContainer").css("visibility","visible");
   } else if (urlcompany=="saltandstraw" && urltype!="menu") {
     $("#gif").attr("src", "icecream.gif");
+    $("#gifContainer").css("visibility","visible");
+  } else if (urlcompany=="lulu" && urltype!="menu") {
+    $("#gif").attr("src", "share.png");
     $("#gifContainer").css("visibility","visible");
   }
 }
