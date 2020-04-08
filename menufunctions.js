@@ -11,7 +11,7 @@ function createMenuCarouselAndName(masterContainer, descriptionText, imgLink, ro
     append(containAll,carousel);
     //carousel work
     if ( imgLink == "n/a" ) {
-        carousel.setAttribute('style','height:0px;');
+        carousel.setAttribute('style','height:0px;margin:0;');
     } else {
         createSwipingCarousel(rowID, descriptionText, imgLink, carousel, link);
     }
