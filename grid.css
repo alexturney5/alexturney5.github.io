@@ -171,6 +171,22 @@ a {
   top: 380px;
 }
 
+body.splash {
+  background-image: url(../imgBin/stmntbackground.png);
+  background-size: cover;
+  background-position: center center;
+}
+
+#splashContain {
+  visibility: hidden;
+  width: 80%;
+  margin: 0 auto;
+  background: none;
+}
+#splashContain.show {
+  visibility: visible;
+}
+
 #spinner {
   visibility: hidden;
   width: 80px;

@@ -22,6 +22,8 @@ var subheads = [];
 var buttonContainerBeingUsed = false;
 var showErrorFlag = true;
 var oddevencount = 0
+const main = document.getElementById("mainContainer");
+const landing = document.getElementById("splashContain");
 const spinner = document.getElementById("spinner");
 const urlParams = new URLSearchParams(window.location.search);
 const urlType = urlParams.get('grouping');
@@ -47,6 +49,16 @@ url = createURL(urlFilter, urlCompany);
 if ( urlFilter === "I'm Feeling Lucky" ) {
   console.log("luckyFlag: " + luckyFlag);
   luckyFlag = true;
+}
+
+
+if ( urlCompany == null ) {
+  $("#mainContainer").children().hide();
+  landing.className = "show";
+  $('body').addClass('splash');
+} else {
+  console.log("normalmenu");
+  $("#splashContain").children().hide();
 }
 
 showSpinner();

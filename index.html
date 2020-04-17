@@ -23,6 +23,7 @@
     <meta name="description" content="">
     <meta name="author" content="alexturney">
     <link rel="stylesheet" type="text/css" href="grid.css">
+    <link rel="stylesheet" type="text/css" href="minboot.css">
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
@@ -31,8 +32,8 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N729J8B"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
-    <div id="spinner"></div>
-    <div class="mainContainer">
+    <div id="mainContainer">
+        <div id="spinner"></div>
         <div class="column" id="filterContainer"></div>
         <a class="backButton" id="backButton"><img id="backImg"></a>
         <a id="gifContainer"><img id="gif"></a>
@@ -44,6 +45,32 @@
         </div>
         <div class="row">
             <div class="column" id="notes"></div>
+        </div>
+    </div>
+    <div id="splashContain">
+        <div class="projectContainer">
+            <div class="col-sm-4" id="splashLogo">
+                <img src="biteboard_logo.png" style=
+        "width:100%;height:auto;margin: 0 auto;display:block;">
+            </div>
+            <div class="col-sm-8">
+                <div id="insert"></div>
+                <div class="valueProp">
+                    <form action="index.php" method="post">
+                        <p class="splashDescription"> We believe ordering your food and drinks should be more convenient, more aesthetic, and more fun <br> <br>
+Subscribe to receive updates or for pricing information.<br></p>
+                        <label for="Email">Email:</label>
+                        <input type="text" name="email" id="email" />
+                        <br><br>
+                        <input class="sub" type="submit" name="submit" value="Submit" />
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="containerOne">
+        </div>
+        <div>
+            <div height="20px"></div>
         </div>
     </div>
     <br>
