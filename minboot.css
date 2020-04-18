@@ -159,15 +159,11 @@ input {
   text-shadow: none;
   display: inline-block;
   text-align: start;
-  -webkit-appearance: textfield;
-  background-color: -internal-light-dark-color(white, black);
-  -webkit-rtl-ordering: logical;
+  background-color: #FCFCFC;
   cursor: text;
   padding: 1px;
   border-width: 2px;
   border-style: inset;
-  border-color: initial;
-  border-image: initial;
 }
 
 .splashMock {

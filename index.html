@@ -77,15 +77,15 @@
                 <img id="splashLogo" src="biteboard_logo.png">
                 <div id="insert"></div>
                 <div class="valueProp">
-                    <form action="index.php" method="post">
+                    <div>
                         <p class="splashDescription"> We believe eating and drinking with friends should be more convenient, more aesthetic, and more fun.</p>
                         <br>
                         <p class="splashDescription"> Get in touch with us if you'd like to learn more or inquire about pricing.</p>
                         <label for="Email">Email:</label>
-                        <input type="text" name="email" id="email" />
+                        <input type="text" name="email" id="email" tabindex="1"/>
                         <br><br>
-                        <a class="sub">Submit</a>
-                    </form>
+                        <a class="sub" tabindex="2">Submit</a>
+                    </div>
                 </div>
             </div>
             <div class="col-sm-6">
@@ -110,6 +110,14 @@
             var email = document.getElementById("email").value
             sendEmail(email);
         });
+
+        // $('.sub').addEventListener("keyup", function(event) {
+        //     if (event.keyCode === 13) {
+        //         var email = document.getElementById("email").value
+        //         sendEmail(email);
+        //     }
+        // });
+
 
          const shareBtn = document.querySelector('#gif');
 

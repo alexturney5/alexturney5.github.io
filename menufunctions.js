@@ -192,18 +192,36 @@ function createSubMenuItem(masterContainer, descriptionText, link, imgLink, rowI
 //index.js
 function sendEmail(email) {
     console.log(email);
-    var url = "https://en3flf82h2q1tgk.m.pipedream.net?text="+email;
-    fetch(url,{mode: "cors"})
-    .then((resp) => resp.json()) // transform the data into json
-    .then(function(data) {
-        console.log("data: " + data);
-        let jsonResponse = data.message;
-        console.log("jsonResponse: " + jsonResponse);
-        alert("Thank you, we will be in touch soon!");
-        return jsonResponse;
-    })
-    .catch(function(error) {
-    displayError();
-    console.log(error);
-    });
+    var isValidEmail = isEmailAddress(email);
+    if (isValidEmail) {
+        console.log("valid email pass");
+        var url = "https://en3flf82h2q1tgk.m.pipedream.net?text="+email;
+        fetch(url,{mode: "cors"})
+        .then((resp) => resp.json()) // transform the data into json
+        .then(function(data) {
+            console.log("data: " + data);
+            let jsonResponse = data.message;
+            console.log("jsonResponse: " + jsonResponse);
+            alert("Thank you, we will be in touch soon!");
+            document.getElementById("email").value = "";
+            window.scrollTo(0, 0);
+            return jsonResponse;
+        })
+        .catch(function(error) {
+            displayError();
+            console.log(error);
+        });
+    } else {
+        console.log("invalid email fail");
+        alert("Please enter a valid email.");
+    }
+
+}
+
+function isEmailAddress(str) {
+
+    var pattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+    console.log("match: "+str.match(pattern));
+    return str.match(pattern);
+
 }
