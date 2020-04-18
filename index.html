@@ -84,7 +84,7 @@
                         <label for="Email">Email:</label>
                         <input type="text" name="email" id="email" />
                         <br><br>
-                        <input class="sub" type="submit" name="submit" value="Submit" />
+                        <a class="sub">Submit</a>
                     </form>
                 </div>
             </div>
@@ -105,6 +105,12 @@
     <script src="menu.js"></script>
     <script src="menufunctions.js"></script>
     <script type="text/javascript">
+        $('.sub').click(function() {
+            console.log("email click!");
+            var email = document.getElementById("email").value
+            sendEmail(email);
+        });
+
          const shareBtn = document.querySelector('#gif');
 
         shareBtn.addEventListener('click', () => {

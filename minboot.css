@@ -139,6 +139,7 @@ p.splashDescription {
   background: #3F6659;
   padding: 5px 10px;
   border-radius: 4px;
+  width: 120px;
 }
 
 label {

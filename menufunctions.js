@@ -189,18 +189,21 @@ function createSubMenuItem(masterContainer, descriptionText, link, imgLink, rowI
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//index.js
+function sendEmail(email) {
+    console.log(email);
+    var url = "https://en3flf82h2q1tgk.m.pipedream.net?text="+email;
+    fetch(url,{mode: "cors"})
+    .then((resp) => resp.json()) // transform the data into json
+    .then(function(data) {
+        console.log("data: " + data);
+        let jsonResponse = data.message;
+        console.log("jsonResponse: " + jsonResponse);
+        alert("Thank you, we will be in touch soon!");
+        return jsonResponse;
+    })
+    .catch(function(error) {
+    displayError();
+    console.log(error);
+    });
+}
