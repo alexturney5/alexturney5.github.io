@@ -149,6 +149,20 @@ fetch(url,{mode: "cors"})
     $(".name").click(function(){
         incrementLikes($(this).text());
     });
+    $(".textContainer").click(function(){
+        console.log("textContainer click");
+        if ($(this).hasClass("show")) {
+            console.log("has show");
+            $(this).removeClass("show");
+            $(this).find(".expandableSection").attr("style","display:none;");
+            $(this).parent().find(".expandArrow").attr("style","content:url('expandArrow.png');");
+        } else {
+            console.log("does not have show");
+            $(this).addClass("show");
+            $(this).find(".expandableSection").attr("style","display:block;");
+            $(this).parent().find(".expandArrow").attr("style","content:url('collapseArrow.png');");
+        }
+    });
 })
 .catch(function(error) {
     displayError();
@@ -280,6 +294,45 @@ function createCirclesTwo(rowID, a){
 }
 
 function createSwipingCarousel(urlType, rowID, key, imageArray, appendTo, link){
+  if (imageArray.length == 1) {
+      let singleImage = createNode('div');
+      if (urlType === "menu") {
+          singleImage.setAttribute('class', 'mainMenuSingleImage');
+      } else {
+          singleImage.setAttribute('class', 'singleImage');
+      }
+      singleImage.setAttribute('id',0)
+      var tempCSS = "background-image: url("+imageArray[0]+");"
+      if ( link[0] !=  "n/a" ) {
+        singleImage.setAttribute("onclick","window.location='"+link[0]+"';");
+      }
+      singleImage.setAttribute("style",tempCSS);
+      append(appendTo,singleImage);
+  } else {
+    for (i = 0; i < imageArray.length; i++) {
+      let innerCarousel = createNode('div');
+      innerCarousel.setAttribute('class', 'innerCarousel');
+      innerCarousel.setAttribute('id',i)
+      myDict[rowID] = {"key":key,"imageArray":imageArray,"indexImage":0,"numberOfImages":imageArray.length};
+      numberOfImages++; // this is redundant if we keep the dictionary;
+      var tempCSS = "background-image: url("+imageArray[i]+");"
+      if ( i < link.length ) {
+        if ( link[i] !=  "n/a" ) {
+          innerCarousel.setAttribute("onclick","window.location='"+link[i]+"';");
+        }
+      }
+      innerCarousel.setAttribute("style",tempCSS);
+      append(appendTo,innerCarousel);
+      if (i==imageArray.length - 1 && imageArray.length > 1) {
+        let dummyDiv = createNode('p');
+        dummyDiv.setAttribute('class', 'dummyDiv');
+        append(appendTo,dummyDiv);
+      }
+    }
+  }
+}
+
+function createSwipingCarouselArrow(urlType, rowID, key, imageArray, appendTo, link){
   if (imageArray.length == 1) {
       let singleImage = createNode('div');
       if (urlType === "menu") {

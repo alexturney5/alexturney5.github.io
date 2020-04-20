@@ -1,4 +1,8 @@
-@import url('https://fonts.googleapis.com/css?family=Heebo:700|Open+Sans:800');
+body {
+  font-size: 18px;
+  font-family: 'Source Sans Pro', sans-serif;
+  margin: 0;
+}
 
 p {
   padding: 0px;
@@ -25,22 +29,6 @@ p {
   transition: transform 0.5s;
 }
 
-.carousel {
-  /* line them up horizontally */
-  display: flex;
-  height: 35vH;
-  border-radius: 10px;
-  margin: 10px 0px 0px 0px;
-  position: relative;
-
-  /* allow for scrolling */
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-
-  /* make it smooth on iOS */
-  -webkit-overflow-scrolling: touch;
-  scroll-behavior: smooth;
-}
 
 .aboutContainer > div {
     margin:0px 24px 10px;
@@ -58,84 +46,6 @@ p {
   scroll-snap-align: center;
   flex-shrink: 0;
   margin-right: 24px;
-}
-
-.innerCarousel {
-  /* make sure the width is honored */
-  margin-left: 12px;
-  margin-right: 0px;
-  width: calc(100% - 48px);
-  height: auto;
-  border-radius: 10px;
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-
-  scroll-snap-stop: always;
-  scroll-snap-align: center;
-  flex-shrink: 0;
-
-  transform-origin: center center;
-  transform: scale(1);
-  transition: transform 0.5s;
-}
-
-.innerCarousel:first-child {
-  /* make sure the width is honored */
-  margin-left: 24px;
-  margin-right: 0px;
-  width: calc(100% - 48px);
-  height: auto;
-  border-radius: 10px;
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-
-  scroll-snap-stop: always;
-  scroll-snap-align: center;
-  flex-shrink: 0;
-
-  transform-origin: center center;
-  transform: scale(1);
-  transition: transform 0.5s;
-}
-
-.innerCarousel:last-of-type {
-  /* make sure the width is honored */
-  margin-left: 12px;
-  margin-right: 24px;
-  width: calc(100% - 48px);
-  height: auto;
-  border-radius: 10px;
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-
-  scroll-snap-stop: always;
-  scroll-snap-align: center;
-  flex-shrink: 0;
-
-  transform-origin: center center;
-  transform: scale(1);
-  transition: transform 0.5s;
-}
-
-.singleImage {
-  /* make sure the width is honored */
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-
-  scroll-snap-stop: always;
-  scroll-snap-align: center;
-  flex-shrink: 0;
-
-  transform-origin: center center;
-  transform: scale(1);
-  transition: transform 0.5s;
 }
 
 .clickedFilter {
@@ -298,10 +208,8 @@ p.menuName {
 }
 
 .filterContainerStyling {
-  margin: 16px 8px 0px 60px;
-  font-family: 'Helvetica Neue', sans-serif;
-  font-size: 0.4em;
-  line-height: 0.4em;
+  margin: 16px 60px 0px 60px;
+  font-size: 14px;
 }
 
 .filterbutton {
@@ -311,10 +219,10 @@ p.menuName {
   border-radius: 1px;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
-  padding: 16px 20px;
+  padding: 10px 10px;
   display: inline-block;
-  margin-left: 16px;
-  margin-bottom: 14px;
+  margin-left: 10px;
+  margin-bottom: 10px;
 }
 .about {
   font-size: 12px;
@@ -348,18 +256,6 @@ p.menuName {
   transition: all 0.3s ease-in-out;
 }
 
-
-/* this is for text overlay */
-.tapToLearn {
-  z-index: 5;
-  font-size: 14px;
-  color: grey;
-  padding: 0px 24px 0px 24px;
-  margin: 0px;
-  height: auto;
-  bottom: 0px;
-  text-align: right;
-}
 
 button {
   width: 100%;

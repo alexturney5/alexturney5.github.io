@@ -87,8 +87,6 @@ function createSubMenuItem(masterContainer, descriptionText, link, imgLink, rowI
     details.setAttribute('class', 'details');
     let ingredients = createNode('div');
     ingredients.setAttribute('class', 'ingredients');
-    let prices = createNode('p');
-    prices.setAttribute('class', 'prices');
     let sizes = createNode('p');
     sizes.setAttribute('class', 'sizes');
     let newTopTitle = createNode('div');
@@ -131,12 +129,26 @@ function createSubMenuItem(masterContainer, descriptionText, link, imgLink, rowI
         append(menuItem,textContainer);
         append(textContainer,name);
         name.innerText = descriptionText;
+        if ( pricesText != "n/a" ) {
+            name.setAttribute('class', 'name70');
+            let prices = createNode('p');
+            // prices.setAttribute('class', 'prices');
+            prices.setAttribute('class', 'prices_two');
+            append(textContainer,prices);
+            prices.innerText = pricesText;
+            let clearDiv = createNode('div');
+            clearDiv.setAttribute('class', 'clearDiv');
+            append(textContainer,clearDiv);
+        }
+        let expandableSection = createNode('div');
+        expandableSection.setAttribute('class', 'expandableSection');
+        append(textContainer,expandableSection);
         if ( detailsText != "n/a" ) {
-            append(textContainer,details);
+            append(expandableSection,details);
             details.innerText = detailsText;
         }
         if (ingredientsText[0] != "n/a") {
-            append(textContainer,ingredients);
+            append(expandableSection,ingredients);
             for (i = 0; i < ingredientsText.length; i++) {
                 let tempP = createNode('p');
                 append(ingredients,tempP);
@@ -149,16 +161,12 @@ function createSubMenuItem(masterContainer, descriptionText, link, imgLink, rowI
             }
         }
         if ( sizesText != "n/a" ) {
-            append(textContainer,sizes);
+            append(expandableSection,sizes);
             sizes.innerText=sizesText;
-        }
-        if ( pricesText != "n/a" ) {
-            append(textContainer,prices);
-            prices.innerText = pricesText;
         }
         if ( link != "n/a" ) {
             for (i = 0; i < link.length; i++) {
-                append(textContainer,a);
+                append(expandableSection,a);
                 append(a,tapToLearn);
                 if (i==0) {
                     a.setAttribute('href', link[i]);
@@ -172,8 +180,18 @@ function createSubMenuItem(masterContainer, descriptionText, link, imgLink, rowI
         if (imgLink != "n/a") {
             let carousel = createNode('div');
             carousel.setAttribute('class', 'carousel');
-            append(textContainer,carousel);
-            createSwipingCarousel("subMenu", rowID, descriptionText, imgLink, carousel, link);
+            append(expandableSection,carousel);
+            // createSwipingCarousel("subMenu", rowID, descriptionText, imgLink, carousel, link);
+            createSwipingCarouselArrow("subMenu", rowID, descriptionText, imgLink, carousel, link);
+        }
+        if (ingredientsText[0] != "n/a" || link != "n/a" || sizesText != "n/a" || detailsText != "n/a" || imgLink != "n/a"){
+            console.log("PASSSSSS")
+            let expandArrowContainer = createNode('div');
+            expandArrowContainer.setAttribute('class', 'expandArrowContainer');
+            let expandArrow = createNode('img');
+            expandArrow.setAttribute('class', 'expandArrow');
+            append(menuItem,expandArrowContainer);
+            append(expandArrowContainer,expandArrow);
         }
     } // end menu item
     if ( disclaimerText != "n/a" ) {
