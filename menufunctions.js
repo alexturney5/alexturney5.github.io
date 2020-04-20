@@ -81,18 +81,6 @@ function createSubMenuItem(masterContainer, descriptionText, link, imgLink, rowI
     //create temp divs
     let containAll = createNode('div');
     containAll.setAttribute('class', 'containAll');
-    let menuItem = createNode('div');
-    menuItem.setAttribute('class', 'menuItem');
-    topDiv = createNode('div'); // container for top
-    topDiv.setAttribute('class', 'topDiv');
-    let carousel = createNode('div');
-    carousel.setAttribute('class', 'carousel');
-    let textContainer = createNode('div'); // container for top
-    textContainer.setAttribute('class', 'textContainer');
-    let name = createNode('p'); // name of the menu item
-    name.setAttribute('class', 'name');
-    let spacebreak = createNode('div');
-    spacebreak.setAttribute('class', 'spacebreak');
     let a = createNode('a');
     let tapToLearn = createNode("p");
     let details = createNode('p');
@@ -131,10 +119,14 @@ function createSubMenuItem(masterContainer, descriptionText, link, imgLink, rowI
             }
         }
     }
-    //attach buttons
     append(masterContainer, containAll);
-    //assign data
     if (descriptionText != "n/a") {
+        let menuItem = createNode('div');
+        menuItem.setAttribute('class', 'menuItem');
+        let textContainer = createNode('div'); // container for top
+        textContainer.setAttribute('class', 'textContainer');
+        let name = createNode('p'); // name of the menu item
+        name.setAttribute('class', 'name');
         append(containAll, menuItem);
         append(menuItem,textContainer);
         append(textContainer,name);
@@ -172,6 +164,8 @@ function createSubMenuItem(masterContainer, descriptionText, link, imgLink, rowI
             tapToLearn.setAttribute('class','tapToLearn');
         }
         if (imgLink != "n/a") {
+            let carousel = createNode('div');
+            carousel.setAttribute('class', 'carousel');
             append(textContainer,carousel);
             createSwipingCarousel("subMenu", rowID, descriptionText, imgLink, carousel, link);
         }
