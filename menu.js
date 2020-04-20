@@ -1,3 +1,5 @@
+// heroku or pipedream
+var isHeroku = true;
 // const fs = require('fs');
 var flavorChecks = ["Chocolate", "Coffee", "Strawberry"];
 var foodChecks = ["Vegan", "Vegetarian","Gluten-Free","Healthy Choice", "Pescatarian"];
@@ -66,8 +68,13 @@ fetch(url,{mode: "cors"})
 .then((resp) => resp.json()) // transform the data into json
 .then(function(data) {
     hideSpinner();
-    let jsonResponse = data.message.values; //PIPEDREAM
-    //HEROKU let jsonResponse = data.message.values;
+    var jsonResponse;
+    if (isHeroku) {
+      console.log(data.values);
+      jsonResponse = data.values; //HEROKU
+    } else {
+      jsonResponse = data.message.values; //PIPEDREAM
+    }
     var arrayLength = jsonResponse.length;
     var arrayCount=0;
     // go through each row of the google sheet
@@ -375,13 +382,18 @@ function filterButtonColor() {
 
 function createURL(urlfilter, urlcompany) {
   var return_url = "empty";
+  if (isHeroku) {
+    temp_url = "https://gsheets.herokuapp.com/menu?company="
+  } else {
+    temp_url = "https://en81wl1zurcp76s.m.pipedream.net/?company="
+  }
   for (var i = 0; i < filterChecks.length; i++) {
     if (urlFilter === filterChecks[i]) {
-        return_url = 'https://en81wl1zurcp76s.m.pipedream.net/?company='+urlCompany+'&filter='+filterChecks[i];
+        return_url = temp_url+urlCompany+'&filter='+filterChecks[i];
     }
   }
   if (return_url=="empty") {
-    return_url = 'https://en81wl1zurcp76s.m.pipedream.net/?company='+urlCompany;
+    return_url = temp_url+urlCompany;
     }
   return return_url;
 }
