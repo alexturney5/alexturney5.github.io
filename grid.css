@@ -1,8 +1,28 @@
 @import url('https://fonts.googleapis.com/css?family=Heebo:700|Open+Sans:800');
 
-:root {
-  --primary-color: orange;
-  --secondary-color: yellow;
+p {
+  padding: 0px;
+  margin: 0px;
+}
+
+.mainMenuSingleImage {
+  /* make sure the width is honored */
+  margin-left: 24px;
+  margin-right: 24px;
+  width: calc(100% - 48px);
+  height: auto;
+  border-radius: 10px;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  scroll-snap-stop: always;
+  scroll-snap-align: center;
+  flex-shrink: 0;
+
+  transform-origin: center center;
+  transform: scale(1);
+  transition: transform 0.5s;
 }
 
 .carousel {
@@ -10,7 +30,7 @@
   display: flex;
   height: 35vH;
   border-radius: 10px;
-  margin: 24px 0px 0px 0px;
+  margin: 10px 0px 0px 0px;
   position: relative;
 
   /* allow for scrolling */
@@ -20,7 +40,6 @@
   /* make it smooth on iOS */
   -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
-
 }
 
 .aboutContainer > div {
@@ -28,7 +47,7 @@
 }
 
 .aboutContainer > div:last-of-type {
-    margin:0px 24px 30px;
+    margin:0px 24px 20px;
 }
 
 
@@ -103,11 +122,9 @@
 
 .singleImage {
   /* make sure the width is honored */
-  margin-left: 24px;
-  margin-right: 24px;
-  width: calc(100% - 48px);
+  width: 100%;
   height: auto;
-  border-radius: 10px;
+  border-radius: 8px;
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -214,11 +231,7 @@ a {
   margin: 14px 0px 0px;
 }
 
-#topTitle {
-  font-family: 'Helvetica Neue', sans-serif;
-  font-size: 20px;
-  margin: 40px 24px 10px;
-}
+
 
 .details {
   font-size: 20px;
@@ -229,18 +242,6 @@ a {
 
 hr {
   border: 1.5px dashed #A9A9A9;
-}
-
-.sizes {
-  font-size: .6em;
-  padding: 0px 24px 12px 36px;
-  margin:  0px;
-}
-
-.prices {
-  font-size: .6em;
-  padding: 0px 24px 12px 36px;
-  margin:  0px;
 }
 
 body {
@@ -277,69 +278,11 @@ img {
   position: relative;
 }
 
-.topDiv {
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  position: relative;
-}
-
-.topDivExpanded {
-    height: 100vH;
-}
-
-.bottomDiv {
-  background: white;
-}
-
-
-p.name {
-  padding: 24px 24px 12px 24px;
-  vertical-align: middle;
-  text-align: left;
-  margin: 0px 0px 0px 0px;
-  font-weight: bold;
-  text-decoration: underline;
-  font-size: 20px;
-}
-
 p.menuName {
   padding: 20px 24px 20px;
   vertical-align: middle;
   text-align: left;
   margin: 0px 0px 0px 0px;
-  font-weight: bold;
-}
-
-.ingredients {
-  vertical-align: middle;
-  text-align: left;
-  margin: 0px;
-  padding: 0px;
-  font-size: 20px;
-}
-
-p.ingredient {
-  margin: 10px 0px 10px 24px;
-}
-
-p.ingredientDisclaimer {
-  margin: 0px 0px 10px 36px;
-}
-
-p.ingredientDisclaimer:last {
-  margin: 0px 0px 20px 36px;
-}
-
-.disclaimerContainer {
-  vertical-align: middle;
-  text-align: left;
-  margin: 0px;
-}
-
-.disclaimer {
-  padding: 0px 24px 12px;
-  font-size: 14px;
 }
 
 /* this is for text overlay */

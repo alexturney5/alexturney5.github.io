@@ -111,7 +111,7 @@ fetch(url,{mode: "cors"})
         } else if (atLeastOneFilterMade == false && atLeastOneTopTile == true) {
             $('.toptopTitle').css("margin-top","80px");
         } else if (atLeastOneFilterMade == true && atLeastOneTopTile == true) {
-            $('.toptopTitle').css("margin-top","20px");
+            $('.toptopTitle').css("margin-top","0px");
         }
     }
     if ( luckyFlag ) {
@@ -272,10 +272,14 @@ function createCirclesTwo(rowID, a){
   }
 }
 
-function createSwipingCarousel(rowID, key, imageArray, appendTo, link){
+function createSwipingCarousel(urlType, rowID, key, imageArray, appendTo, link){
   if (imageArray.length == 1) {
       let singleImage = createNode('div');
-      singleImage.setAttribute('class', 'singleImage');
+      if (urlType === "menu") {
+          singleImage.setAttribute('class', 'mainMenuSingleImage');
+      } else {
+          singleImage.setAttribute('class', 'singleImage');
+      }
       singleImage.setAttribute('id',0)
       var tempCSS = "background-image: url("+imageArray[0]+");"
       if ( link[0] !=  "n/a" ) {

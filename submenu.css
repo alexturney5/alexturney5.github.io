@@ -1,0 +1,65 @@
+#topTitle {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 22px;
+  font-weight: bold;
+  text-decoration: underline;
+  margin: 40px 12px 20px;
+}
+
+.menuItem {
+  margin: 12px auto 0px;
+  background-color: #FAFAFA;
+  width: calc( 100% - 24px );;
+  height: auto;
+  border-radius: 8px;
+}
+
+.textContainer {
+  font-size: 14px;
+  padding: 12px;
+}
+
+.topDiv {
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.topDivExpanded {
+    height: 100vH;
+}
+
+.bottomDiv {
+  padding: 0px;
+}
+
+p.name {
+  vertical-align: middle;
+  text-align: left;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.ingredients {
+  vertical-align: middle;
+  text-align: left;
+  margin: 10px 0px 0px 0px;
+}
+
+p.ingredientDisclaimer {
+  margin: 4px 0px 0px 12px;
+}
+
+.disclaimer {
+  font-size: 14px;
+  margin: 10px 24px 0px 24px;
+}
+
+.sizes {
+  margin: 10px 0px 0px 0px;
+}
+
+.prices {
+  margin: 10px 0px 0px 0px;
+}
