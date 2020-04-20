@@ -8,10 +8,10 @@
 
 .menuItem {
   margin: 12px auto 0px;
-  background-color: #FAFAFA;
-  width: calc( 100% - 24px );;
+  background-color: #FFF;
+  /*width: calc( 100% - 24px );;*/
   height: auto;
-  border-radius: 8px;
+  /*border-radius: 8px;*/
 }
 
 .textContainer {

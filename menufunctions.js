@@ -157,11 +157,17 @@ function createSubMenuItem(masterContainer, descriptionText, link, imgLink, rowI
             prices.innerText = pricesText;
         }
         if ( link != "n/a" ) {
-            a.setAttribute('href', link);
-            append(textContainer,a);
-            append(a,tapToLearn);
-            tapToLearn.innerText="tap to learn more.";
-            tapToLearn.setAttribute('class','tapToLearn');
+            for (i = 0; i < link.length; i++) {
+                append(textContainer,a);
+                append(a,tapToLearn);
+                if (i==0) {
+                    a.setAttribute('href', link[i]);
+                    tapToLearn.setAttribute('class','tapToLearn');
+                    tapToLearn.innerText="tap to learn more.";
+                } else {
+                    tapToLearn.innerText=link[i];
+                }
+            }
         }
         if (imgLink != "n/a") {
             let carousel = createNode('div');
