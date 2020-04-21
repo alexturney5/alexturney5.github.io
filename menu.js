@@ -304,7 +304,7 @@ function createSwipingCarousel(urlType, rowID, key, imageArray, appendTo, link){
       singleImage.setAttribute('id',0)
       var tempCSS = "background-image: url("+imageArray[0]+");"
       if ( link[0] !=  "n/a" ) {
-        singleImage.setAttribute("onclick","window.location='"+link[0]+"';");
+        // singleImage.setAttribute("onclick","window.location='"+link[0]+"';");
       }
       singleImage.setAttribute("style",tempCSS);
       append(appendTo,singleImage);
@@ -343,7 +343,7 @@ function createSwipingCarouselArrow(urlType, rowID, key, imageArray, appendTo, l
       singleImage.setAttribute('id',0)
       var tempCSS = "background-image: url("+imageArray[0]+");"
       if ( link[0] !=  "n/a" ) {
-        singleImage.setAttribute("onclick","window.location='"+link[0]+"';");
+        // singleImage.setAttribute("onclick","window.location='"+link[0]+"';");
       }
       singleImage.setAttribute("style",tempCSS);
       append(appendTo,singleImage);
