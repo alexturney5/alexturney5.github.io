@@ -130,12 +130,18 @@ function createSubMenuItem(masterContainer, descriptionText, link, imgLink, rowI
         append(textContainer,name);
         name.innerText = descriptionText;
         if ( pricesText != "n/a" ) {
-            name.setAttribute('class', 'name70');
             let prices = createNode('p');
-            // prices.setAttribute('class', 'prices');
-            prices.setAttribute('class', 'prices_two');
+            prices.setAttribute('class', 'prices');
             append(textContainer,prices);
             prices.innerText = pricesText;
+            if (ingredientsText[0] != "n/a" || link != "n/a" || sizesText != "n/a" || detailsText != "n/a" || imgLink != "n/a"){
+                let expandArrowContainer = createNode('div');
+                expandArrowContainer.setAttribute('class', 'expandArrowContainer');
+                let expandArrow = createNode('img');
+                expandArrow.setAttribute('class', 'expandArrow');
+                append(textContainer,expandArrowContainer);
+                append(expandArrowContainer,expandArrow);
+            }
             let clearDiv = createNode('div');
             clearDiv.setAttribute('class', 'clearDiv');
             append(textContainer,clearDiv);
@@ -183,15 +189,6 @@ function createSubMenuItem(masterContainer, descriptionText, link, imgLink, rowI
             append(expandableSection,carousel);
             // createSwipingCarousel("subMenu", rowID, descriptionText, imgLink, carousel, link);
             createSwipingCarouselArrow("subMenu", rowID, descriptionText, imgLink, carousel, link);
-        }
-        if (ingredientsText[0] != "n/a" || link != "n/a" || sizesText != "n/a" || detailsText != "n/a" || imgLink != "n/a"){
-            console.log("PASSSSSS")
-            let expandArrowContainer = createNode('div');
-            expandArrowContainer.setAttribute('class', 'expandArrowContainer');
-            let expandArrow = createNode('img');
-            expandArrow.setAttribute('class', 'expandArrow');
-            append(menuItem,expandArrowContainer);
-            append(expandArrowContainer,expandArrow);
         }
     } // end menu item
     if ( disclaimerText != "n/a" ) {

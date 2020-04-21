@@ -141,15 +141,6 @@ a {
   margin: 14px 0px 0px;
 }
 
-
-
-.details {
-  font-size: 20px;
-  margin:  0px;
-  padding: 0px 24px 12px;
-  line-height: 1em;
-}
-
 hr {
   border: 1.5px dashed #A9A9A9;
 }
@@ -189,10 +180,10 @@ img {
 }
 
 p.menuName {
-  padding: 20px 24px 20px;
+  padding: 0px 24px 10px;
   vertical-align: middle;
   text-align: left;
-  margin: 0px 0px 0px 0px;
+  margin: 16px 0px 0px 0px;
 }
 
 /* this is for text overlay */
@@ -304,24 +295,26 @@ button.active {
 #gifContainer {
   visibility: hidden;
   position: absolute;
-  right: 16px;
-  top: 12px;
-  width: 30px;
-  height: 30px;
+  right: 12px;
+  top: 18px;
+  width: 34px;
+  height: 34px;
   z-index: 999;
 }
 
 .backButton {
   position: fixed;
   z-index: 10;
-  left: 16px;
-  top: 12px;
-  width: 30px;
-  height: 30px;
+  left: 12px;
+  top: 16px;
+  width: 38px;
+  height: 38px;
 }
 
 #gif {
   z-index: 999;
+  width: 34px;
+  height: 34px;
 }
 
 .buttonTable {

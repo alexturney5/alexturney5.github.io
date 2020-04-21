@@ -95,7 +95,7 @@ fetch(url,{mode: "cors"})
             incrementOddEvenCount()
             showErrorFlag = false;
             backButton.setAttribute("href","?grouping=menu&company="+urlCompany);
-            backImg.src = "https://alexturney.com/imgBin/xcta.png"
+            backImg.src = "xcta.png"
             if (luckyFlag) {
               buildLuckyDict(jsonResponse, i);
             } else {
@@ -118,7 +118,7 @@ fetch(url,{mode: "cors"})
         } else if (atLeastOneFilterMade == false && atLeastOneTopTile == true) {
             $('.toptopTitle').css("margin-top","80px");
         } else if (atLeastOneFilterMade == true && atLeastOneTopTile == true) {
-            $('.toptopTitle').css("margin-top","0px");
+            $('.toptopTitle').css("margin-top","8px");
         }
     }
     if ( luckyFlag ) {
