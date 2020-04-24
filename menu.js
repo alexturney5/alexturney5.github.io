@@ -1,5 +1,7 @@
 // heroku or pipedream
 var isHeroku = true;
+var isSideMenu = true;
+var isExpanded = true;
 // const fs = require('fs');
 var flavorChecks = ["Chocolate", "Coffee", "Strawberry"];
 var foodChecks = ["Vegan", "Vegetarian","Gluten-Free","Healthy Choice", "Pescatarian"];
@@ -33,8 +35,13 @@ const urlCompany = urlParams.get('company');
 const urlFilter = urlParams.get('filter');
 const topTitle = document.getElementById("topTitle");
 const filterContainer = document.getElementById("filterContainer");
+const filterContainerSidePanel = document.getElementById("mySidepanel");
+const filterSelectableSidePanel = document.getElementById("filterSelectableSidePanel");
+const filtersSelectedSidePanel = document.getElementById("filtersSelectedSidePanel");
+const hamburgerButton = document.getElementById("hamburgerButton");
 const backButton = document.getElementById("backButton");
 const backImg = document.getElementById("backImg");
+const hamburgerImg = document.getElementById("hamburgerImg");
 const one = document.getElementById("one");
 const two = document.getElementById("two");
 const three = document.getElementById("three");
@@ -94,24 +101,46 @@ fetch(url,{mode: "cors"})
         else if (rowType == urlType && rowCompany == urlCompany) {
             incrementOddEvenCount()
             showErrorFlag = false;
-            backButton.setAttribute("href","?grouping=menu&company="+urlCompany);
-            backImg.src = "xcta.png"
+            if (!isSideMenu) {
+              hamburgerButton.setAttribute("style","height:0px;");
+              backImg.src = "xcta.png"
+              backButton.setAttribute("href","?grouping=menu&company="+urlCompany);
+            }
+            //LUCKY
             if (luckyFlag) {
               buildLuckyDict(jsonResponse, i);
-            } else {
-              console.log(filterText);
-              console.log(filters);
-              createButtonFilters(filterText,filters);
+              if (isSideMenu){
+                createButtonFiltersSidePanel(filterText,filters);
+              } else {
+                createButtonFilters(filterText,filters);
+              }
+            } //NOT LUCKY
+            else {
+              if (isSideMenu){
+                if (urlType != "menu"){
+                  document.getElementById("placeName").setAttribute("href","?grouping=menu&company="+urlCompany);
+                  document.getElementById("placeName").innerText="Main Menu";
+                }
+                createButtonFiltersSidePanel(filterText,filters);
+              } else {
+                createButtonFilters(filterText,filters);
+              }
               createSubMenuItem(one, descriptionText, link, imgLink, rowID, ingredientsText, sizesText, pricesText, detailsText, disclaimerText);
             }
         }
     } // end for loop
     // this section is to create top Title spacing once we know if filters were used and top title was used
+    if ( luckyFlag ) {
+      console.log(luckydict);
+      console.log(Object.keys(luckydict).length);
+      var luckyNumber = Math.floor(Math.random() * Object.keys(luckydict).length) + 1;
+      buildLuckySubMenu(luckyNumber - 1);
+    }
     if (subheads.length >= 1) {
-      console.log("subheads: "+subheads);
-      console.log("atLeastOneFilterMade: "+atLeastOneFilterMade);
-      console.log("atLeastOneTopTile: "+atLeastOneTopTile);
-      if (atLeastOneFilterMade == false && atLeastOneTopTile == false) {
+      if (isSideMenu){
+          $('.toptopTitle').css("margin-top","40px");
+        }
+        else if (atLeastOneFilterMade == false && atLeastOneTopTile == false) {
             $('.toptopTitle').css("margin-top","80px");
         } else if (atLeastOneFilterMade == true && atLeastOneTopTile == false) {
             $('.toptopTitle').css("margin-top","24px");
@@ -121,28 +150,25 @@ fetch(url,{mode: "cors"})
             $('.toptopTitle').css("margin-top","8px");
         }
     }
-    if ( luckyFlag ) {
-      console.log(luckydict);
-      console.log(Object.keys(luckydict).length);
-      var luckyNumber = Math.floor(Math.random() * Object.keys(luckydict).length) + 1;
-      createButtonFilters(["I'm Feeling Lucky"],[]);
-      buildLuckySubMenu(luckyNumber - 1);
-    }
     filterButtonColor();  //this needs to be last  we should clean this up and remove it...
     if (showErrorFlag) {
         displayError();
+    }
+    if (isExpanded){
+      $(".expandableSection").css("display", "block");
+      $(".expandArrow").attr("style","content:url('collapseArrow.png');");
+      $(".textContainer").addClass("show");
     }
 }) // END DOING WORK ON JSON
 .then(() => {
     var buttonwidth = $(".buttonTable").width();
     $(".buttonTable").height(buttonwidth*.75);
     $(".wifiShowHide").click(function(){
-        if ($('.wifiName').hasClass("hidden")) {
-            $('.wifiName').removeClass("hidden").addClass("visible");
-            $('.wifiPass').removeClass("hidden").addClass("visible");
+        if ($('.wifiContainer').hasClass("hidden")) {
+            $('.wifiContainer').removeClass("hidden").addClass("visible");
         } else {
-            $('.wifiName').removeClass("visible").addClass("hidden");
-            $('.wifiPass').removeClass("visible").addClass("hidden");
+            $('.wifiContainer').removeClass("visible").addClass("hidden");
+            $('.wifiContainer').removeClass("visible").addClass("hidden");
         }
     });
     var clicked = false;
@@ -246,6 +272,55 @@ function createButtonFilters(filterText, filters){
                         }
                         aforfilterbutton.innerText=f;
                         append(filterContainer,aforfilterbutton);
+                        atLeastOneFilterMade = true;
+                    }
+                }
+            }
+        }
+    }
+}
+
+//  FUNCTIONS FUNCTIONS FUNCTIONS
+function createButtonFiltersSidePanel(filterText, filters){
+    var matchexists = 0;
+    for (f of filterText) {
+        var matchexists = 0;
+        for (filter of filters) {
+            if ( filter == f ) {
+                matchexists = 1;
+            }
+        }
+        if (matchexists == 0) {
+            if (f != null) {
+                filters.push(f);
+                if (f != "n/a") {
+                    if (urlFilter != null && f!=urlFilter) {
+                    } else {
+                        let aforfilterbutton = createNode("a");
+                        // IF FILTER ALREADY EXISTS
+                        if (urlFilter != null) {
+                            aforfilterbutton.setAttribute('href', "?grouping="+urlType+"&company="+urlCompany);
+                            aforfilterbutton.innerText=f;
+                        } else {
+                            aforfilterbutton.setAttribute('href', "?grouping="+urlType+"&company="+urlCompany+"&filter="+f);
+                            aforfilterbutton.innerText=f;
+                        }
+                        if (isSideMenu) {
+                          // IF filter exists and has been selected
+                          if (urlFilter != null) {
+                            hamburgerImg.src = "filter.png"
+                            hamburgerButton.setAttribute("onclick","openNav()");
+                            filtersSelectedSidePanel.setAttribute("style","display:block;");
+                            append(filtersSelectedSidePanel,aforfilterbutton);
+                          } else {
+                            hamburgerImg.src = "filter.png"
+                            hamburgerButton.setAttribute("onclick","openNav()");
+                            filterSelectableSidePanel.setAttribute("style","display:block;");
+                            append(filterSelectableSidePanel,aforfilterbutton);
+                          }
+                        } else {
+                          append(filterContainer,aforfilterbutton);
+                        }
                         atLeastOneFilterMade = true;
                     }
                 }
@@ -472,26 +547,29 @@ function buildAbout(detailsText, appendTo){
 }
 
 function buildHours(hoursText, appendTo){
-  let tempHours = createNode('div');
-  tempHours.setAttribute('class','hours')
-  tempHours.innerText = hoursText;
-  append(appendTo,tempHours);
+  for (var i = 0; i < hoursText.length; i++) {
+    let tempHours = createNode('div');
+    tempHours.setAttribute('class','hours')
+    tempHours.innerText = hoursText[i];
+    append(appendTo,tempHours);
+  }
 }
 
 function buildWifi(wifi, appendTo){
   let tempClickWifi = createNode('div');
   tempClickWifi.setAttribute('class','wifiShowHide')
-  tempClickWifi.innerText = "Show Wifi";
+  tempClickWifi.innerText = "Wifi Info";
   append(appendTo,tempClickWifi);
   let tempWifiContainer = createNode('div');
   tempWifiContainer.setAttribute('class','wifiContainer')
+  tempWifiContainer.classList.add('hidden');
   append(appendTo,tempWifiContainer);
   let tempWifiName = createNode('p');
   tempWifiName.setAttribute('class','wifiName');
-  tempWifiName.classList.add('hidden');
+  // tempWifiName.classList.add('hidden');
   let tempWifiPass = createNode('p');
   tempWifiPass.setAttribute('class','wifiPass')
-  tempWifiPass.classList.add('hidden');
+  // tempWifiPass.classList.add('hidden');
   wifi = wifi.split('//');
   tempString = "Wifi Network: " + wifi[0];
   if (wifi[1] != null){
@@ -538,6 +616,7 @@ function setLuckyJsonVariables(tempArray){
   markdownText = tempArray[16];
   wifiText = tempArray[17];
   hoursText = tempArray[18];
+  hoursText = hoursText.split('//');
 }
 
 function setJsonVariables(jsonresponse,i){
@@ -565,6 +644,7 @@ function setJsonVariables(jsonresponse,i){
   markdownText = jsonresponse[i][16];
   wifiText = jsonresponse[i][17];
   hoursText = jsonresponse[i][18];
+  hoursText = hoursText.split('//');
 }
 
 function showSpinner() {

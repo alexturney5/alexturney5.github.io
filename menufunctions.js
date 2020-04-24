@@ -142,10 +142,10 @@ function createSubMenuItem(masterContainer, descriptionText, link, imgLink, rowI
                 append(textContainer,expandArrowContainer);
                 append(expandArrowContainer,expandArrow);
             }
-            let clearDiv = createNode('div');
-            clearDiv.setAttribute('class', 'clearDiv');
-            append(textContainer,clearDiv);
         }
+        let clearDiv = createNode('div');
+        clearDiv.setAttribute('class', 'clearDiv');
+        append(textContainer,clearDiv);
         let expandableSection = createNode('div');
         expandableSection.setAttribute('class', 'expandableSection');
         append(textContainer,expandableSection);

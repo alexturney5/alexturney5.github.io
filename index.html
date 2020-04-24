@@ -36,8 +36,15 @@
     <!-- End Google Tag Manager (noscript) -->
     <div id="mainContainer">
         <div id="spinner"></div>
+        <div id="mySidepanel" class="sidepanel">
+          <a href="javascript:void(0)" class="whiteMenu" onclick="closeNav()"><!-- <img class="whiteMenu" src="hamburgerwhite.png"> -->&times;</a>
+          <p class="sidePanelFiltersTitle" id="filterSelectableSidePanel" style="color:white;font-weight:bold;display:block;display:none;">Available Filters</p>
+          <p class="sidePanelFiltersTitle" id="filtersSelectedSidePanel" style="color:white;font-weight:bold;display:none">Filters Selected<br><i>Click to unselect a filter</i></p>
+        </div>
         <div class="column" id="filterContainer"></div>
-        <a class="backButton" id="backButton"><img id="backImg"></a>
+        <a class="topLeftButton" id="backButton"><img id="backImg"></a>
+        <a class="topLeftButton" id="hamburgerButton"><img id="hamburgerImg"></a>
+        <a id="placeName"></a>
         <a id="gifContainer"><img id="gif"></a>
         <div class="row">
             <div class="column" id="one"></div>
@@ -115,9 +122,16 @@
         //         sendEmail(email);
         //     }
         // });
+        function openNav() {
+          document.getElementById("mySidepanel").style.width = "100vw";
+        }
 
+        /* Set the width of the sidebar to 0 (hide it) */
+        function closeNav() {
+          document.getElementById("mySidepanel").style.width = "0";
+        }
 
-         const shareBtn = document.querySelector('#gif');
+        const shareBtn = document.querySelector('#gif');
 
         shareBtn.addEventListener('click', () => {
           if (navigator.share) {
