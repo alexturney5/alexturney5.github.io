@@ -4,15 +4,68 @@ body {
   margin: 0;
 }
 
-#placeName {
-  text-align: center;
-  margin-top: 20px;
-  font-weight: bold;
+#topBar {
+  position: fixed;
+  z-index: 10;
+  width: 100%;
+  display: none;
+  background-color: #F0F0F0;
 }
+
+.topBarContainer {
+  margin: 16px 12px 16px 12px;
+}
+
+.topBarContainer:after {
+  clear: both;
+}
+
+#placeName {
+  display: inline-block;
+  text-align: center;
+  width: 33%;
+  margin: 0 auto;
+}
+
+#placeName img {
+  width:30px;
+  height:30px;
+}
+
+#gifContainer {
+  display: inline-block;
+  width: 34px;
+  height: 34px;
+  float: right;
+  width: 33%;
+}
+
+#gifContainer img {
+  float: right;
+}
+.topLeftButton {
+  display: inline-block;
+  float: left;
+  width: 33%;
+}
+
+.topLeftButton img {
+  width: 34px;
+}
+
+
+
+#gif {
+  z-index: 1;
+  width: 30px;
+  height: 30px;
+}
+
 
 /* The sidepanel menu */
 .sidepanel {
   /*height: 250px;  Specify a height */
+  font-size: 30px;
   width: 0; /* 0 width - change this with JavaScript */
   position: fixed; /* Stay in place */
   z-index: 50; /* Stay on top */
@@ -42,7 +95,7 @@ p.sidePanelFiltersTitle {
 }
 
 .sidepanel a:first-of-type {
-  padding-top:10px;
+  padding-top: 10px;
 }
 
 /* The sidepanel links */
@@ -51,6 +104,7 @@ p.sidePanelFiltersTitle {
   text-decoration: none;
   color: #818181;
   display: block;
+  line-height: 1.5;
   transition: 0.3s;
 }
 
@@ -82,9 +136,6 @@ p.sidePanelFiltersTitle {
 .openbtn:hover {
   background-color: #444;
 }
-
-
-
 
 p {
   padding: 0px;
@@ -267,6 +318,7 @@ p.menuName {
   text-align: left;
   margin: 16px 0px 0px 0px;
   font-size: 24px;
+  font-weight: bold;
 }
 
 /* this is for text overlay */
@@ -397,33 +449,6 @@ button.active {
 
 #buttonsecond {
   margin: 0px 24px 12px 12px ;
-}
-
-#gifContainer {
-  visibility: hidden;
-  position: absolute;
-  right: 12px;
-  top: 18px;
-  width: 34px;
-  height: 34px;
-  z-index: 1;
-}
-
-.topLeftButton {
-  position: fixed;
-  z-index: 10;
-  left: 12px;
-  top: 16px;
-  width: 30px;
-  height: 30px;
-}
-
-
-
-#gif {
-  z-index: 1;
-  width: 30px;
-  height: 30px;
 }
 
 .buttonTable {

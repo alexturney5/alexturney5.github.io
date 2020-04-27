@@ -105,6 +105,8 @@ fetch(url,{mode: "cors"})
               hamburgerButton.setAttribute("style","height:0px;");
               backImg.src = "xcta.png"
               backButton.setAttribute("href","?grouping=menu&company="+urlCompany);
+            } else {
+              backButton.setAttribute("style","height:0px;");
             }
             //LUCKY
             if (luckyFlag) {
@@ -118,8 +120,10 @@ fetch(url,{mode: "cors"})
             else {
               if (isSideMenu){
                 if (urlType != "menu"){
+                  document.getElementById("topBar").setAttribute("style","display:inline-block;");
                   document.getElementById("placeName").setAttribute("href","?grouping=menu&company="+urlCompany);
-                  document.getElementById("placeName").innerText="Main Menu";
+                  document.getElementById("placeName").setAttribute("style","display:inline-block;");
+                  // document.getElementById("placeName").innerText="Main Menu";
                 }
                 createButtonFiltersSidePanel(filterText,filters);
               } else {
@@ -136,11 +140,18 @@ fetch(url,{mode: "cors"})
       var luckyNumber = Math.floor(Math.random() * Object.keys(luckydict).length) + 1;
       buildLuckySubMenu(luckyNumber - 1);
     }
-    if (subheads.length >= 1) {
-      if (isSideMenu){
-          $('.toptopTitle').css("margin-top","40px");
-        }
-        else if (atLeastOneFilterMade == false && atLeastOneTopTile == false) {
+    if (isSideMenu){
+      if (subheads.length >= 1) {
+        $('.toptopTitle').css("margin-top","80px");
+      } else if (urlType === "menu"){
+        console.log("menu -> no additional spacing");
+      }
+      else {
+        $('#one').css("margin-top","80px");
+      }
+    } else {
+      if (subheads.length >= 1) {
+        if (atLeastOneFilterMade == false && atLeastOneTopTile == false) {
             $('.toptopTitle').css("margin-top","80px");
         } else if (atLeastOneFilterMade == true && atLeastOneTopTile == false) {
             $('.toptopTitle').css("margin-top","24px");
@@ -149,6 +160,7 @@ fetch(url,{mode: "cors"})
         } else if (atLeastOneFilterMade == true && atLeastOneTopTile == true) {
             $('.toptopTitle').css("margin-top","8px");
         }
+      }
     }
     filterButtonColor();  //this needs to be last  we should clean this up and remove it...
     if (showErrorFlag) {
@@ -446,28 +458,6 @@ function createSwipingCarouselArrow(urlType, rowID, key, imageArray, appendTo, l
   }
 }
 
-function createImageCarouselTwo(rowID, key, imageArray){
-    var tempCSS = "background-image: url("+imageArray[0]+");"
-    topDiv.setAttribute("style",tempCSS);
-    topDiv.setAttribute("id",rowID);
-    myDict[rowID] = {"key":key,"imageArray":imageArray,"indexImage":0,"numberOfImages":imageArray.length};
-}
-
-function changeImageCarouselTwo(rowID){
-    incrementImageIndexTwo(rowID);
-    var tempIndex = myDict[rowID]["indexImage"];
-    var tempCSS = "url("+myDict[rowID]["imageArray"][tempIndex]+");"
-    tempID = "#"+rowID;
-    $(tempID).css("background-image","url("+myDict[rowID]["imageArray"][tempIndex]+")");
-    for (i = 0; i < myDict[rowID]["numberOfImages"]; i++) {
-      if (i==myDict[rowID]["indexImage"]) {
-        $('#circle'+i).css("background-color","#F0F0F0");
-      } else {
-        $('#circle'+i).css("background-color","grey");
-      }
-    }
-}
-
 function incrementImageIndexTwo(rowID){
   if (myDict[rowID]["indexImage"] + 1 == myDict[rowID]["numberOfImages"]){
     myDict[rowID]["indexImage"] = 0;
@@ -527,16 +517,8 @@ function createURL(urlfilter, urlcompany) {
 }
 
 function gifCreation(urlcompany, urltype) {
-  if (urlcompany=="barista" && urltype!="menu") {
-    $("#gif").attr("src", "143.gif");
-    $("#gifContainer").css("visibility","visible");
-  } else if (urlcompany=="saltandstraw" && urltype!="menu") {
-    $("#gif").attr("src", "icecream.gif");
-    $("#gifContainer").css("visibility","visible");
-  } else if (urlcompany=="lulu" && urltype!="menu") {
-    $("#gif").attr("src", "share.png");
-    $("#gifContainer").css("visibility","visible");
-  }
+  $("#gif").attr("src", "share2.png");
+  $("#gifContainer").css("visibility","visible");
 }
 
 function buildAbout(detailsText, appendTo){

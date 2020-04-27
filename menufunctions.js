@@ -134,14 +134,14 @@ function createSubMenuItem(masterContainer, descriptionText, link, imgLink, rowI
             prices.setAttribute('class', 'prices');
             append(textContainer,prices);
             prices.innerText = pricesText;
-            if (ingredientsText[0] != "n/a" || link != "n/a" || sizesText != "n/a" || detailsText != "n/a" || imgLink != "n/a"){
-                let expandArrowContainer = createNode('div');
-                expandArrowContainer.setAttribute('class', 'expandArrowContainer');
-                let expandArrow = createNode('img');
-                expandArrow.setAttribute('class', 'expandArrow');
-                append(textContainer,expandArrowContainer);
-                append(expandArrowContainer,expandArrow);
-            }
+        }
+        if (ingredientsText[0] != "n/a" || link != "n/a" || sizesText != "n/a" || detailsText != "n/a" || imgLink != "n/a"){
+            let expandArrowContainer = createNode('div');
+            expandArrowContainer.setAttribute('class', 'expandArrowContainer');
+            let expandArrow = createNode('img');
+            expandArrow.setAttribute('class', 'expandArrow');
+            append(textContainer,expandArrowContainer);
+            append(expandArrowContainer,expandArrow);
         }
         let clearDiv = createNode('div');
         clearDiv.setAttribute('class', 'clearDiv');
