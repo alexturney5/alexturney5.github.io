@@ -26,6 +26,8 @@ var subheads = [];
 var buttonContainerBeingUsed = false;
 var showErrorFlag = true;
 var oddevencount = 0
+// social
+var socialTextGlobal;
 const main = document.getElementById("mainContainer");
 const landing = document.getElementById("splashContain");
 const spinner = document.getElementById("spinner");
@@ -50,7 +52,7 @@ var url;
 var myDict = {};
 
 // excel row data
-var descriptionText,imgLink,rowType,detailsText,rowCompany,link,pricesText,sizesText,titleText,ingredientsText,filterText,disclaimerText,OOSFlag,quantityText,caloriesText,markdownText,wifiText,hoursText;
+var descriptionText,imgLink,rowType,detailsText,rowCompany,link,pricesText,sizesText,titleText,ingredientsText,filterText,disclaimerText,OOSFlag,quantityText,socialText,markdownText,wifiText,hoursText;
 
 gifCreation(urlCompany,urlType);
 url = createURL(urlFilter, urlCompany);
@@ -165,6 +167,9 @@ fetch(url,{mode: "cors"})
     filterButtonColor();  //this needs to be last  we should clean this up and remove it...
     if (showErrorFlag) {
         displayError();
+    }
+    if ( socialText != "n/a" ) {
+        buildSocial(socialText);
     }
     if (isExpanded){
       $(".expandableSection").css("display", "block");
@@ -537,6 +542,25 @@ function buildHours(hoursText, appendTo){
   }
 }
 
+function buildSocial(socialText){
+  $('.socialgroup').css("display","block");
+  for (var i = 0; i < socialText.length; i++) {
+    var temp = socialText[i].split('~');
+    if (temp.length < 2){
+      console.log("social input on google sheets is wrong...");
+      return;
+    }
+    var platform = temp[0];
+    var link = temp[1];
+    if (platform === "ig" || platform === "fb"){
+      $('#'+platform).css("display","inline-block");
+      $('#'+platform).parent().attr("href",link);
+    } else {
+      console.log("invalid platform: "+platform);
+    }
+  }
+}
+
 function buildWifi(wifi, appendTo){
   let tempClickWifi = createNode('div');
   tempClickWifi.setAttribute('class','wifiShowHide')
@@ -594,7 +618,8 @@ function setLuckyJsonVariables(tempArray){
   disclaimerText = tempArray[12];
   OOSFlag = tempArray[13];
   quantityText = tempArray[14];
-  caloriesText = tempArray[15];
+  socialText = tempArray[15];
+  socialText = socialText.split('//');
   markdownText = tempArray[16];
   wifiText = tempArray[17];
   hoursText = tempArray[18];
@@ -622,7 +647,8 @@ function setJsonVariables(jsonresponse,i){
   disclaimerText = jsonresponse[i][12];
   stylingText = jsonresponse[i][13];
   quantityText = jsonresponse[i][14];
-  caloriesText = jsonresponse[i][15];
+  socialText = jsonresponse[i][15];
+  socialText = socialText.split(',');
   markdownText = jsonresponse[i][16];
   wifiText = jsonresponse[i][17];
   hoursText = jsonresponse[i][18];
