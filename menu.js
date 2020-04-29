@@ -164,6 +164,9 @@ fetch(url,{mode: "cors"})
         }
       }
     }
+    if (urlCompany === "htgt"){
+      $("#topBar").css("display","none");
+    }
     filterButtonColor();  //this needs to be last  we should clean this up and remove it...
     if (showErrorFlag) {
         displayError();
@@ -192,17 +195,17 @@ fetch(url,{mode: "cors"})
     $(".name").click(function(){
         incrementLikes($(this).text());
     });
-    $(".textContainer").click(function(){
-        console.log("textContainer click");
-        if ($(this).hasClass("show")) {
+    $("#clickableContainer").click(function(){
+        console.log("clickableContainer click");
+        if ($(this).parent().hasClass("show")) {
             console.log("has show");
-            $(this).removeClass("show");
-            $(this).find(".expandableSection").attr("style","display:none;");
+            $(this).parent().removeClass("show");
+            $(this).parent().find(".expandableSection").attr("style","display:none;");
             $(this).parent().find(".expandArrow").attr("style","content:url('expandArrow.png');");
         } else {
             console.log("does not have show");
-            $(this).addClass("show");
-            $(this).find(".expandableSection").attr("style","display:block;");
+            $(this).parent().addClass("show");
+            $(this).parent().find(".expandableSection").attr("style","display:block;");
             $(this).parent().find(".expandArrow").attr("style","content:url('collapseArrow.png');");
         }
     });

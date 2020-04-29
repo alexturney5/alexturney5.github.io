@@ -126,13 +126,16 @@ function createSubMenuItem(masterContainer, descriptionText, link, imgLink, rowI
         let name = createNode('p'); // name of the menu item
         name.setAttribute('class', 'name');
         append(containAll, menuItem);
+        let clickableContainer = createNode('div');
+        clickableContainer.setAttribute('id', 'clickableContainer');
         append(menuItem,textContainer);
-        append(textContainer,name);
+        append(textContainer,clickableContainer);
+        append(clickableContainer,name);
         name.innerText = descriptionText;
         if ( pricesText != "n/a" ) {
             let prices = createNode('p');
             prices.setAttribute('class', 'prices');
-            append(textContainer,prices);
+            append(clickableContainer,prices);
             prices.innerText = pricesText;
         }
         if (ingredientsText[0] != "n/a" || link != "n/a" || sizesText != "n/a" || detailsText != "n/a" || imgLink != "n/a"){
@@ -140,12 +143,12 @@ function createSubMenuItem(masterContainer, descriptionText, link, imgLink, rowI
             expandArrowContainer.setAttribute('class', 'expandArrowContainer');
             let expandArrow = createNode('img');
             expandArrow.setAttribute('class', 'expandArrow');
-            append(textContainer,expandArrowContainer);
+            append(clickableContainer,expandArrowContainer);
             append(expandArrowContainer,expandArrow);
         }
         let clearDiv = createNode('div');
         clearDiv.setAttribute('class', 'clearDiv');
-        append(textContainer,clearDiv);
+        append(clickableContainer,clearDiv);
         let expandableSection = createNode('div');
         expandableSection.setAttribute('class', 'expandableSection');
         append(textContainer,expandableSection);
