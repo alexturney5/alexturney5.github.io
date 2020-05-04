@@ -446,6 +446,11 @@ button.active {
   -webkit-box-shadow: 0 0 5px rgba(50, 50, 50, 0.3);
   box-shadow: */0 0 5px rgba(50, 50, 50, 0.3);
 }
+
+#buttonfirst:last-of-type {
+  margin-bottom: 20px;
+}
+
 /* div that holds the button */
 /* rename this to "buttonContainer" */
 #buttonfirst {
@@ -483,14 +488,15 @@ button.active {
 .socialgroup {
     margin: 0 auto;
     width: 200px;
-    padding: 20px;
+    padding: 0px 20px 20px;
+    margin-bottom: 40px;
     text-align: center;
     padding-bottom:30px;
     display: none;
 }
 .socialgroup img {
-    width: 40px;
-    height: 40px;
+    width: 24px;
+    height: 24px;
     margin: 0px 8px;
     display: none;
 }

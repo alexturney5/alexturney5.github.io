@@ -15,8 +15,7 @@ body {
 }
 
 .containAll:last-of-type {
-  /* make sure the width is honored */
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .menuItem {
