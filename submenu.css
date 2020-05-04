@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap');
 
 body {
-  font-size: 18px;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 16px;
+  font-family: 'Helvetica Neue', sans-serif;
   margin: 0;
+  background-color: #F6F6F6;
 }
 
 #topTitle {
@@ -13,9 +14,14 @@ body {
   margin: 40px 24px 20px;
 }
 
+.containAll:last-of-type {
+  /* make sure the width is honored */
+  margin-bottom: 30px;
+}
+
 .menuItem {
   margin: 12px auto 0px;
-  background-color: #F0F0F0;
+  background-color: #FFFFFF;
   width: calc( 100% - 24px );;
   height: auto;
   border-radius: 8px;
@@ -119,6 +125,7 @@ p.ingredientDisclaimer {
   overflow: hidden;
   transition: all .3s ease;
   display: none;
+  color: #777;
 }
 
 .carousel {
