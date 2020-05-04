@@ -192,9 +192,6 @@ fetch(url,{mode: "cors"})
         }
     });
     var clicked = false;
-    $(".name").click(function(){
-        incrementLikes($(this).text());
-    });
     $("#clickableContainer").click(function(){
         console.log("clickableContainer click");
         if ($(this).parent().hasClass("show")) {
