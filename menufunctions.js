@@ -127,7 +127,7 @@ function createSubMenuItem(masterContainer, descriptionText, link, imgLink, rowI
         name.setAttribute('class', 'name');
         append(containAll, menuItem);
         let clickableContainer = createNode('div');
-        clickableContainer.setAttribute('id', 'clickableContainer');
+        clickableContainer.setAttribute('class', 'clickableContainer');
         append(menuItem,textContainer);
         append(textContainer,clickableContainer);
         append(clickableContainer,name);

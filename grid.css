@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "at";
+  src: url("glyphs.woff") format("woff");
+}
+
 body {
   font-size: 22px;
   font-family: 'Source Sans Pro', sans-serif;
@@ -9,7 +14,8 @@ body {
   z-index: 10;
   width: 100%;
   display: none;
-  background-color: #F0F0F0;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #F0F0F0;
 }
 
 .topBarContainer {

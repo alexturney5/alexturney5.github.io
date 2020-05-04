@@ -181,18 +181,7 @@ fetch(url,{mode: "cors"})
     }
 }) // END DOING WORK ON JSON
 .then(() => {
-    var buttonwidth = $(".buttonTable").width();
-    $(".buttonTable").height(buttonwidth*.75);
-    $(".wifiShowHide").click(function(){
-        if ($('.wifiContainer').hasClass("hidden")) {
-            $('.wifiContainer').removeClass("hidden").addClass("visible");
-        } else {
-            $('.wifiContainer').removeClass("visible").addClass("hidden");
-            $('.wifiContainer').removeClass("visible").addClass("hidden");
-        }
-    });
-    var clicked = false;
-    $("#clickableContainer").click(function(){
+    $('.clickableContainer').click(function(){
         console.log("clickableContainer click");
         if ($(this).parent().hasClass("show")) {
             console.log("has show");
@@ -204,6 +193,16 @@ fetch(url,{mode: "cors"})
             $(this).parent().addClass("show");
             $(this).parent().find(".expandableSection").attr("style","display:block;");
             $(this).parent().find(".expandArrow").attr("style","content:url('collapseArrow.png');");
+        }
+    });
+    var buttonwidth = $(".buttonTable").width();
+    $(".buttonTable").height(buttonwidth*.75);
+    $(".wifiShowHide").click(function(){
+        if ($('.wifiContainer').hasClass("hidden")) {
+            $('.wifiContainer').removeClass("hidden").addClass("visible");
+        } else {
+            $('.wifiContainer').removeClass("visible").addClass("hidden");
+            $('.wifiContainer').removeClass("visible").addClass("hidden");
         }
     });
 })
