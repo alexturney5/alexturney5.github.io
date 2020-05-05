@@ -19,7 +19,7 @@ body {
 }
 
 .topBarContainer {
-  margin: 16px 12px 16px 12px;
+  margin: 12px 24px 12px 24px;
 }
 
 .topBarContainer:after {
@@ -34,21 +34,25 @@ body {
 }
 
 #placeName img {
-  width:30px;
-  height:30px;
+  width:26px;
+  height:26px;
 }
 
 #gifContainer {
   display: inline-block;
-  width: 34px;
-  height: 34px;
+  width: 24px;
+  height: 24px;
   float: right;
   width: 33%;
 }
 
 #gifContainer img {
   float: right;
+  z-index: 1;
+  width: 24px;
+  height: 24px;
 }
+
 .topLeftButton {
   display: inline-block;
   float: left;
@@ -56,17 +60,8 @@ body {
 }
 
 .topLeftButton img {
-  width: 34px;
+  width: 28px;
 }
-
-
-
-#gif {
-  z-index: 1;
-  width: 30px;
-  height: 30px;
-}
-
 
 /* The sidepanel menu */
 .sidepanel {

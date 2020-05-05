@@ -70,146 +70,145 @@ if ( urlCompany == null ) {
 } else {
   console.log("normalmenu");
   $("#splashContain").children().hide();
-}
-
-showSpinner();
-fetch(url,{mode: "cors"})
-.then((resp) => resp.json()) // transform the data into json
-.then(function(data) {
-    hideSpinner();
-    var jsonResponse;
-    if (isHeroku) {
-      console.log(data.values);
-      jsonResponse = data.values; //HEROKU
-    } else {
-      jsonResponse = data.message.values; //PIPEDREAM
-    }
-    var arrayLength = jsonResponse.length;
-    var arrayCount=0;
-    // go through each row of the google sheet
-    for (var i = 0; i < arrayLength; i++) {
-        setJsonVariables(jsonResponse,i);
-        // MENU
-        if (isMenu()) {
-            incrementOddEvenCount()
-            showErrorFlag = false;
-            if (rowType=="menu") {
-                createMenuCarouselAndName(one, descriptionText, imgLink, rowID, wifiText, detailsText, hoursText, link);
-            } else if (rowType=="section") {
-                createMenuButton(one, descriptionText, link, rowCompany,imgLink, stylingText);
-            }
-        }
-        // SUB MENU
-        else if (rowType == urlType && rowCompany == urlCompany) {
-            incrementOddEvenCount()
-            showErrorFlag = false;
-            if (!isSideMenu) {
-              hamburgerButton.setAttribute("style","height:0px;");
-              backImg.src = "xcta.png"
-              backButton.setAttribute("href","?grouping=menu&company="+urlCompany);
-            } else {
-              backButton.setAttribute("style","height:0px;");
-            }
-            //LUCKY
-            if (luckyFlag) {
-              buildLuckyDict(jsonResponse, i);
-              if (isSideMenu){
-                createButtonFiltersSidePanel(filterText,filters);
-              } else {
-                createButtonFilters(filterText,filters);
+  showSpinner();
+  fetch(url,{mode: "cors"})
+  .then((resp) => resp.json()) // transform the data into json
+  .then(function(data) {
+      hideSpinner();
+      var jsonResponse;
+      if (isHeroku) {
+        console.log(data.values);
+        jsonResponse = data.values; //HEROKU
+      } else {
+        jsonResponse = data.message.values; //PIPEDREAM
+      }
+      var arrayLength = jsonResponse.length;
+      var arrayCount=0;
+      // go through each row of the google sheet
+      for (var i = 0; i < arrayLength; i++) {
+          setJsonVariables(jsonResponse,i);
+          // MENU
+          if (isMenu()) {
+              incrementOddEvenCount()
+              showErrorFlag = false;
+              if (rowType=="menu") {
+                  createMenuCarouselAndName(one, descriptionText, imgLink, rowID, wifiText, detailsText, hoursText, link);
+              } else if (rowType=="section") {
+                  createMenuButton(one, descriptionText, link, rowCompany,imgLink, stylingText);
               }
-            } //NOT LUCKY
-            else {
-              if (isSideMenu){
-                if (urlType != "menu"){
-                  document.getElementById("topBar").setAttribute("style","display:inline-block;");
-                  document.getElementById("placeName").setAttribute("href","?grouping=menu&company="+urlCompany);
-                  document.getElementById("placeName").setAttribute("style","display:inline-block;");
-                  // document.getElementById("placeName").innerText="Main Menu";
+          }
+          // SUB MENU
+          else if (rowType == urlType && rowCompany == urlCompany) {
+              incrementOddEvenCount()
+              showErrorFlag = false;
+              if (!isSideMenu) {
+                hamburgerButton.setAttribute("style","height:0px;");
+                backImg.src = "xcta.png"
+                backButton.setAttribute("href","?grouping=menu&company="+urlCompany);
+              } else {
+                backButton.setAttribute("style","height:0px;");
+              }
+              //LUCKY
+              if (luckyFlag) {
+                buildLuckyDict(jsonResponse, i);
+                if (isSideMenu){
+                  createButtonFiltersSidePanel(filterText,filters);
+                } else {
+                  createButtonFilters(filterText,filters);
                 }
-                createButtonFiltersSidePanel(filterText,filters);
-              } else {
-                createButtonFilters(filterText,filters);
+              } //NOT LUCKY
+              else {
+                if (isSideMenu){
+                  if (urlType != "menu"){
+                    document.getElementById("topBar").setAttribute("style","display:inline-block;");
+                    document.getElementById("placeName").setAttribute("href","?grouping=menu&company="+urlCompany);
+                    document.getElementById("placeName").setAttribute("style","display:inline-block;");
+                    // document.getElementById("placeName").innerText="Main Menu";
+                  }
+                  createButtonFiltersSidePanel(filterText,filters);
+                } else {
+                  createButtonFilters(filterText,filters);
+                }
+                createSubMenuItem(one, descriptionText, link, imgLink, rowID, ingredientsText, sizesText, pricesText, detailsText, disclaimerText);
               }
-              createSubMenuItem(one, descriptionText, link, imgLink, rowID, ingredientsText, sizesText, pricesText, detailsText, disclaimerText);
-            }
-        }
-    } // end for loop
-    // this section is to create top Title spacing once we know if filters were used and top title was used
-    if ( luckyFlag ) {
-      console.log(luckydict);
-      console.log(Object.keys(luckydict).length);
-      var luckyNumber = Math.floor(Math.random() * Object.keys(luckydict).length) + 1;
-      buildLuckySubMenu(luckyNumber - 1);
-    }
-    if (isSideMenu){
-      if (subheads.length >= 1) {
-        $('.toptopTitle').css("margin-top","80px");
-      } else if (urlType === "menu"){
-        console.log("menu -> no additional spacing");
+          }
+      } // end for loop
+      // this section is to create top Title spacing once we know if filters were used and top title was used
+      if ( luckyFlag ) {
+        console.log(luckydict);
+        console.log(Object.keys(luckydict).length);
+        var luckyNumber = Math.floor(Math.random() * Object.keys(luckydict).length) + 1;
+        buildLuckySubMenu(luckyNumber - 1);
       }
-      else {
-        $('#one').css("margin-top","80px");
-      }
-    } else {
-      if (subheads.length >= 1) {
-        if (atLeastOneFilterMade == false && atLeastOneTopTile == false) {
-            $('.toptopTitle').css("margin-top","80px");
-        } else if (atLeastOneFilterMade == true && atLeastOneTopTile == false) {
-            $('.toptopTitle').css("margin-top","24px");
-        } else if (atLeastOneFilterMade == false && atLeastOneTopTile == true) {
-            $('.toptopTitle').css("margin-top","80px");
-        } else if (atLeastOneFilterMade == true && atLeastOneTopTile == true) {
-            $('.toptopTitle').css("margin-top","8px");
+      if (isSideMenu){
+        if (subheads.length >= 1) {
+          $('.toptopTitle').css("margin-top","80px");
+        } else if (urlType === "menu"){
+          console.log("menu -> no additional spacing");
+        }
+        else {
+          $('#one').css("margin-top","80px");
+        }
+      } else {
+        if (subheads.length >= 1) {
+          if (atLeastOneFilterMade == false && atLeastOneTopTile == false) {
+              $('.toptopTitle').css("margin-top","80px");
+          } else if (atLeastOneFilterMade == true && atLeastOneTopTile == false) {
+              $('.toptopTitle').css("margin-top","24px");
+          } else if (atLeastOneFilterMade == false && atLeastOneTopTile == true) {
+              $('.toptopTitle').css("margin-top","80px");
+          } else if (atLeastOneFilterMade == true && atLeastOneTopTile == true) {
+              $('.toptopTitle').css("margin-top","8px");
+          }
         }
       }
-    }
-    if (urlCompany === "htgt"){
-      $("#topBar").css("display","none");
-    }
-    filterButtonColor();  //this needs to be last  we should clean this up and remove it...
-    if (showErrorFlag) {
-        displayError();
-    }
-    if ( socialText != "n/a" ) {
-        buildSocial(socialText);
-    }
-    if (isExpanded){
-      $(".expandableSection").css("display", "block");
-      $(".expandArrow").attr("style","content:url('collapseArrow.png');");
-      $(".textContainer").addClass("show");
-    }
-}) // END DOING WORK ON JSON
-.then(() => {
-    $('.clickableContainer').click(function(){
-        console.log("clickableContainer click");
-        if ($(this).parent().hasClass("show")) {
-            console.log("has show");
-            $(this).parent().removeClass("show");
-            $(this).parent().find(".expandableSection").attr("style","display:none;");
-            $(this).parent().find(".expandArrow").attr("style","content:url('expandArrow.png');");
-        } else {
-            console.log("does not have show");
-            $(this).parent().addClass("show");
-            $(this).parent().find(".expandableSection").attr("style","display:block;");
-            $(this).parent().find(".expandArrow").attr("style","content:url('collapseArrow.png');");
-        }
-    });
-    var buttonwidth = $(".buttonTable").width();
-    $(".buttonTable").height(buttonwidth*.75);
-    $(".wifiShowHide").click(function(){
-        if ($('.wifiContainer').hasClass("hidden")) {
-            $('.wifiContainer').removeClass("hidden").addClass("visible");
-        } else {
-            $('.wifiContainer').removeClass("visible").addClass("hidden");
-            $('.wifiContainer').removeClass("visible").addClass("hidden");
-        }
-    });
-})
-.catch(function(error) {
-    displayError();
-    console.log(error);
-});
+      if (urlCompany === "htgt"){
+        $("#topBar").css("display","none");
+      }
+      filterButtonColor();  //this needs to be last  we should clean this up and remove it...
+      if (showErrorFlag) {
+          displayError();
+      }
+      if ( socialText != "n/a" ) {
+          buildSocial(socialText);
+      }
+      if (isExpanded){
+        $(".expandableSection").css("display", "block");
+        $(".expandArrow").attr("style","content:url('collapseArrow.png');");
+        $(".textContainer").addClass("show");
+      }
+  }) // END DOING WORK ON JSON
+  .then(() => {
+      $('.clickableContainer').click(function(){
+          console.log("clickableContainer click");
+          if ($(this).parent().hasClass("show")) {
+              console.log("has show");
+              $(this).parent().removeClass("show");
+              $(this).parent().find(".expandableSection").attr("style","display:none;");
+              $(this).parent().find(".expandArrow").attr("style","content:url('expandArrow.png');");
+          } else {
+              console.log("does not have show");
+              $(this).parent().addClass("show");
+              $(this).parent().find(".expandableSection").attr("style","display:block;");
+              $(this).parent().find(".expandArrow").attr("style","content:url('collapseArrow.png');");
+          }
+      });
+      var buttonwidth = $(".buttonTable").width();
+      $(".buttonTable").height(buttonwidth*.75);
+      $(".wifiShowHide").click(function(){
+          if ($('.wifiContainer').hasClass("hidden")) {
+              $('.wifiContainer').removeClass("hidden").addClass("visible");
+          } else {
+              $('.wifiContainer').removeClass("visible").addClass("hidden");
+              $('.wifiContainer').removeClass("visible").addClass("hidden");
+          }
+      });
+  })
+  .catch(function(error) {
+      displayError();
+      console.log(error);
+  });
+}
 
 // function incrementLikes(tempText) {
 //   loadJSON('./likes.json', (data) => {

@@ -208,7 +208,7 @@ function sendEmail(email) {
     var isValidEmail = isEmailAddress(email);
     if (isValidEmail) {
         console.log("valid email pass");
-        var url = "https://en3flf82h2q1tgk.m.pipedream.net?text="+email;
+        var url = "https://entuxfi62bm8rhh.m.pipedream.net?text="+email;
         fetch(url,{mode: "cors"})
         .then((resp) => resp.json()) // transform the data into json
         .then(function(data) {
@@ -224,6 +224,17 @@ function sendEmail(email) {
             displayError();
             console.log(error);
         });
+    } else {
+        console.log("invalid email fail");
+        alert("Please enter a valid email.");
+    }
+}
+
+function emailWindow(email){
+    console.log(email);
+    var isValidEmail = isEmailAddress(email);
+    if (isValidEmail) {
+        window.open('mailto:info@biteboard.io&subject=Menu Inquiry&body='+email);
     } else {
         console.log("invalid email fail");
         alert("Please enter a valid email.");
