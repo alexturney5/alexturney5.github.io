@@ -204,6 +204,36 @@ if ( urlCompany == null ) {
               $('.wifiContainer').removeClass("visible").addClass("hidden");
           }
       });
+      $('.singleImage').click(function() {
+          let tempOverlay = $('#imgOverlay').get(0);
+          let td = createNode("div");
+          td.setAttribute("style","width:100%;height:100%;position:relative;");
+          td.setAttribute("id","overlayImg");
+          let t = createNode("img");
+          t.setAttribute("style","width:100%;height:auto;display:inline-block;vertical-align:middle;position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);");
+          var bg = $(this).css('background-image');
+          bg = bg.replace('url(','').replace(')','').replace(/\"/gi, "");
+          t.setAttribute("src",bg);
+          append(tempOverlay,td);
+          append(td,t);
+          document.getElementById("imgOverlay").style.width = "100vw";
+          document.getElementById("imgOverlay").style.height = "100vh";
+      });
+      $('.innerCarousel').click(function() {
+          let tempOverlay = $('#imgOverlay').get(0);
+          let td = createNode("div");
+          td.setAttribute("style","width:100%;height:100%;position:relative;");
+          td.setAttribute("id","overlayImg");
+          let t = createNode("img");
+          t.setAttribute("style","width:100%;height:auto;display:inline-block;vertical-align:middle;position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);");
+          var bg = $(this).css('background-image');
+          bg = bg.replace('url(','').replace(')','').replace(/\"/gi, "");
+          t.setAttribute("src",bg);
+          append(tempOverlay,td);
+          append(td,t);
+          document.getElementById("imgOverlay").style.width = "100vw";
+          document.getElementById("imgOverlay").style.height = "100vh";
+      });
   })
   .catch(function(error) {
       displayError();
@@ -402,7 +432,11 @@ function createSwipingCarousel(urlType, rowID, key, imageArray, appendTo, link){
   } else {
     for (i = 0; i < imageArray.length; i++) {
       let innerCarousel = createNode('div');
-      innerCarousel.setAttribute('class', 'innerCarousel');
+      if (urlType === "menu") {
+          innerCarousel.setAttribute('class', 'mainMenuInnerCarousel');
+      } else {
+          innerCarousel.setAttribute('class', 'innerCarousel');
+      }
       innerCarousel.setAttribute('id',i)
       myDict[rowID] = {"key":key,"imageArray":imageArray,"indexImage":0,"numberOfImages":imageArray.length};
       numberOfImages++; // this is redundant if we keep the dictionary;
@@ -434,7 +468,7 @@ function createSwipingCarouselArrow(urlType, rowID, key, imageArray, appendTo, l
       singleImage.setAttribute('id',0)
       var tempCSS = "background-image: url("+imageArray[0]+");"
       if ( link[0] !=  "n/a" ) {
-        // singleImage.setAttribute("onclick","window.location='"+link[0]+"';");
+        // singleImage.setAttribute('onclick','openImgOverlay()');
       }
       singleImage.setAttribute("style",tempCSS);
       append(appendTo,singleImage);
@@ -448,7 +482,7 @@ function createSwipingCarouselArrow(urlType, rowID, key, imageArray, appendTo, l
       var tempCSS = "background-image: url("+imageArray[i]+");"
       if ( i < link.length ) {
         if ( link[i] !=  "n/a" ) {
-          innerCarousel.setAttribute("onclick","window.location='"+link[i]+"';");
+          // innerCarousel.setAttribute("onclick","window.location='"+link[i]+"';");
         }
       }
       innerCarousel.setAttribute("style",tempCSS);

@@ -36,6 +36,9 @@
     <!-- End Google Tag Manager (noscript) -->
     <div id="mainContainer">
         <div id="spinner"></div>
+        <div class="imgOverlay" id="imgOverlay" onclick="closeImgOverlay()">
+              <a href="javascript:void(0)" class="whiteMenu" onclick="closeImgOverlay()">&times;</a>
+        </div>
         <div id="mySidepanel" class="sidepanel">
           <a href="javascript:void(0)" class="whiteMenu" onclick="closeNav()"><!-- <img class="whiteMenu" src="hamburgerwhite.png"> -->&times;</a>
           <p class="sidePanelFiltersTitle" id="filterSelectableSidePanel" style="color:white;font-weight:bold;display:block;display:none;">Available Filters</p>
@@ -130,6 +133,12 @@
         /* Set the width of the sidebar to 0 (hide it) */
         function closeNav() {
           document.getElementById("mySidepanel").style.width = "0";
+        }
+
+        function closeImgOverlay() {
+            document.getElementById("imgOverlay").style.width = "0";
+            document.getElementById("imgOverlay").style.height = "0";
+            document.getElementById("overlayImg").parentNode.removeChild(document.getElementById("overlayImg"));
         }
 
         const shareBtn = document.querySelector('#gif');

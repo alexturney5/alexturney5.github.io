@@ -151,7 +151,7 @@ p.ingredientDisclaimer {
   clear: both;
 }
 
-.innerCarousel {
+.innerCarousel, .mainMenuInnerCarousel {
   /* make sure the width is honored */
   margin-left: 12px;
   margin-right: 0px;
@@ -171,7 +171,7 @@ p.ingredientDisclaimer {
   transition: transform 0.5s;
 }
 
-.innerCarousel:first-child {
+.innerCarousel:first-child, .mainMenuInnerCarousel:first-child {
   /* make sure the width is honored */
   margin-left: 24px;
   margin-right: 0px;
@@ -191,7 +191,7 @@ p.ingredientDisclaimer {
   transition: transform 0.5s;
 }
 
-.innerCarousel:last-of-type {
+.innerCarousel:last-of-type, .mainMenuInnerCarousel:last-of-type {
   /* make sure the width is honored */
   margin-left: 12px;
   margin-right: 24px;
