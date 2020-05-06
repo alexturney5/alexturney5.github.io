@@ -1,4 +1,4 @@
-function createMenuCarouselAndName(masterContainer, descriptionText, imgLink, rowID, wifi, aboutText, hoursText, link){
+    function createMenuCarouselAndName(masterContainer, descriptionText, imgLink, rowID, wifi, aboutText, hoursText, link, stylingText){
     //create temp divs
     let containAll = createNode('div');
     containAll.setAttribute('class', 'containAll');
@@ -33,6 +33,7 @@ function createMenuCarouselAndName(masterContainer, descriptionText, imgLink, ro
             buildWifi(wifi, aboutContainer);
         }
     }
+    styleBackground(stylingText);
 }
 
 function createMenuButton(masterContainer, descriptionText, link, rowCompany, imgLink, stylingText){
@@ -58,15 +59,8 @@ function createMenuButton(masterContainer, descriptionText, link, rowCompany, im
         tempDiv.setAttribute('style',tempCSS);// do the #F6A091
     }
     // buton styling = black or white
-    if ( stylingText != "n/a" ) {
-        if ( stylingText == "whitetext" ) {
-            var tempClass = "white"
-            a.className += " " + tempClass;
-        } else if ( stylingText == "blacktext" ) {
-            var tempClass = "black"
-            a.className += " " + tempClass;
-        }
-    }
+    console.log("styleButton("+a+","+stylingText+")");
+    styleButton(a,stylingText);
     //attach buttons
     append(masterContainer,tempDiv);
     append(tempDiv,buttonTable);
@@ -77,7 +71,7 @@ function createMenuButton(masterContainer, descriptionText, link, rowCompany, im
     a.setAttribute('id',rowCompany + ":" + descriptionText);
 }
 
-function createSubMenuItem(masterContainer, descriptionText, link, imgLink, rowID, ingredientsText, sizesText, pricesText, detailsText, disclaimerText){
+function createSubMenuItem(masterContainer, descriptionText, link, imgLink, rowID, ingredientsText, sizesText, pricesText, detailsText, disclaimerText, stylingText){
     //create temp divs
     let containAll = createNode('div');
     containAll.setAttribute('class', 'containAll');
@@ -200,6 +194,7 @@ function createSubMenuItem(masterContainer, descriptionText, link, imgLink, rowI
         tempP.innerText=disclaimerText;
         tempP.setAttribute('class','disclaimer');
     }
+    styleBackground(stylingText);
 }
 
 //index.js
@@ -230,16 +225,40 @@ function sendEmail(email) {
     }
 }
 
-function emailWindow(email){
-    console.log(email);
-    var isValidEmail = isEmailAddress(email);
-    if (isValidEmail) {
-        window.open('mailto:info@biteboard.io&subject=Menu Inquiry&body='+email);
-    } else {
-        console.log("invalid email fail");
-        alert("Please enter a valid email.");
+function styleBackground(stylingText){
+  for (var i = 0; i < stylingText.length; i++) {
+    var temp = stylingText[i].split('~');
+    var element = temp[0];
+    var styling = temp[1];
+    console.log(element + " : "+styling);
+    if (element === "bodyBackgroundColor"){
+        document.body.style.background = styling;
+    } else if (element ==="bodyTextColor"){
+        document.body.style.color = styling;
     }
+  }
+}
 
+
+function styleButton(toStyle, stylingText){
+  for (var i = 0; i < stylingText.length; i++) {
+    var temp = stylingText[i].split('~');
+    var element = temp[0];
+    var styling = temp[1];
+    console.log(element + " : "+styling);
+    if (element === "buttonTextColor"){
+      console.log("styling button");
+      if ( styling != "n/a" ) {
+            if ( styling == "whitetext" ) {
+                var tempClass = "white"
+                toStyle.className += " " + tempClass;
+            } else if ( styling == "blacktext" ) {
+                var tempClass = "black"
+                toStyle.className += " " + tempClass;
+            }
+        }
+    }
+  }
 }
 
 function isEmailAddress(str) {

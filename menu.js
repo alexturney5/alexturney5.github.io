@@ -92,7 +92,7 @@ if ( urlCompany == null ) {
               incrementOddEvenCount()
               showErrorFlag = false;
               if (rowType=="menu") {
-                  createMenuCarouselAndName(one, descriptionText, imgLink, rowID, wifiText, detailsText, hoursText, link);
+                  createMenuCarouselAndName(one, descriptionText, imgLink, rowID, wifiText, detailsText, hoursText, link, stylingText);
               } else if (rowType=="section") {
                   createMenuButton(one, descriptionText, link, rowCompany,imgLink, stylingText);
               }
@@ -129,7 +129,7 @@ if ( urlCompany == null ) {
                 } else {
                   createButtonFilters(filterText,filters);
                 }
-                createSubMenuItem(one, descriptionText, link, imgLink, rowID, ingredientsText, sizesText, pricesText, detailsText, disclaimerText);
+                createSubMenuItem(one, descriptionText, link, imgLink, rowID, ingredientsText, sizesText, pricesText, detailsText, disclaimerText, stylingText);
               }
           }
       } // end for loop
@@ -170,7 +170,7 @@ if ( urlCompany == null ) {
           displayError();
       }
       if ( socialText != "n/a" ) {
-          buildSocial(socialText);
+          buildSocial(socialText,stylingText);
       }
       if (isExpanded){
         $(".expandableSection").css("display", "block");
@@ -540,7 +540,7 @@ function buildHours(hoursText, appendTo){
   }
 }
 
-function buildSocial(socialText){
+function buildSocial(socialText,stylingText){
   $('.socialgroup').css("display","block");
   for (var i = 0; i < socialText.length; i++) {
     var temp = socialText[i].split('~');
@@ -553,6 +553,11 @@ function buildSocial(socialText){
     if (platform === "ig" || platform === "fb"){
       $('#'+platform).css("display","inline-block");
       $('#'+platform).parent().attr("href",link);
+      console.log("COLOR OF SOCIAL: " + stylingText);
+      if (stylingText[0] === "white"){
+        $('#'+platform).attr("src", platform+"W.png");
+        $("#gif").attr("src", "share2.png");
+      }
     } else {
       console.log("invalid platform: "+platform);
     }
@@ -614,7 +619,8 @@ function setLuckyJsonVariables(tempArray){
   filterText = tempArray[11];
   filterText = filterText.split(',');
   disclaimerText = tempArray[12];
-  OOSFlag = tempArray[13];
+  stylingText = jsonresponse[i][13];
+  stylingText = stylingText.split(',');
   quantityText = tempArray[14];
   socialText = tempArray[15];
   socialText = socialText.split('//');
@@ -644,6 +650,7 @@ function setJsonVariables(jsonresponse,i){
   filterText = filterText.split(',');
   disclaimerText = jsonresponse[i][12];
   stylingText = jsonresponse[i][13];
+  stylingText = stylingText.split(',');
   quantityText = jsonresponse[i][14];
   socialText = jsonresponse[i][15];
   socialText = socialText.split(',');
