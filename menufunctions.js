@@ -85,7 +85,7 @@ function createSubMenuItem(masterContainer, descriptionText, link, imgLink, rowI
     sizes.setAttribute('class', 'sizes');
     let newTopTitle = createNode('div');
     newTopTitle.setAttribute('id','topTitle')
-
+    styleBackground(stylingText);
     //topTitle Spacing Margin
     if (titleText != "n/a") {
         if (subheads.length==0) {
@@ -194,7 +194,6 @@ function createSubMenuItem(masterContainer, descriptionText, link, imgLink, rowI
         tempP.innerText=disclaimerText;
         tempP.setAttribute('class','disclaimer');
     }
-    styleBackground(stylingText);
 }
 
 //index.js

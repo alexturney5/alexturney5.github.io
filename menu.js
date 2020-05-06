@@ -178,6 +178,7 @@ if ( urlCompany == null ) {
         $(".expandArrow").attr("style","content:url('collapseArrow.png');");
         $(".textContainer").addClass("show");
       }
+      styleBackground(stylingText);
   }) // END DOING WORK ON JSON
   .then(() => {
       $('.clickableContainer').click(function(){
@@ -386,7 +387,7 @@ function buildLuckySubMenu(luckyNumber){
     console.log(luckyNumber);
     console.log(tempArray);
     setLuckyJsonVariables(tempArray);
-    createSubMenuItem(one, descriptionText, link, imgLink, rowID, ingredientsText, sizesText, pricesText, detailsText, disclaimerText);
+    createSubMenuItem(one, descriptionText, link, imgLink, rowID, ingredientsText, sizesText, pricesText, detailsText, disclaimerText, stylingText);
 }
 
 function createCirclesTwo(rowID, a){
