@@ -297,9 +297,9 @@ img {
 }
 
 /* Create four equal columns that sits next to each other */
-.column {
-  flex: 25%;
-  max-width: 25%;
+#mainContainer, #topBar {
+  flex: 33%;
+  max-width: 33%;
 }
 
 .column img {
@@ -499,7 +499,7 @@ button.active {
 
 /* Responsivde layout - makes a two column-layout instead of four columns */
 @media screen and (max-width: 800px) {
-  .column {
+  #mainContainer, #topBar {
     flex: 50%;
     max-width: 50%;
   }
@@ -529,7 +529,7 @@ button.active {
 
 /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
-  .column {
+  #mainContainer, #topBar {
     flex: 100%;
     max-width: 100%;
   }

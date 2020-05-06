@@ -70,6 +70,7 @@ if ( urlCompany == null ) {
 } else {
   console.log("normalmenu");
   $("#splashContain").children().hide();
+  console.log("trying to set top bar max width");
   showSpinner();
   fetch(url,{mode: "cors"})
   .then((resp) => resp.json()) // transform the data into json

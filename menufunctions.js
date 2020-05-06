@@ -1,4 +1,4 @@
-    function createMenuCarouselAndName(masterContainer, descriptionText, imgLink, rowID, wifi, aboutText, hoursText, link, stylingText){
+function createMenuCarouselAndName(masterContainer, descriptionText, imgLink, rowID, wifi, aboutText, hoursText, link, stylingText){
     //create temp divs
     let containAll = createNode('div');
     containAll.setAttribute('class', 'containAll');
