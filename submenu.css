@@ -19,9 +19,9 @@ body {
 }
 
 .menuItem {
-  margin: 12px auto 0px;
+  margin: 24px auto 0px;
   background-color: #FFFFFF;
-  width: calc( 100% - 24px );;
+  width: calc( 100% - 48px );;
   height: auto;
   border-radius: 8px;
   position:relative;
