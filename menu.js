@@ -112,6 +112,12 @@ if ( urlCompany == null ) {
               //LUCKY
               if (luckyFlag) {
                 buildLuckyDict(jsonResponse, i);
+                if (urlType != "menu"){
+                    document.getElementById("topBar").setAttribute("style","display:inline-block;");
+                    document.getElementById("placeName").setAttribute("href","?grouping=menu&company="+urlCompany);
+                    document.getElementById("placeName").setAttribute("style","display:inline-block;");
+                    // document.getElementById("placeName").innerText="Main Menu";
+                }
                 if (isSideMenu){
                   createButtonFiltersSidePanel(filterText,filters);
                 } else {
@@ -655,7 +661,7 @@ function setLuckyJsonVariables(tempArray){
   filterText = tempArray[11];
   filterText = filterText.split(',');
   disclaimerText = tempArray[12];
-  stylingText = jsonresponse[i][13];
+  stylingText = tempArray[13];
   stylingText = stylingText.split(',');
   quantityText = tempArray[14];
   socialText = tempArray[15];
