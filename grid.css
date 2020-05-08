@@ -3,6 +3,10 @@
   src: url("glyphs.woff") format("woff");
 }
 
+html, body {
+  overflow-x: hidden;
+}
+
 body {
   font-size: 22px;
   font-family: 'Source Sans Pro', sans-serif;
@@ -324,6 +328,10 @@ img {
 #mainContainer, #topBar {
   flex: 33%;
   max-width: 33%;
+}
+
+.column {
+  width: 100%;
 }
 
 .column img {
