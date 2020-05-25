@@ -387,7 +387,13 @@ p.menuName {
 }
 .hours {
   font-size: 16px;
+  line-height: 8px;
+  padding-left: 24px;
 }
+.hoursHeader {
+  font-size: 16px;
+}
+
 
 .wifiContainer {
   color: black;

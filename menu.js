@@ -576,9 +576,33 @@ function buildAbout(detailsText, appendTo){
 function buildHours(hoursText, appendTo){
   for (var i = 0; i < hoursText.length; i++) {
     let tempHours = createNode('div');
-    tempHours.setAttribute('class','hours')
+    if (i==0) {
+      tempHours.setAttribute('class','hoursHeader');
+    } else {
+      tempHours.setAttribute('class','hours');
+    }
     tempHours.innerText = hoursText[i];
     append(appendTo,tempHours);
+  }
+}
+
+function buildTempHours(hoursText, appendTo){
+  var tempString = "";
+  let tempHoursHeader = createNode('div');
+  for (var i = 0; i < hoursText.length; i++) {
+    console.log("buildHours: "+i);
+    if (i == 0) {
+      console.log("i == 0");
+      tempHoursHeader.setAttribute('class','hoursHeader');
+      tempHoursHeader.innerText = hoursText[i];
+      append(appendTo,tempHoursHeader);
+      console.log("appended header!");
+    } else {
+      let tempHours = createNode('div');
+      tempHours.setAttribute('class','hours')
+      tempHours.innerText = hoursText[i];
+      append(tempHours,tempHoursHeader);
+    }
   }
 }
 
