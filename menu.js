@@ -350,13 +350,19 @@ function createButtonFiltersSidePanel(filterText, filters){
                     if (urlFilter != null && f!=urlFilter) {
                     } else {
                         let aforfilterbutton = createNode("a");
+                        let tempReset = createNode("a");
                         // IF FILTER ALREADY EXISTS
                         if (urlFilter != null) {
                             aforfilterbutton.setAttribute('href', "?grouping="+urlType+"&company="+urlCompany);
+                            aforfilterbutton.setAttribute('class', "normalFilter");
                             aforfilterbutton.innerText=f;
+                            tempReset.setAttribute('href', "?grouping="+urlType+"&company="+urlCompany);
+                            tempReset.setAttribute('class', "resetFilter");
+                            tempReset.innerText="Reset All Filters";
                         } else {
                             aforfilterbutton.setAttribute('href', "?grouping="+urlType+"&company="+urlCompany+"&filter="+f);
                             aforfilterbutton.innerText=f;
+                            aforfilterbutton.setAttribute('class', "normalFilter");
                         }
                         if (isSideMenu) {
                           // IF filter exists and has been selected
@@ -364,6 +370,8 @@ function createButtonFiltersSidePanel(filterText, filters){
                             hamburgerImg.src = "filter.png"
                             hamburgerButton.setAttribute("onclick","openNav()");
                             filtersSelectedSidePanel.setAttribute("style","display:block;");
+                            filtersSelectedSidePanel.innerText="";
+                            append(filtersSelectedSidePanel,tempReset);
                             append(filtersSelectedSidePanel,aforfilterbutton);
                           } else {
                             hamburgerImg.src = "filter.png"
