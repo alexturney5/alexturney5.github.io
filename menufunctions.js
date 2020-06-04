@@ -234,6 +234,11 @@ function styleBackground(stylingText){
         document.body.style.background = styling;
     } else if (element ==="bodyTextColor"){
         document.body.style.color = styling;
+    } else if ( element === "bodyBackgroundImage") {
+        var tempCSS = "url('"+styling+"') repeat top left;";
+        document.body.style.background="url('https://alexturney.com/menuAssets/coffee.jpg') repeat top left";
+        $('body').css("background", "url(" + styling + ")");
+        // THIS IS SUPER IMPORTANT ^^^^^^^^^^
     }
   }
 }
