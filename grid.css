@@ -149,9 +149,12 @@ p.sidePanelFiltersTitle {
 }
 
 .resetFilter {
-  color:rgb(230,0,0);
+  background-color: white;
+  padding: 14px;
+  margin-top: 14px;
+  border-radius: 20px;
   text-decoration: none;
-  display: block;
+  display: inline-block;
   line-height: 1.5;
   transition: 0.3s;
 }

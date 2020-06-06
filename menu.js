@@ -354,11 +354,11 @@ function createButtonFiltersSidePanel(filterText, filters){
                         // IF FILTER ALREADY EXISTS
                         if (urlFilter != null) {
                             aforfilterbutton.setAttribute('href', "?grouping="+urlType+"&company="+urlCompany);
-                            aforfilterbutton.setAttribute('class', "normalFilter");
+                            aforfilterbutton.setAttribute('class', "resetFilter");
                             aforfilterbutton.innerText=f;
-                            tempReset.setAttribute('href', "?grouping="+urlType+"&company="+urlCompany);
-                            tempReset.setAttribute('class', "resetFilter");
-                            tempReset.innerText="Reset All Filters";
+                            // tempReset.setAttribute('href', "?grouping="+urlType+"&company="+urlCompany);
+                            // tempReset.setAttribute('class', "resetFilter");
+                            // tempReset.innerText="Reset All Filters";
                         } else {
                             aforfilterbutton.setAttribute('href', "?grouping="+urlType+"&company="+urlCompany+"&filter="+f);
                             aforfilterbutton.innerText=f;
@@ -370,7 +370,7 @@ function createButtonFiltersSidePanel(filterText, filters){
                             hamburgerImg.src = "filter.png"
                             hamburgerButton.setAttribute("onclick","openNav()");
                             filtersSelectedSidePanel.setAttribute("style","display:block;");
-                            filtersSelectedSidePanel.innerText="";
+                            filtersSelectedSidePanel.innerText="Click to Deselect Filter";
                             append(filtersSelectedSidePanel,tempReset);
                             append(filtersSelectedSidePanel,aforfilterbutton);
                           } else {
