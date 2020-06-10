@@ -156,7 +156,7 @@ p.ingredientDisclaimer {
   margin-right: 0px;
   width: calc(100% - 48px);
   height: auto;
-  border-radius: 10px;
+  border-radius: 8px;
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -176,7 +176,7 @@ p.ingredientDisclaimer {
   margin-right: 0px;
   width: calc(100% - 48px);
   height: auto;
-  border-radius: 10px;
+  border-radius: 8px;
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -196,7 +196,7 @@ p.ingredientDisclaimer {
   margin-right: 24px;
   width: calc(100% - 48px);
   height: auto;
-  border-radius: 10px;
+  border-radius: 8px;
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -214,6 +214,7 @@ p.ingredientDisclaimer {
   /* make sure the width is honored */
   width: 100%;
   height: auto;
+  border-radius: 8px;
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
