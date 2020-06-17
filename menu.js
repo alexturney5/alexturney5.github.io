@@ -203,7 +203,7 @@ if ( urlCompany == null ) {
       });
       var buttonwidth = $(".buttonTable").width();
       // $(".buttonTable").height(buttonwidth*.25);
-      $(".buttonTable").height("40px");
+      $(".buttonTable").height("60px");
       $(".wifiShowHide").click(function(){
           if ($('.wifiContainer').hasClass("hidden")) {
               $('.wifiContainer').removeClass("hidden").addClass("visible");

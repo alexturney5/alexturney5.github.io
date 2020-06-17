@@ -473,7 +473,7 @@ button.active {
   background-size: cover;
   background-repeat: no-repeat;
   display: inline-block;
-  width: calc( 50% - 36px );
+  width: calc( 50% - 30px );
   margin: 0px 12px 12px 24px ;
   border: 0px solid white;
   /*border-radius: 4px;*/
@@ -496,7 +496,7 @@ button.active {
 .buttonTable {
   /*width: 100%;*/
   display: table;
-  width: calc( 100% - 40px );
+  width: calc( 100% - 60px );
   float: left;
   background-color: rgba(25,25,25);
   border-top-right-radius: 4px;
@@ -505,8 +505,8 @@ button.active {
 }
 
 .menuButtonImg {
-  width: 40px;
-  height: 40px;
+  width: 60px;
+  height: 60px;
   float:left;
   display: inline-block;
   background-position: center center;
