@@ -192,26 +192,6 @@ p {
   margin: 0px;
 }
 
-.mainMenuSingleImage {
-  /* make sure the width is honored */
-  margin-left: 24px;
-  margin-right: 24px;
-  width: calc(100% - 48px);
-  height: auto;
-  border-radius: 10px;
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-
-  scroll-snap-stop: always;
-  scroll-snap-align: center;
-  flex-shrink: 0;
-
-  transform-origin: center center;
-  transform: scale(1);
-  transition: transform 0.5s;
-}
-
 
 .aboutContainer > div {
     margin:0px 24px 10px;
@@ -366,6 +346,9 @@ img {
 }
 
 p.menuName {
+  font-family: "Helvetica Neue";
+  font-weight: medium;
+  font-size: 28px;
   padding: 0px 24px 10px;
   vertical-align: middle;
   text-align: left;
@@ -493,12 +476,7 @@ button.active {
   width: calc( 50% - 36px );
   margin: 0px 12px 12px 24px ;
   border: 0px solid white;
-  border-radius: 14px;
-  /*-webkit-border-radius: 14px;
-  -moz-border-radius: 14px;
-  -safari-border-radius: 14px;
-  -webkit-box-shadow: 0 0 5px rgba(50, 50, 50, 0.3);
-  box-shadow: */0 0 5px rgba(50, 50, 50, 0.3);
+  /*border-radius: 4px;*/
 }
 
 #buttonfirst:last-of-type {
@@ -508,16 +486,34 @@ button.active {
 /* div that holds the button */
 /* rename this to "buttonContainer" */
 #buttonfirst {
-  margin: 0px 12px 12px 24px ;
+  margin: 0px 6px 8px 24px ;
 }
 
 #buttonsecond {
-  margin: 0px 24px 12px 12px ;
+  margin: 0px 24px 8px 6px ;
 }
 
 .buttonTable {
-  width: 100%;
+  /*width: 100%;*/
   display: table;
+  width: calc( 100% - 40px );
+  float: left;
+  background-color: rgba(25,25,25);
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  /*display: inline-block;*/
+}
+
+.menuButtonImg {
+  width: 40px;
+  height: 40px;
+  float:left;
+  display: inline-block;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
 }
 
 .menuButton {
@@ -529,6 +525,7 @@ button.active {
     font-weight: bold;
     padding: 0px 16px;
     color: white;
+    font-size: 11px;
 }
 
 .menuButton.black {
@@ -566,7 +563,7 @@ button.active {
     font-size: 8vw;
   }
   .menuButton {
-    font-size: 20px;
+    font-size: 11px;
   }
 
   .circle {
@@ -596,6 +593,6 @@ button.active {
     font-size: 8vw;
   }
   .menuButton {
-    font-size: 20px;
+    font-size: 11px;
   }
 }

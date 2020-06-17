@@ -3,7 +3,7 @@ function createMenuCarouselAndName(masterContainer, descriptionText, imgLink, ro
     let containAll = createNode('div');
     containAll.setAttribute('class', 'containAll');
     let carousel = createNode('div');
-    carousel.setAttribute('class', 'carousel');
+    carousel.setAttribute('class', 'mainCarousel');
     let name = createNode('p');
     name.setAttribute('class', 'menuName');
     //attach buttons
@@ -40,35 +40,37 @@ function createMenuButton(masterContainer, descriptionText, link, rowCompany, im
     //create temp divs
     let buttonTable = createNode('div');
     buttonTable.setAttribute('class', 'buttonTable');
-    let a = createNode('a');
-    a.setAttribute('class','menuButton')
-    let tempDiv = createNode('div');
+    let menuButton = createNode('a');
+    menuButton.setAttribute('class','menuButton')
+    let menuButtonContainer = createNode('div');
     if (oddevencount%2==1) {
-        tempDiv.setAttribute('class', 'menuButtonContainer');
-        tempDiv.setAttribute('id', 'buttonsecond');
+        menuButtonContainer.setAttribute('class', 'menuButtonContainer');
+        menuButtonContainer.setAttribute('id', 'buttonsecond');
     } else {
-        tempDiv.setAttribute('class', 'menuButtonContainer');
-        tempDiv.setAttribute('id', 'buttonfirst');
+        menuButtonContainer.setAttribute('class', 'menuButtonContainer');
+        menuButtonContainer.setAttribute('id', 'buttonfirst');
     }
     if ( imgLink != "n/a" ) {
+        let tempImgDiv = createNode('div');
+        tempImgDiv.setAttribute('class', 'menuButtonImg');
         var tempCSS = "background-image: url("+imgLink+");"
-        tempDiv.setAttribute('style',tempCSS);
+        tempImgDiv.setAttribute('style',tempCSS);
+        append(menuButtonContainer, tempImgDiv);
     } else {
-        var tempColor = "#F6A091";
-        var tempCSS = "background:"+ tempColor;
-        tempDiv.setAttribute('style',tempCSS);// do the #F6A091
+        var tempCSS = "border-top-left-radius:4px;border-bottom-left-radius: 4px;width:100%;"
+        buttonTable.setAttribute('style',tempCSS);// do the #F6A091
     }
     // buton styling = black or white
-    console.log("styleButton("+a+","+stylingText+")");
-    styleButton(a,stylingText);
+    console.log("styleButton("+menuButton+","+stylingText+")");
+    styleButton(menuButton,stylingText);
     //attach buttons
-    append(masterContainer,tempDiv);
-    append(tempDiv,buttonTable);
-    append(buttonTable,a);
+    append(masterContainer,menuButtonContainer);
+    append(menuButtonContainer,buttonTable);
+    append(buttonTable,menuButton);
     //assign data
-    a.innerText = descriptionText;
-    a.setAttribute('href', link);
-    a.setAttribute('id',rowCompany + ":" + descriptionText);
+    menuButton.innerText = descriptionText;
+    menuButton.setAttribute('href', link);
+    menuButton.setAttribute('id',rowCompany + ":" + descriptionText);
 }
 
 function createSubMenuItem(masterContainer, descriptionText, link, imgLink, rowID, ingredientsText, sizesText, pricesText, detailsText, disclaimerText, stylingText){

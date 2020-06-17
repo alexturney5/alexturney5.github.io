@@ -131,6 +131,23 @@ p.ingredientDisclaimer {
 .carousel {
   /* line them up horizontally */
   display: flex;
+  height: 150px;
+  border-radius: 0px;
+  margin: 14px 0px 0px 0px;
+  position: relative;
+
+  /* allow for scrolling */
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+
+  /* make it smooth on iOS */
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+.carouselV0 {
+  /* line them up horizontally */
+  display: flex;
   height: 35vH;
   border-radius: 0px;
   margin: 14px 0px 0px 0px;
@@ -143,7 +160,6 @@ p.ingredientDisclaimer {
   /* make it smooth on iOS */
   -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
-
 }
 
 .clearDiv {
@@ -154,7 +170,8 @@ p.ingredientDisclaimer {
   /* make sure the width is honored */
   margin-left: 12px;
   margin-right: 0px;
-  width: calc(100% - 48px);
+  width: 150px;
+  /*width: calc(100% - 48px);*/
   height: auto;
   border-radius: 8px;
   background-position: center center;
@@ -174,7 +191,7 @@ p.ingredientDisclaimer {
   /* make sure the width is honored */
   margin-left: 24px;
   margin-right: 0px;
-  width: calc(100% - 48px);
+  /*width: calc(100% - 48px);*/
   height: auto;
   border-radius: 8px;
   background-position: center center;
@@ -194,7 +211,7 @@ p.ingredientDisclaimer {
   /* make sure the width is honored */
   margin-left: 12px;
   margin-right: 24px;
-  width: calc(100% - 48px);
+  /*width: calc(100% - 48px);*/
   height: auto;
   border-radius: 8px;
   background-position: center center;
@@ -208,6 +225,43 @@ p.ingredientDisclaimer {
   transform-origin: center center;
   transform: scale(1);
   transition: transform 0.5s;
+}
+
+.mainMenuSingleImage {
+  /* make sure the width is honored */
+  margin-left: 24px;
+  margin-right: 24px;
+  width: calc(100% - 48px);
+  height: auto;
+  border-radius: 10px;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  scroll-snap-stop: always;
+  scroll-snap-align: center;
+  flex-shrink: 0;
+
+  transform-origin: center center;
+  transform: scale(1);
+  transition: transform 0.5s;
+}
+
+.mainCarousel {
+  /* line them up horizontally */
+  display: flex;
+  height: 150px;
+  border-radius: 0px;
+  margin: 24px 0px 0px 0px;
+  position: relative;
+
+  /* allow for scrolling */
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+
+  /* make it smooth on iOS */
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
 }
 
 .singleImage {
