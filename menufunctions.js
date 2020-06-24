@@ -247,24 +247,29 @@ function styleBackground(stylingText){
 
 
 function styleButton(toStyle, stylingText){
-  for (var i = 0; i < stylingText.length; i++) {
-    var temp = stylingText[i].split('~');
-    var element = temp[0];
-    var styling = temp[1];
-    console.log(element + " : "+styling);
-    if (element === "buttonTextColor"){
-      console.log("styling button");
-      if ( styling != "n/a" ) {
-            if ( styling == "whitetext" ) {
-                var tempClass = "white"
-                toStyle.className += " " + tempClass;
-            } else if ( styling == "blacktext" ) {
-                var tempClass = "black"
-                toStyle.className += " " + tempClass;
+    for (var i = 0; i < stylingText.length; i++) {
+        var temp = stylingText[i].split('~');
+        var element = temp[0];
+        var styling = temp[1];
+        console.log(element + " : "+styling);
+        if (element === "buttonTextColor"){
+          console.log("styling button");
+          if ( styling != "n/a" ) {
+                if ( styling == "whitetext" ) {
+                    var tempClass = "white"
+                    toStyle.className += " " + tempClass;
+                } else if ( styling == "blacktext" ) {
+                    var tempClass = "black"
+                    toStyle.className += " " + tempClass;
+                }
+            }
+        } else if (element === "buttonBackgroundColor") {
+            console.log("styling button");
+            if ( styling != "n/a" ) {
+                toStyle.style.background = styling;
             }
         }
     }
-  }
 }
 
 function isEmailAddress(str) {
