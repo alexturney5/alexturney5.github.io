@@ -501,7 +501,7 @@ button.active {
   background-color: rgba(25,25,25);
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
-  /*display: inline-block;*/
+ /*display: inline-block;*/
 }
 
 .menuButtonImg {
@@ -522,6 +522,8 @@ button.active {
     vertical-align: middle;
     /*text-align: center;*/
     word-wrap: break-word;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
     font-weight: bold;
     padding: 0px 16px;
     color: white;
@@ -563,7 +565,7 @@ button.active {
     font-size: 8vw;
   }
   .menuButton {
-    font-size: 11px;
+    font-size: 14px;
   }
 
   .circle {
@@ -593,6 +595,6 @@ button.active {
     font-size: 8vw;
   }
   .menuButton {
-    font-size: 11px;
+    font-size: 14px;
   }
 }
