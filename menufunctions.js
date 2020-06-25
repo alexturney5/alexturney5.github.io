@@ -2,18 +2,18 @@ function createMenuCarouselAndName(masterContainer, descriptionText, imgLink, ro
     //create temp divs
     let containAll = createNode('div');
     containAll.setAttribute('class', 'containAll');
-    let carousel = createNode('div');
-    carousel.setAttribute('class', 'mainCarousel');
+    let mainCarousel = createNode('div');
+    mainCarousel.setAttribute('class', 'mainCarousel');
     let name = createNode('p');
     name.setAttribute('class', 'menuName');
     //attach buttons
     append(masterContainer, containAll);
-    append(containAll,carousel);
-    //carousel work
+    append(containAll,mainCarousel);
+    //mainCarousel work
     if ( imgLink == "n/a" ) {
-        carousel.setAttribute('style','height:0px;margin:0;');
+        mainCarousel.setAttribute('style','height:0px;margin:0;');
     } else {
-        createSwipingCarousel("menu", rowID, descriptionText, imgLink, carousel, link);
+        createSwipingCarousel("menu", rowID, descriptionText, imgLink, mainCarousel, link, stylingText);
     }
     append(containAll,name);
     //assign data
@@ -34,6 +34,7 @@ function createMenuCarouselAndName(masterContainer, descriptionText, imgLink, ro
         }
     }
     styleBackground(stylingText);
+    styleCarousels(mainCarousel,stylingText);
 }
 
 function createMenuButton(masterContainer, descriptionText, link, rowCompany, imgLink, stylingText){
@@ -267,6 +268,26 @@ function styleButton(toStyle, stylingText){
             console.log("styling button");
             if ( styling != "n/a" ) {
                 toStyle.style.background = styling;
+            }
+        }
+    }
+}
+
+
+function styleCarousels(toStyle,stylingText){
+    for (var i = 0; i < stylingText.length; i++) {
+        var temp = stylingText[i].split('~');
+        var element = temp[0];
+        var styling = temp[1];
+        console.log(element + " : "+styling);
+        if (element === "carouselSize"){
+          console.log("styling button");
+          if ( styling != "n/a" ) {
+                if ( styling == "large" ) {
+                    toStyle.className = "mainCarouselLarge";
+                } else if ( styling == "small" ) {
+                    toStyle.className = "mainCarousel";
+                }
             }
         }
     }

@@ -145,10 +145,10 @@ p.ingredientDisclaimer {
   scroll-behavior: smooth;
 }
 
-.carouselV0 {
+.carouselLarge {
   /* line them up horizontally */
   display: flex;
-  height: 35vH;
+  height: 35vh;
   border-radius: 0px;
   margin: 14px 0px 0px 0px;
   position: relative;
@@ -187,9 +187,10 @@ p.ingredientDisclaimer {
   transition: transform 0.5s;
 }
 
-.innerCarousel:first-child, .mainMenuInnerCarousel:first-child {
-  /* make sure the width is honored */
-  margin-left: 24px;
+.innerCarouselLarge, .mainMenuInnerCarouselLarge {
+  width: calc(100% - 48px);
+    /* make sure the width is honored */
+  margin-left: 12px;
   margin-right: 0px;
   /*width: calc(100% - 48px);*/
   height: auto;
@@ -207,24 +208,27 @@ p.ingredientDisclaimer {
   transition: transform 0.5s;
 }
 
+.innerCarousel:first-child, .mainMenuInnerCarousel:first-child {
+  /* make sure the width is honored */
+  margin-left: 24px;
+  margin-right: 0px;
+}
+
+.innerCarouselLarge:first-child, .mainMenuInnerCarouselLarge:first-child {
+  margin-left: 24px;
+  margin-right: 0px;
+}
+
 .innerCarousel:last-of-type, .mainMenuInnerCarousel:last-of-type {
   /* make sure the width is honored */
   margin-left: 12px;
   margin-right: 24px;
-  /*width: calc(100% - 48px);*/
-  height: auto;
-  border-radius: 8px;
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
+}
 
-  scroll-snap-stop: always;
-  scroll-snap-align: center;
-  flex-shrink: 0;
-
-  transform-origin: center center;
-  transform: scale(1);
-  transition: transform 0.5s;
+.innerCarouselLarge:last-of-type, .mainMenuInnerCarouselLarge:last-of-type {
+  /* make sure the width is honored */
+  margin-left: 12px;
+  margin-right: 24px;
 }
 
 .mainMenuSingleImage {
@@ -251,6 +255,23 @@ p.ingredientDisclaimer {
   /* line them up horizontally */
   display: flex;
   height: 150px;
+  border-radius: 0px;
+  margin: 24px 0px 0px 0px;
+  position: relative;
+
+  /* allow for scrolling */
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+
+  /* make it smooth on iOS */
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+.mainCarouselLarge {
+  /* line them up horizontally */
+  display: flex;
+  height: 35vh;
   border-radius: 0px;
   margin: 24px 0px 0px 0px;
   position: relative;

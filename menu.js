@@ -430,7 +430,7 @@ function createCirclesTwo(rowID, a){
   }
 }
 
-function createSwipingCarousel(urlType, rowID, key, imageArray, appendTo, link){
+function createSwipingCarousel(urlType, rowID, key, imageArray, appendTo, link, stylingText){
   if (imageArray.length == 1) {
       let singleImage = createNode('div');
       if (urlType === "menu") {
@@ -448,11 +448,12 @@ function createSwipingCarousel(urlType, rowID, key, imageArray, appendTo, link){
   } else {
     for (i = 0; i < imageArray.length; i++) {
       let innerCarousel = createNode('div');
-      if (urlType === "menu") {
-          innerCarousel.setAttribute('class', 'mainMenuInnerCarousel');
-      } else {
-          innerCarousel.setAttribute('class', 'innerCarousel');
-      }
+      styleMainMenuInnerCarousel(innerCarousel, stylingText, urlType);
+      // if (urlType === "menu") {
+      //     innerCarousel.setAttribute('class', 'mainMenuInnerCarousel');
+      // } else {
+      //     innerCarousel.setAttribute('class', 'innerCarousel');
+      // }
       innerCarousel.setAttribute('id',i)
       myDict[rowID] = {"key":key,"imageArray":imageArray,"indexImage":0,"numberOfImages":imageArray.length};
       numberOfImages++; // this is redundant if we keep the dictionary;
@@ -469,6 +470,29 @@ function createSwipingCarousel(urlType, rowID, key, imageArray, appendTo, link){
         dummyDiv.setAttribute('class', 'dummyDiv');
         append(appendTo,dummyDiv);
       }
+    }
+  }
+}
+
+function styleMainMenuInnerCarousel(innerCarousel, stylingText, urlType){
+  for (var i = 0; i < stylingText.length; i++) {
+      var temp = stylingText[i].split('~');
+      var element = temp[0];
+      var styling = temp[1];
+      console.log(element + " : "+styling);
+      if (element === "carouselSize"){
+        console.log("styling button");
+        if ( styling != "n/a" ) {
+          if (urlType === "menu" && styling==="large") {
+              innerCarousel.setAttribute('class', 'mainMenuInnerCarouselLarge');
+          } else if (urlType === "menu" && styling==="small") {
+              innerCarousel.setAttribute('class', 'mainMenuInnerCarousel');
+          } else if (styling==="large") {
+              innerCarousel.setAttribute('class', 'innerCarouselLarge');
+          } else {
+              innerCarousel.setAttribute('class', 'innerCarousel');
+          }
+        }
     }
   }
 }
