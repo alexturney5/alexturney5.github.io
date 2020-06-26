@@ -33,8 +33,8 @@ function createMenuCarouselAndName(masterContainer, descriptionText, imgLink, ro
             buildWifi(wifi, aboutContainer);
         }
     }
-    styleBackground(stylingText);
-    styleCarousels(mainCarousel,stylingText);
+    styleBody();
+    styleCarousels(mainCarousel);
 }
 
 function createMenuButton(masterContainer, descriptionText, link, rowCompany, imgLink, stylingText){
@@ -88,7 +88,7 @@ function createSubMenuItem(masterContainer, descriptionText, link, imgLink, rowI
     sizes.setAttribute('class', 'sizes');
     let newTopTitle = createNode('div');
     newTopTitle.setAttribute('id','topTitle')
-    styleBackground(stylingText);
+    styleBody();
     //topTitle Spacing Margin
     if (titleText != "n/a") {
         if (subheads.length==0) {
@@ -227,24 +227,24 @@ function sendEmail(email) {
     }
 }
 
-function styleBackground(stylingText){
-  for (var i = 0; i < stylingText.length; i++) {
-    var temp = stylingText[i].split('~');
-    var element = temp[0];
-    var styling = temp[1];
-    console.log(element + " : "+styling);
-    if (element === "bodyBackgroundColor"){
-        document.body.style.background = styling;
-    } else if (element ==="bodyTextColor"){
-        document.body.style.color = styling;
-    } else if ( element === "bodyBackgroundImage") {
-        var tempCSS = "url('"+styling+"') repeat top left;";
-        document.body.style.background="url('https://alexturney.com/menuAssets/coffee.jpg') repeat top left";
-        $('body').css("background", "url(" + styling + ")");
-        // THIS IS SUPER IMPORTANT ^^^^^^^^^^
-    }
-  }
-}
+// function styleBackground(stylingText){
+//   for (var i = 0; i < stylingText.length; i++) {
+//     var temp = stylingText[i].split('~');
+//     var element = temp[0];
+//     var styling = temp[1];
+//     console.log(element + " : "+styling);
+//     if (element === "bodyBackgroundColor"){
+//         document.body.style.background = styling;
+//     } else if (element ==="bodyTextColor"){
+//         document.body.style.color = styling;
+//     } else if ( element === "bodyBackgroundImage") {
+//         var tempCSS = "url('"+styling+"') repeat top left;";
+//         document.body.style.background="url('https://alexturney.com/menuAssets/coffee.jpg') repeat top left";
+//         $('body').css("background", "url(" + styling + ")");
+//         // THIS IS SUPER IMPORTANT ^^^^^^^^^^
+//     }
+//   }
+// }
 
 
 function styleButton(toStyle, stylingText){
@@ -268,26 +268,6 @@ function styleButton(toStyle, stylingText){
             console.log("styling button");
             if ( styling != "n/a" ) {
                 toStyle.style.background = styling;
-            }
-        }
-    }
-}
-
-
-function styleCarousels(toStyle,stylingText){
-    for (var i = 0; i < stylingText.length; i++) {
-        var temp = stylingText[i].split('~');
-        var element = temp[0];
-        var styling = temp[1];
-        console.log(element + " : "+styling);
-        if (element === "carouselSize"){
-          console.log("styling button");
-          if ( styling != "n/a" ) {
-                if ( styling == "large" ) {
-                    toStyle.className = "mainCarouselLarge";
-                } else if ( styling == "small" ) {
-                    toStyle.className = "mainCarousel";
-                }
             }
         }
     }

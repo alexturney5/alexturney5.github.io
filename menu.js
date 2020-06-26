@@ -2,6 +2,12 @@
 var isHeroku = true;
 var isSideMenu = true;
 var isExpanded = true;
+//from config
+var carouselSize = "small";
+var bodyBackgroundColor = "#123456";
+var bodyFontColor = "#949494";
+var bodyBackgroundURL = "none";
+var buttonBackgroundColor = "#CCCCCC";
 // const fs = require('fs');
 var flavorChecks = ["Chocolate", "Coffee", "Strawberry"];
 var foodChecks = ["Vegan", "Vegetarian","Gluten-Free","Healthy Choice", "Pescatarian"];
@@ -49,6 +55,7 @@ const two = document.getElementById("two");
 const three = document.getElementById("three");
 const four = document.getElementById("four");
 var url;
+var configuURL;
 var myDict = {};
 //json
 var menuJSONResponse;
@@ -59,6 +66,8 @@ var descriptionText,imgLink,rowType,detailsText,rowCompany,link,pricesText,sizes
 
 gifCreation(urlCompany,urlType);
 url = createURL(urlFilter, urlCompany);
+configURL = createConfigURL(urlCompany);
+console.log(configURL);
 
 if ( urlFilter === "I'm Feeling Lucky" ) {
   console.log("luckyFlag: " + luckyFlag);
@@ -74,180 +83,24 @@ if ( urlCompany == null ) {
   $("#splashContain").children().hide();
   console.log("trying to set top bar max width");
   showSpinner();
-  // Promise.all([
-  //   fetch(apiUrl1).then(response => response.json()),
-  //   fetch(apiUrl2).then(response => response.json()),
-  // ]);
-  fetch(url,{mode: "cors"})
-  .then((resp) => resp.json()) // transform the data into json
-  .then(function(data) {
-      hideSpinner();
-      var jsonResponse;
-      if (isHeroku) {
-        console.log(data.values);
-        jsonResponse = data.values; //HEROKU
-      } else {
-        jsonResponse = data.message.values; //PIPEDREAM
-      }
-      var arrayLength = jsonResponse.length;
-      var arrayCount=0;
-      // go through each row of the google sheet
-      for (var i = 0; i < arrayLength; i++) {
-          setJsonVariables(jsonResponse,i);
-          // MENU
-          if (isMenu()) {
-              incrementOddEvenCount()
-              showErrorFlag = false;
-              if (rowType=="menu") {
-                  createMenuCarouselAndName(one, descriptionText, imgLink, rowID, wifiText, detailsText, hoursText, link, stylingText);
-              } else if (rowType=="section") {
-                  createMenuButton(one, descriptionText, link, rowCompany,imgLink, stylingText);
-              }
-          }
-          // SUB MENU
-          else if (rowType == urlType && rowCompany == urlCompany) {
-              incrementOddEvenCount()
-              showErrorFlag = false;
-              if (!isSideMenu) {
-                hamburgerButton.setAttribute("style","height:0px;");
-                backImg.src = "xcta.png"
-                backButton.setAttribute("href","?grouping=menu&company="+urlCompany);
-              } else {
-                backButton.setAttribute("style","height:0px;");
-              }
-              //LUCKY
-              if (luckyFlag) {
-                buildLuckyDict(jsonResponse, i);
-                if (urlType != "menu"){
-                    document.getElementById("topBar").setAttribute("style","display:inline-block;");
-                    document.getElementById("placeName").setAttribute("href","?grouping=menu&company="+urlCompany);
-                    document.getElementById("placeName").setAttribute("style","display:inline-block;");
-                    // document.getElementById("placeName").innerText="Main Menu";
-                }
-                if (isSideMenu){
-                  createButtonFiltersSidePanel(filterText,filters);
-                } else {
-                  createButtonFilters(filterText,filters);
-                }
-              } //NOT LUCKY
-              else {
-                if (isSideMenu){
-                  if (urlType != "menu"){
-                    document.getElementById("topBar").setAttribute("style","display:inline-block;");
-                    document.getElementById("placeName").setAttribute("href","?grouping=menu&company="+urlCompany);
-                    document.getElementById("placeName").setAttribute("style","display:inline-block;");
-                    // document.getElementById("placeName").innerText="Main Menu";
-                  }
-                  createButtonFiltersSidePanel(filterText,filters);
-                } else {
-                  createButtonFilters(filterText,filters);
-                }
-                createSubMenuItem(one, descriptionText, link, imgLink, rowID, ingredientsText, sizesText, pricesText, detailsText, disclaimerText, stylingText);
-              }
-          }
-      } // end for loop
-      // this section is to create top Title spacing once we know if filters were used and top title was used
-      if ( luckyFlag ) {
-        console.log(luckydict);
-        console.log(Object.keys(luckydict).length);
-        var luckyNumber = Math.floor(Math.random() * Object.keys(luckydict).length) + 1;
-        buildLuckySubMenu(luckyNumber - 1);
-      }
-      if (isSideMenu){
-        if (subheads.length >= 1) {
-          $('.toptopTitle').css("margin-top","80px");
-        } else if (urlType === "menu"){
-          console.log("menu -> no additional spacing");
-        }
-        else {
-          $('#one').css("margin-top","80px");
-        }
-      } else {
-        if (subheads.length >= 1) {
-          if (atLeastOneFilterMade == false && atLeastOneTopTile == false) {
-              $('.toptopTitle').css("margin-top","80px");
-          } else if (atLeastOneFilterMade == true && atLeastOneTopTile == false) {
-              $('.toptopTitle').css("margin-top","24px");
-          } else if (atLeastOneFilterMade == false && atLeastOneTopTile == true) {
-              $('.toptopTitle').css("margin-top","80px");
-          } else if (atLeastOneFilterMade == true && atLeastOneTopTile == true) {
-              $('.toptopTitle').css("margin-top","8px");
-          }
-        }
-      }
-      if (urlCompany === "htgt"){
-        $("#topBar").css("display","none");
-      }
-      filterButtonColor();  //this needs to be last  we should clean this up and remove it...
-      if (showErrorFlag) {
-          displayError();
-      }
-      if ( socialText != "n/a" ) {
-          buildSocial(socialText,stylingText);
-      }
-      if (isExpanded){
-        $(".expandableSection").css("display", "block");
-        $(".expandArrow").attr("style","content:url('collapseArrow.png');");
-        $(".textContainer").addClass("show");
-      }
-      styleBackground(stylingText);
-  }) // END DOING WORK ON JSON
-  .then(() => {
-      $('.clickableContainer').click(function(){
-          console.log("clickableContainer click");
-          if ($(this).parent().hasClass("show")) {
-              console.log("has show");
-              $(this).parent().removeClass("show");
-              $(this).parent().find(".expandableSection").attr("style","display:none;");
-              $(this).parent().find(".expandArrow").attr("style","content:url('expandArrow.png');");
-          } else {
-              console.log("does not have show");
-              $(this).parent().addClass("show");
-              $(this).parent().find(".expandableSection").attr("style","display:block;");
-              $(this).parent().find(".expandArrow").attr("style","content:url('collapseArrow.png');");
-          }
-      });
-      var buttonwidth = $(".buttonTable").width();
-      // $(".buttonTable").height(buttonwidth*.25);
-      $(".buttonTable").height("60px");
-      $(".wifiShowHide").click(function(){
-          if ($('.wifiContainer').hasClass("hidden")) {
-              $('.wifiContainer').removeClass("hidden").addClass("visible");
-          } else {
-              $('.wifiContainer').removeClass("visible").addClass("hidden");
-              $('.wifiContainer').removeClass("visible").addClass("hidden");
-          }
-      });
-      $('.singleImage').click(function() {
-          let tempOverlay = $('#imgOverlay').get(0);
-          let td = createNode("div");
-          td.setAttribute("style","width:100%;height:100%;position:relative;");
-          td.setAttribute("id","overlayImg");
-          let t = createNode("img");
-          t.setAttribute("style","width:100%;height:auto;display:inline-block;vertical-align:middle;position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);");
-          var bg = $(this).css('background-image');
-          bg = bg.replace('url(','').replace(')','').replace(/\"/gi, "");
-          t.setAttribute("src",bg);
-          append(tempOverlay,td);
-          append(td,t);
-          document.getElementById("imgOverlay").style.width = "100vw";
-          document.getElementById("imgOverlay").style.height = "100vh";
-      });
-      $('.innerCarousel').click(function() {
-          let tempOverlay = $('#imgOverlay').get(0);
-          let td = createNode("div");
-          td.setAttribute("style","width:100%;height:100%;position:relative;");
-          td.setAttribute("id","overlayImg");
-          let t = createNode("img");
-          t.setAttribute("style","width:100%;height:auto;display:inline-block;vertical-align:middle;position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);");
-          var bg = $(this).css('background-image');
-          bg = bg.replace('url(','').replace(')','').replace(/\"/gi, "");
-          t.setAttribute("src",bg);
-          append(tempOverlay,td);
-          append(td,t);
-          document.getElementById("imgOverlay").style.width = "100vw";
-          document.getElementById("imgOverlay").style.height = "100vh";
-      });
+
+  Promise.all([
+    fetch(url,{mode: "cors"}),
+    fetch(configURL,{mode: "cors"})
+  ])
+  .then(function (responses) {
+    // Get a JSON object from each of the responses
+    return responses.map(function (response) {
+      return response.json();
+    });
+  }).then(function (data) {
+      data[1].then( (result) => processConfigData(result.companies[urlCompany]))
+      .then(
+      data[0].then( (result) => processMenuData(result)).then(
+        function(result){
+          liveEventListening();
+      })
+      );
   })
   .catch(function(error) {
       displayError();
@@ -255,36 +108,192 @@ if ( urlCompany == null ) {
   });
 }
 
-// function incrementLikes(tempText) {
-//   loadJSON('./likes.json', (data) => {
-//     // if (err) {
-//     //     console.log(err)
-//     //     return
-//     // }
-//     if (typeof urlCompany != "undefined" || tempText != "undefined") {
-//       // console.log(data['companies'][urlCompany]['likes']);
-//       console.log(data);
-//       console.log("pass typeof")
-//       console.log(data.companies);
-//       console.log(urlCompany);
-//       if ( data['companies'][urlCompany]['likes'].hasOwnProperty(tempText) ){
-//         console.log(data['companies'][urlCompany]['likes'][tempText]);
-//         data.companies[urlCompany].likes[tempText]+=1;
-//       } else {
-//         var tempString = tempText;
-//         var tempObj = { tempString: 1 };
-//         console.log(tempObj);
-//         data['companies'][urlCompany]['likes'][tempString]=1;
-//       }
-//     } else {
-//       console.log("no company provided");
-//     }
-//   console.log(data);
-//   // fs.writeFile('./likes.json', JSON.stringify(data), (err) => {
-//   //       if (err) console.log('Error writing file:', err)
-//   //   })
-//   })
-// }
+function processConfigData(data){
+  console.log("LOOK HERE ==> "+data);
+  if (data.hasOwnProperty("carouselSize")) {
+    carouselSize = data.carouselSize;
+  }
+  if (data.hasOwnProperty("bodyBackgroundColor")) {
+    bodyBackgroundColor = data.bodyBackgroundColor;
+  }
+  if (data.hasOwnProperty("bodyFontColor")) {
+    bodyFontColor = data.bodyFontColor;
+  }
+  if (data.hasOwnProperty("bodyBackgroundURL")) {
+    bodyBackgroundURL = data.bodyBackgroundURL;
+  }
+  if (data.hasOwnProperty("buttonBackgroundColor")) {
+    buttonBackgroundColor = data.buttonBackgroundColor;
+  }
+}
+
+function processMenuData(input){
+  console.log("processMenuData NEW ==> "+input);
+  hideSpinner();
+  var jsonResponse = input.values;
+  var arrayLength = jsonResponse.length;
+  var arrayCount=0;
+  // go through each row of the google sheet
+  for (var i = 0; i < arrayLength; i++) {
+    setJsonVariables(jsonResponse,i);
+    // MENU
+    if (isMenu()) {
+      incrementOddEvenCount()
+      showErrorFlag = false;
+      if (rowType=="menu") {
+        createMenuCarouselAndName(one, descriptionText, imgLink, rowID, wifiText, detailsText, hoursText, link, stylingText);
+      } else if (rowType=="section") {
+        createMenuButton(one, descriptionText, link, rowCompany,imgLink, stylingText);
+      }
+    }
+    // SUB MENU
+    else if (rowType == urlType && rowCompany == urlCompany) {
+      incrementOddEvenCount()
+      showErrorFlag = false;
+      if (!isSideMenu) {
+        hamburgerButton.setAttribute("style","height:0px;");
+        backImg.src = "xcta.png"
+        backButton.setAttribute("href","?grouping=menu&company="+urlCompany);
+      } else {
+        backButton.setAttribute("style","height:0px;");
+      }
+      //LUCKY
+      if (luckyFlag) {
+        buildLuckyDict(jsonResponse, i);
+        if (urlType != "menu"){
+          document.getElementById("topBar").setAttribute("style","display:inline-block;");
+          document.getElementById("placeName").setAttribute("href","?grouping=menu&company="+urlCompany);
+          document.getElementById("placeName").setAttribute("style","display:inline-block;");
+          // document.getElementById("placeName").innerText="Main Menu";
+        }
+        if (isSideMenu){
+          createButtonFiltersSidePanel(filterText,filters);
+        } else {
+          createButtonFilters(filterText,filters);
+        }
+      } //NOT LUCKY
+      else {
+        if (isSideMenu){
+          if (urlType != "menu"){
+            document.getElementById("topBar").setAttribute("style","display:inline-block;");
+            document.getElementById("placeName").setAttribute("href","?grouping=menu&company="+urlCompany);
+            document.getElementById("placeName").setAttribute("style","display:inline-block;");
+            // document.getElementById("placeName").innerText="Main Menu";
+          }
+          createButtonFiltersSidePanel(filterText,filters);
+        }
+        else {
+          createButtonFilters(filterText,filters);
+        }
+        createSubMenuItem(one, descriptionText, link, imgLink, rowID, ingredientsText, sizesText, pricesText, detailsText, disclaimerText, stylingText);
+      }
+    }
+  } // end for loop
+  // this section is to create top Title spacing once we know if filters were used and top title was used
+  if ( luckyFlag ) {
+    console.log(luckydict);
+    console.log(Object.keys(luckydict).length);
+    var luckyNumber = Math.floor(Math.random() * Object.keys(luckydict).length) + 1;
+    buildLuckySubMenu(luckyNumber - 1);
+  }
+  if (isSideMenu){
+    if (subheads.length >= 1) {
+      $('.toptopTitle').css("margin-top","80px");
+    } else if (urlType === "menu"){
+      console.log("menu -> no additional spacing");
+    }
+    else {
+      $('#one').css("margin-top","80px");
+    }
+  } else {
+    if (subheads.length >= 1) {
+      if (atLeastOneFilterMade == false && atLeastOneTopTile == false) {
+        $('.toptopTitle').css("margin-top","80px");
+      } else if (atLeastOneFilterMade == true && atLeastOneTopTile == false) {
+        $('.toptopTitle').css("margin-top","24px");
+      } else if (atLeastOneFilterMade == false && atLeastOneTopTile == true) {
+        $('.toptopTitle').css("margin-top","80px");
+      } else if (atLeastOneFilterMade == true && atLeastOneTopTile == true) {
+        $('.toptopTitle').css("margin-top","8px");
+      }
+    }
+  }
+  if (urlCompany === "htgt"){
+    $("#topBar").css("display","none");
+  }
+  filterButtonColor();  //this needs to be last  we should clean this up and remove it...
+  if (showErrorFlag) {
+    displayError();
+  }
+  if ( socialText != "n/a" ) {
+    buildSocial(socialText,stylingText);
+  }
+  if (isExpanded){
+    $(".expandableSection").css("display", "block");
+    $(".expandArrow").attr("style","content:url('collapseArrow.png');");
+    $(".textContainer").addClass("show");
+  }
+  styleBody();
+}
+
+function liveEventListening(){
+  $('.clickableContainer').click(function(){
+    console.log("clickableContainer click");
+    if ($(this).parent().hasClass("show")) {
+        console.log("has show");
+        $(this).parent().removeClass("show");
+        $(this).parent().find(".expandableSection").attr("style","display:none;");
+        $(this).parent().find(".expandArrow").attr("style","content:url('expandArrow.png');");
+    } else {
+        console.log("does not have show");
+        $(this).parent().addClass("show");
+        $(this).parent().find(".expandableSection").attr("style","display:block;");
+        $(this).parent().find(".expandArrow").attr("style","content:url('collapseArrow.png');");
+    }
+  });
+  var buttonwidth = $(".buttonTable").width();
+  $(".buttonTable").height("60px");
+  // $(".buttonTable").height(buttonwidth*.25); // bigger buttons
+  $(".wifiShowHide").click(function(){
+      if ($('.wifiContainer').hasClass("hidden")) {
+          $('.wifiContainer').removeClass("hidden").addClass("visible");
+      } else {
+          $('.wifiContainer').removeClass("visible").addClass("hidden");
+          $('.wifiContainer').removeClass("visible").addClass("hidden");
+      }
+  });
+  $('.singleImage').click(function() {
+      let tempOverlay = $('#imgOverlay').get(0);
+      let td = createNode("div");
+      td.setAttribute("style","width:100%;height:100%;position:relative;");
+      td.setAttribute("id","overlayImg");
+      let t = createNode("img");
+      t.setAttribute("style","width:100%;height:auto;display:inline-block;vertical-align:middle;position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);");
+      var bg = $(this).css('background-image');
+      bg = bg.replace('url(','').replace(')','').replace(/\"/gi, "");
+      t.setAttribute("src",bg);
+      append(tempOverlay,td);
+      append(td,t);
+      document.getElementById("imgOverlay").style.width = "100vw";
+      document.getElementById("imgOverlay").style.height = "100vh";
+  });
+  $('.innerCarousel').click(function() {
+      let tempOverlay = $('#imgOverlay').get(0);
+      let td = createNode("div");
+      td.setAttribute("style","width:100%;height:100%;position:relative;");
+      td.setAttribute("id","overlayImg");
+      let t = createNode("img");
+      t.setAttribute("style","width:100%;height:auto;display:inline-block;vertical-align:middle;position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);");
+      var bg = $(this).css('background-image');
+      bg = bg.replace('url(','').replace(')','').replace(/\"/gi, "");
+      t.setAttribute("src",bg);
+      append(tempOverlay,td);
+      append(td,t);
+      document.getElementById("imgOverlay").style.width = "100vw";
+      document.getElementById("imgOverlay").style.height = "100vh";
+  });
+}
+
 
 function getLikes(tempText){
   var tempUrl = "https://gsheets.herokuapp.com/getLikes?company="+urlCompany+"&name="+tempText;
@@ -600,6 +609,20 @@ function createURL(urlfilter, urlcompany) {
   return return_url;
 }
 
+function createConfigURL(urlCompany) {
+  var return_url = "empty";
+  if (isHeroku) {
+    temp_url = "https://gsheets.herokuapp.com/getConfiguration?company="
+  } else {
+    // THIS IS NOT DONE AND NOT WORKING
+    temp_url = "https://en81wl1zurcp76s.m.pipedream.net/?company="
+  }
+  if (return_url=="empty") {
+    return_url = temp_url+urlCompany;
+    }
+  return return_url;
+}
+
 function gifCreation(urlcompany, urltype) {
   $("#gif").attr("src", "share2.png");
   $("#gifContainer").css("visibility","visible");
@@ -666,6 +689,25 @@ function buildSocial(socialText,stylingText){
     } else {
       console.log("invalid platform: "+platform);
     }
+  }
+}
+
+function styleCarousels(toStyle){
+  console.log("carouselSize => "+carouselSize);
+    if ( carouselSize == "large" ) {
+        toStyle.className = "mainCarouselLarge";
+    } else if ( carouselSize == "small" ) {
+        toStyle.className = "mainCarousel";
+    }
+}
+
+function styleBody(){
+  document.body.style.background = bodyBackgroundColor;
+  document.body.style.color = bodyFontColor;
+  if (bodyBackgroundURL != "none") {
+    var tempCSS = "url('"+styling+"') repeat top left;";
+    document.body.style.background="url('https://alexturney.com/menuAssets/coffee.jpg') repeat top left";
+    $('body').css("background", "url(" + styling + ")");
   }
 }
 
