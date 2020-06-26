@@ -50,6 +50,9 @@ const three = document.getElementById("three");
 const four = document.getElementById("four");
 var url;
 var myDict = {};
+//json
+var menuJSONResponse;
+var configJSONResponse;
 
 // excel row data
 var descriptionText,imgLink,rowType,detailsText,rowCompany,link,pricesText,sizesText,titleText,ingredientsText,filterText,disclaimerText,OOSFlag,quantityText,socialText,markdownText,wifiText,hoursText;
@@ -62,7 +65,6 @@ if ( urlFilter === "I'm Feeling Lucky" ) {
   luckyFlag = true;
 }
 
-
 if ( urlCompany == null ) {
   $("#mainContainer").children().hide();
   landing.className = "show";
@@ -72,6 +74,10 @@ if ( urlCompany == null ) {
   $("#splashContain").children().hide();
   console.log("trying to set top bar max width");
   showSpinner();
+  // Promise.all([
+  //   fetch(apiUrl1).then(response => response.json()),
+  //   fetch(apiUrl2).then(response => response.json()),
+  // ]);
   fetch(url,{mode: "cors"})
   .then((resp) => resp.json()) // transform the data into json
   .then(function(data) {
