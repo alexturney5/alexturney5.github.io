@@ -8,6 +8,7 @@ var bodyBackgroundColor = "#123456";
 var bodyFontColor = "#949494";
 var bodyBackgroundURL = "none";
 var buttonBackgroundColor = "#CCCCCC";
+var buttonFontColor = "#000000";
 // const fs = require('fs');
 var flavorChecks = ["Chocolate", "Coffee", "Strawberry"];
 var foodChecks = ["Vegan", "Vegetarian","Gluten-Free","Healthy Choice", "Pescatarian"];
@@ -124,6 +125,9 @@ function processConfigData(data){
   }
   if (data.hasOwnProperty("buttonBackgroundColor")) {
     buttonBackgroundColor = data.buttonBackgroundColor;
+  }
+  if (data.hasOwnProperty("buttonFontColor")) {
+    buttonFontColor = data.buttonFontColor;
   }
 }
 

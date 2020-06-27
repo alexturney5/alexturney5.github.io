@@ -62,8 +62,7 @@ function createMenuButton(masterContainer, descriptionText, link, rowCompany, im
         buttonTable.setAttribute('style',tempCSS);// do the #F6A091
     }
     // buton styling = black or white
-    console.log("styleButton("+menuButton+","+stylingText+")");
-    styleButton(menuButton,stylingText);
+    styleButton(menuButton);
     //attach buttons
     append(masterContainer,menuButtonContainer);
     append(menuButtonContainer,buttonTable);
@@ -246,32 +245,11 @@ function sendEmail(email) {
 //   }
 // }
 
-
-function styleButton(toStyle, stylingText){
-    for (var i = 0; i < stylingText.length; i++) {
-        var temp = stylingText[i].split('~');
-        var element = temp[0];
-        var styling = temp[1];
-        console.log(element + " : "+styling);
-        if (element === "buttonTextColor"){
-          console.log("styling button");
-          if ( styling != "n/a" ) {
-                if ( styling == "whitetext" ) {
-                    var tempClass = "white"
-                    toStyle.className += " " + tempClass;
-                } else if ( styling == "blacktext" ) {
-                    var tempClass = "black"
-                    toStyle.className += " " + tempClass;
-                }
-            }
-        } else if (element === "buttonBackgroundColor") {
-            console.log("styling button");
-            if ( styling != "n/a" ) {
-                toStyle.style.background = styling;
-            }
-        }
-    }
+function styleButton(toStyle){
+    toStyle.style.color = buttonFontColor;
+    toStyle.style.background = buttonBackgroundColor;
 }
+
 
 function isEmailAddress(str) {
     var pattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
