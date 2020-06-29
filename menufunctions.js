@@ -60,6 +60,7 @@ function createMenuButton(masterContainer, descriptionText, link, rowCompany, im
     } else {
         var tempCSS = "border-top-left-radius:4px;border-bottom-left-radius: 4px;width:100%;"
         buttonTable.setAttribute('style',tempCSS);// do the #F6A091
+        menuButton.setAttribute('style',tempCSS);
     }
     // buton styling = black or white
     styleButton(menuButton);
