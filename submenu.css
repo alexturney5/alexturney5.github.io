@@ -89,8 +89,24 @@ p.name {
   /*width: 70%;*/
 }
 
-p.ingredientDisclaimer {
+.ingredientDisclaimer {
   margin: 4px 0px 0px 12px;
+}
+
+.ingredientDisclaimer.left.first {
+  margin-top: 10px;
+}
+
+p.ingredientDisclaimer.left {
+  margin: 4px 0px 0px 12px;
+  width: calc(50% - 12px);
+  display: inline-block;
+}
+
+p.ingredientDisclaimer.right {
+  margin: 4px 12px 0px 0px;
+  width: calc(50% - 12px);
+  display: inline-block;
 }
 
 .disclaimer {

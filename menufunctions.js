@@ -1,1 +1,286 @@
-const _0x3c46=['clickableContainer','innerText','length','disclaimer','match','aboutContainer','border-top-left-radius:4px;border-bottom-left-radius:\x204px;width:100%;','div','href','message','match:\x20','invalid\x20email\x20fail','https://entuxfi62bm8rhh.m.pipedream.net?text=','0px','getElementById','Thank\x20you,\x20we\x20will\x20be\x20in\x20touch\x20soon!','clearDiv','tap\x20to\x20learn\x20more.','menuButtonImg','Please\x20enter\x20a\x20valid\x20email.','expandArrowContainer','buttonsecond','menuButtonContainer','style','cors','menuName','class','height:0px;margin:0;','then','background-image:\x20url(','tapToLearn','value','toptopTitle','menu','ingredients','setAttribute','catch','containAll','buttonTable','topTitle','buttonfirst','menuItem','n/a','name','sizes','includes','textContainer','carousel','push','mainCarousel','log','details','color','json','expandArrow','prices'];(function(_0x59757e,_0x3c4698){const _0x18c298=function(_0x4eb8cf){while(--_0x4eb8cf){_0x59757e['push'](_0x59757e['shift']());}};_0x18c298(++_0x3c4698);}(_0x3c46,0x1dc));const _0x18c2=function(_0x59757e,_0x3c4698){_0x59757e=_0x59757e-0x0;let _0x18c298=_0x3c46[_0x59757e];return _0x18c298;};function createMenuCarouselAndName(_0x5779f8,_0x130f14,_0x54c357,_0x587f0c,_0x331d19,_0x581724,_0xf8aac4,_0x549efe,_0x3d4872){let _0x21691a=createNode(_0x18c2('0x23'));_0x21691a[_0x18c2('0x7')](_0x18c2('0x36'),'containAll');let _0x36f260=createNode('div');_0x36f260[_0x18c2('0x7')]('class',_0x18c2('0x15'));let _0x470ae6=createNode('p');_0x470ae6[_0x18c2('0x7')](_0x18c2('0x36'),_0x18c2('0x35')),append(_0x5779f8,_0x21691a),append(_0x21691a,_0x36f260);_0x54c357==_0x18c2('0xe')?_0x36f260[_0x18c2('0x7')](_0x18c2('0x33'),_0x18c2('0x37')):createSwipingCarousel(_0x18c2('0x5'),_0x587f0c,_0x130f14,_0x54c357,_0x36f260,_0x549efe,_0x3d4872);append(_0x21691a,_0x470ae6),_0x470ae6[_0x18c2('0x1d')]=_0x130f14;if(_0x581724!=_0x18c2('0xe')||_0xf8aac4!=_0x18c2('0xe')||_0x331d19!=_0x18c2('0xe')){let _0x2713a9=createNode(_0x18c2('0x23'));_0x2713a9[_0x18c2('0x7')](_0x18c2('0x36'),_0x18c2('0x21')),append(_0x21691a,_0x2713a9),_0x581724!=_0x18c2('0xe')&&buildAbout(_0x581724,_0x2713a9),_0xf8aac4!=_0x18c2('0xe')&&buildHours(_0xf8aac4,_0x2713a9),_0x331d19!='n/a'&&buildWifi(_0x331d19,_0x2713a9);}styleBody(),styleCarousels(_0x36f260);}function createMenuButton(_0x29057d,_0x5d4dce,_0xf92d29,_0x42553d,_0x32ba41,_0x17e4e1){let _0x3d9c66=createNode(_0x18c2('0x23'));_0x3d9c66[_0x18c2('0x7')](_0x18c2('0x36'),_0x18c2('0xa'));let _0x2b67e4=createNode('a');_0x2b67e4[_0x18c2('0x7')](_0x18c2('0x36'),'menuButton');let _0x15c86a=createNode(_0x18c2('0x23'));oddevencount%0x2==0x1?(_0x15c86a[_0x18c2('0x7')](_0x18c2('0x36'),_0x18c2('0x32')),_0x15c86a[_0x18c2('0x7')]('id',_0x18c2('0x31'))):(_0x15c86a[_0x18c2('0x7')](_0x18c2('0x36'),_0x18c2('0x32')),_0x15c86a[_0x18c2('0x7')]('id',_0x18c2('0xc')));if(_0x32ba41!='n/a'){let _0x54f529=createNode('div');_0x54f529[_0x18c2('0x7')]('class',_0x18c2('0x2e'));var _0x5851ea=_0x18c2('0x1')+_0x32ba41+');';_0x54f529['setAttribute'](_0x18c2('0x33'),_0x5851ea),append(_0x15c86a,_0x54f529);}else{var _0x5851ea=_0x18c2('0x22');menuButtonFontSize!=_0x18c2('0x29')&&(_0x5851ea=_0x5851ea+'font-size:'+menuButtonFontSize+';'),_0x3d9c66[_0x18c2('0x7')](_0x18c2('0x33'),_0x5851ea),_0x2b67e4[_0x18c2('0x7')]('style',_0x5851ea);}styleButton(_0x2b67e4),append(_0x29057d,_0x15c86a),append(_0x15c86a,_0x3d9c66),append(_0x3d9c66,_0x2b67e4),_0x2b67e4[_0x18c2('0x1d')]=_0x5d4dce,_0x2b67e4['setAttribute'](_0x18c2('0x24'),_0xf92d29),_0x2b67e4[_0x18c2('0x7')]('id',_0x42553d+':'+_0x5d4dce);}function createSubMenuItem(_0x363ff4,_0x3a2e72,_0x49780f,_0x256c3c,_0x1704aa,_0x3577e2,_0x2dc3e0,_0x4c06be,_0x395d5a,_0x2d3267,_0x21cf84){let _0x28d98d=createNode(_0x18c2('0x23'));_0x28d98d[_0x18c2('0x7')]('class',_0x18c2('0x9'));let _0x4f4260=createNode('a'),_0x4e65f4=createNode('p'),_0x225e0c=createNode('p');_0x225e0c[_0x18c2('0x7')](_0x18c2('0x36'),_0x18c2('0x17'));let _0x4b2022=createNode(_0x18c2('0x23'));_0x4b2022['setAttribute'](_0x18c2('0x36'),_0x18c2('0x6'));let _0x3b663e=createNode('p');_0x3b663e[_0x18c2('0x7')](_0x18c2('0x36'),_0x18c2('0x10'));let _0x96f5d7=createNode('div');_0x96f5d7[_0x18c2('0x7')]('id',_0x18c2('0xb')),styleBody();if(titleText!=_0x18c2('0xe')){subheads[_0x18c2('0x1e')]==0x0&&_0x96f5d7[_0x18c2('0x7')](_0x18c2('0x36'),_0x18c2('0x4'));if(!subheads[_0x18c2('0x11')](titleText)){if(atLeastOneFilterMade==![]&&atLeastOneTopTile==![])append(_0x28d98d,_0x96f5d7),_0x96f5d7[_0x18c2('0x1d')]=titleText,subheads[_0x18c2('0x14')](titleText),atLeastOneTopTile=!![];else atLeastOneFilterMade==!![]&&atLeastOneTopTile==![]?(append(_0x28d98d,_0x96f5d7),_0x96f5d7['innerText']=titleText,subheads[_0x18c2('0x14')](titleText),atLeastOneTopTile=!![]):(append(_0x28d98d,_0x96f5d7),_0x96f5d7['innerText']=titleText,subheads[_0x18c2('0x14')](titleText));}}append(_0x363ff4,_0x28d98d);if(_0x3a2e72!=_0x18c2('0xe')){let _0x459a60=createNode(_0x18c2('0x23'));_0x459a60['setAttribute'](_0x18c2('0x36'),_0x18c2('0xd'));let _0x3e0b46=createNode(_0x18c2('0x23'));_0x3e0b46[_0x18c2('0x7')](_0x18c2('0x36'),_0x18c2('0x12'));let _0x147d02=createNode('p');_0x147d02[_0x18c2('0x7')](_0x18c2('0x36'),_0x18c2('0xf')),append(_0x28d98d,_0x459a60);let _0x29046e=createNode(_0x18c2('0x23'));_0x29046e['setAttribute'](_0x18c2('0x36'),_0x18c2('0x1c')),append(_0x459a60,_0x3e0b46),append(_0x3e0b46,_0x29046e),append(_0x29046e,_0x147d02),_0x147d02[_0x18c2('0x1d')]=_0x3a2e72;if(_0x4c06be!=_0x18c2('0xe')){let _0x3a5981=createNode('p');_0x3a5981[_0x18c2('0x7')]('class',_0x18c2('0x1b')),append(_0x29046e,_0x3a5981),_0x3a5981[_0x18c2('0x1d')]=_0x4c06be;}if(_0x3577e2[0x0]!='n/a'||_0x49780f!=_0x18c2('0xe')||_0x2dc3e0!=_0x18c2('0xe')||_0x395d5a!=_0x18c2('0xe')||_0x256c3c!=_0x18c2('0xe')){let _0x2cceb8=createNode(_0x18c2('0x23'));_0x2cceb8['setAttribute'](_0x18c2('0x36'),_0x18c2('0x30'));let _0x46f9ac=createNode('img');_0x46f9ac[_0x18c2('0x7')](_0x18c2('0x36'),_0x18c2('0x1a')),append(_0x29046e,_0x2cceb8),append(_0x2cceb8,_0x46f9ac);}let _0x2ff754=createNode(_0x18c2('0x23'));_0x2ff754[_0x18c2('0x7')](_0x18c2('0x36'),_0x18c2('0x2c')),append(_0x29046e,_0x2ff754);let _0xe1c1dc=createNode(_0x18c2('0x23'));_0xe1c1dc[_0x18c2('0x7')](_0x18c2('0x36'),'expandableSection'),append(_0x3e0b46,_0xe1c1dc);_0x395d5a!='n/a'&&(append(_0xe1c1dc,_0x225e0c),_0x225e0c[_0x18c2('0x1d')]=_0x395d5a);if(_0x3577e2[0x0]!='n/a'){append(_0xe1c1dc,_0x4b2022);for(i=0x0;i<_0x3577e2['length'];i++){let _0x288b17=createNode('p');append(_0x4b2022,_0x288b17),_0x288b17['innerText']=_0x3577e2[i],i==0x0?_0x288b17[_0x18c2('0x7')]('class','ingredient'):_0x288b17[_0x18c2('0x7')](_0x18c2('0x36'),'ingredientDisclaimer');}}_0x2dc3e0!=_0x18c2('0xe')&&(append(_0xe1c1dc,_0x3b663e),_0x3b663e[_0x18c2('0x1d')]=_0x2dc3e0);if(_0x49780f!=_0x18c2('0xe'))for(i=0x0;i<_0x49780f['length'];i++){append(_0xe1c1dc,_0x4f4260),append(_0x4f4260,_0x4e65f4),i==0x0?(_0x4f4260[_0x18c2('0x7')]('href',_0x49780f[i]),_0x4e65f4[_0x18c2('0x7')](_0x18c2('0x36'),_0x18c2('0x2')),_0x4e65f4[_0x18c2('0x1d')]=_0x18c2('0x2d')):_0x4e65f4[_0x18c2('0x1d')]=_0x49780f[i];}if(_0x256c3c!=_0x18c2('0xe')){let _0x35751d=createNode(_0x18c2('0x23'));_0x35751d[_0x18c2('0x7')](_0x18c2('0x36'),_0x18c2('0x13')),append(_0xe1c1dc,_0x35751d),createSwipingCarouselArrow('subMenu',_0x1704aa,_0x3a2e72,_0x256c3c,_0x35751d,_0x49780f);}}if(_0x2d3267!=_0x18c2('0xe')){let _0x502ce8=createNode('p');append(_0x28d98d,_0x502ce8),_0x502ce8[_0x18c2('0x1d')]=_0x2d3267,_0x502ce8[_0x18c2('0x7')]('class',_0x18c2('0x1f'));}}function sendEmail(_0x56f908){console[_0x18c2('0x16')](_0x56f908);var _0x2b40d9=isEmailAddress(_0x56f908);if(_0x2b40d9){console[_0x18c2('0x16')]('valid\x20email\x20pass');var _0x516eb0=_0x18c2('0x28')+_0x56f908;fetch(_0x516eb0,{'mode':_0x18c2('0x34')})['then'](_0x3dc9fe=>_0x3dc9fe[_0x18c2('0x19')]())[_0x18c2('0x0')](function(_0x433ce4){console['log']('data:\x20'+_0x433ce4);let _0x7eb731=_0x433ce4[_0x18c2('0x25')];return console[_0x18c2('0x16')]('jsonResponse:\x20'+_0x7eb731),alert(_0x18c2('0x2b')),document[_0x18c2('0x2a')]('email')[_0x18c2('0x3')]='',window['scrollTo'](0x0,0x0),_0x7eb731;})[_0x18c2('0x8')](function(_0x1e1030){displayError(),console[_0x18c2('0x16')](_0x1e1030);});}else console[_0x18c2('0x16')](_0x18c2('0x27')),alert(_0x18c2('0x2f'));}function styleButton(_0x5181dd){_0x5181dd[_0x18c2('0x33')][_0x18c2('0x18')]=buttonFontColor,_0x5181dd[_0x18c2('0x33')]['background']=buttonBackgroundColor;}function isEmailAddress(_0x3928eb){var _0x47d52b=/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;return console[_0x18c2('0x16')](_0x18c2('0x26')+_0x3928eb[_0x18c2('0x20')](_0x47d52b)),_0x3928eb[_0x18c2('0x20')](_0x47d52b);}
+function createMenuCarouselAndName(masterContainer, descriptionText, imgLink, rowID, wifi, aboutText, hoursText, link, stylingText){
+    //create temp divs
+    let containAll = createNode('div');
+    containAll.setAttribute('class', 'containAll');
+    let mainCarousel = createNode('div');
+    mainCarousel.setAttribute('class', 'mainCarousel');
+    let name = createNode('p');
+    name.setAttribute('class', 'menuName');
+    //attach buttons
+    append(masterContainer, containAll);
+    append(containAll,mainCarousel);
+    //mainCarousel work
+    if ( imgLink == "n/a" ) {
+        mainCarousel.setAttribute('style','height:0px;margin:0;');
+    } else {
+        createSwipingCarousel("menu", rowID, descriptionText, imgLink, mainCarousel, link, stylingText);
+    }
+    append(containAll,name);
+    //assign data
+    name.innerText = descriptionText;
+    // setting up a container for about, wifi, and hours
+    if ( aboutText != "n/a" || hoursText != "n/a" || wifi != "n/a" ) {
+        let aboutContainer = createNode('div');
+        aboutContainer.setAttribute('class', 'aboutContainer');
+        append(containAll, aboutContainer);
+        if ( aboutText != "n/a" ) {
+            buildAbout(aboutText, aboutContainer);
+        }
+        if ( hoursText != "n/a" ) {
+            buildHours(hoursText, aboutContainer);
+        }
+        if ( wifi != "n/a" ) {
+            buildWifi(wifi, aboutContainer);
+        }
+    }
+    styleBody();
+    styleCarousels(mainCarousel);
+}
+
+function createMenuButton(masterContainer, descriptionText, link, rowCompany, imgLink, stylingText){
+    //create temp divs
+    let buttonTable = createNode('div');
+    buttonTable.setAttribute('class', 'buttonTable');
+    let menuButton = createNode('a');
+    menuButton.setAttribute('class','menuButton')
+    let menuButtonContainer = createNode('div');
+    if (oddevencount%2==1) {
+        menuButtonContainer.setAttribute('class', 'menuButtonContainer');
+        menuButtonContainer.setAttribute('id', 'buttonsecond');
+    } else {
+        menuButtonContainer.setAttribute('class', 'menuButtonContainer');
+        menuButtonContainer.setAttribute('id', 'buttonfirst');
+    }
+    if ( imgLink != "n/a" ) {
+        let tempImgDiv = createNode('div');
+        tempImgDiv.setAttribute('class', 'menuButtonImg');
+        var tempCSS = "background-image: url("+imgLink+");"
+        tempImgDiv.setAttribute('style',tempCSS);
+        append(menuButtonContainer, tempImgDiv);
+    } else {
+        var tempCSS = "border-top-left-radius:4px;border-bottom-left-radius: 4px;width:100%;"
+        if (menuButtonFontSize != "0px"){
+            tempCSS = tempCSS + "font-size:" + menuButtonFontSize + ";";
+        }
+        buttonTable.setAttribute('style',tempCSS);// do the #F6A091
+        menuButton.setAttribute('style',tempCSS);
+    }
+    // buton styling = black or white
+    styleButton(menuButton);
+    //attach buttons
+    append(masterContainer,menuButtonContainer);
+    append(menuButtonContainer,buttonTable);
+    append(buttonTable,menuButton);
+    //assign data
+    menuButton.innerText = descriptionText;
+    menuButton.setAttribute('href', link);
+    menuButton.setAttribute('id',rowCompany + ":" + descriptionText);
+}
+
+function createSubMenuItem(masterContainer, descriptionText, link, imgLink, rowID, ingredientsText, sizesText, pricesText, detailsText, disclaimerText, stylingText){
+    //create temp divs
+    let containAll = createNode('div');
+    containAll.setAttribute('class', 'containAll');
+    let a = createNode('a');
+    let tapToLearn = createNode("p");
+    let details = createNode('p');
+    details.setAttribute('class', 'details');
+    let ingredients = createNode('div');
+    ingredients.setAttribute('class', 'ingredients');
+    let sizes = createNode('p');
+    sizes.setAttribute('class', 'sizes');
+    let newTopTitle = createNode('div');
+    newTopTitle.setAttribute('id','topTitle')
+    styleBody();
+    //topTitle Spacing Margin
+    if (titleText != "n/a") {
+        if (subheads.length==0) {
+            newTopTitle.setAttribute('class','toptopTitle');
+        }
+        if (!subheads.includes(titleText)) {
+            if (atLeastOneFilterMade == false && atLeastOneTopTile == false) {
+                // newTopTitle.style.marginTop = "80px";
+                append(containAll,newTopTitle);
+                newTopTitle.innerText=titleText;
+                subheads.push(titleText);
+                atLeastOneTopTile = true;
+            } else if (atLeastOneFilterMade == true && atLeastOneTopTile == false) {
+                // newTopTitle.style.marginTop = "24px";
+                append(containAll,newTopTitle);
+                newTopTitle.innerText=titleText;
+                subheads.push(titleText);
+                atLeastOneTopTile = true;
+            } else {
+                append(containAll,newTopTitle);
+                newTopTitle.innerText=titleText;
+                subheads.push(titleText);
+            }
+        }
+    }
+    append(masterContainer, containAll);
+    if (descriptionText != "n/a") {
+        let menuItem = createNode('div');
+        menuItem.setAttribute('class', 'menuItem');
+        let textContainer = createNode('div'); // container for top
+        textContainer.setAttribute('class', 'textContainer');
+        let name = createNode('p'); // name of the menu item
+        name.setAttribute('class', 'name');
+        append(containAll, menuItem);
+        let clickableContainer = createNode('div');
+        clickableContainer.setAttribute('class', 'clickableContainer');
+        append(menuItem,textContainer);
+        append(textContainer,clickableContainer);
+        append(clickableContainer,name);
+        name.innerText = descriptionText;
+        if ( pricesText != "n/a" ) {
+            let prices = createNode('p');
+            prices.setAttribute('class', 'prices');
+            append(clickableContainer,prices);
+            prices.innerText = pricesText;
+        }
+        if (ingredientsText[0] != "n/a" || link != "n/a" || sizesText != "n/a" || detailsText != "n/a" || imgLink != "n/a"){
+            let expandArrowContainer = createNode('div');
+            expandArrowContainer.setAttribute('class', 'expandArrowContainer');
+            let expandArrow = createNode('img');
+            expandArrow.setAttribute('class', 'expandArrow');
+            append(clickableContainer,expandArrowContainer);
+            append(expandArrowContainer,expandArrow);
+        }
+        let clearDiv = createNode('div');
+        clearDiv.setAttribute('class', 'clearDiv');
+        append(clickableContainer,clearDiv);
+        let expandableSection = createNode('div');
+        expandableSection.setAttribute('class', 'expandableSection');
+        append(textContainer,expandableSection);
+        if ( detailsText != "n/a" ) {
+            append(expandableSection,details);
+            details.innerText = detailsText;
+        }
+        // STYLE THE INGREDIENTS
+        styleIngredients(expandableSection, ingredients, ingredientsText, stylingText);
+        // handle sizes
+        if ( sizesText != "n/a" ) {
+            append(expandableSection,sizes);
+            sizes.innerText=sizesText;
+        }
+        if ( link != "n/a" ) {
+            for (i = 0; i < link.length; i++) {
+                append(expandableSection,a);
+                append(a,tapToLearn);
+                if (i==0) {
+                    a.setAttribute('href', link[i]);
+                    tapToLearn.setAttribute('class','tapToLearn');
+                    tapToLearn.innerText="tap to learn more.";
+                } else {
+                    tapToLearn.innerText=link[i];
+                }
+            }
+        }
+        if (imgLink != "n/a") {
+            let carousel = createNode('div');
+            carousel.setAttribute('class', 'carousel');
+            append(expandableSection,carousel);
+            // createSwipingCarousel("subMenu", rowID, descriptionText, imgLink, carousel, link);
+            createSwipingCarouselArrow("subMenu", rowID, descriptionText, imgLink, carousel, link);
+        }
+    } // end menu item
+    if ( disclaimerText != "n/a" ) {
+        let tempP = createNode('p');
+        append(containAll,tempP);
+        tempP.innerText=disclaimerText;
+        tempP.setAttribute('class','disclaimer');
+    }
+}
+
+
+function styleIngredients(expandableSection, ingredients, ingredientsText, stylingText){
+    if (ingredientsText[0] != "n/a") {
+        append(expandableSection,ingredients);
+        for (i = 0; i < ingredientsText.length; i++) {
+
+            //for each element in cell
+            let tempP = createNode('p');
+            append(ingredients,tempP);
+            tempP.innerText=ingredientsText[i];
+
+            //first ingredient
+            if (i==0) {
+                tempP.setAttribute('class','ingredient')
+            } 
+            //every ingredient disclaimer
+            else {
+                if (stylingText=="two"){
+                    if (i %2 === 1){
+                        if (i === 1){
+                            tempP.setAttribute('class','ingredientDisclaimer left first');
+                        } else {
+                            tempP.setAttribute('class','ingredientDisclaimer left');
+                        }
+                    } else {
+                        tempP.setAttribute('class','ingredientDisclaimer right');
+                    }
+                } else {
+                    tempP.setAttribute('class','ingredientDisclaimer');    
+                }
+            }
+        }
+    }
+}
+
+function sendEmail(email) {
+    console.log(email);
+    var isValidEmail = isEmailAddress(email);
+    if (isValidEmail) {
+        console.log("valid email pass");
+        var url = "https://entuxfi62bm8rhh.m.pipedream.net?text="+email;
+        fetch(url,{mode: "cors"})
+        .then((resp) => resp.json()) // transform the data into json
+        .then(function(data) {
+            console.log("data: " + data);
+            let jsonResponse = data.message;
+            console.log("jsonResponse: " + jsonResponse);
+            alert("Thank you, we will be in touch soon!");
+            document.getElementById("email").value = "";
+            window.scrollTo(0, 0);
+            return jsonResponse;
+        })
+        .catch(function(error) {
+            displayError();
+            console.log(error);
+        });
+    } else {
+        console.log("invalid email fail");
+        alert("Please enter a valid email.");
+    }
+}
+
+// function styleBackground(stylingText){
+//   for (var i = 0; i < stylingText.length; i++) {
+//     var temp = stylingText[i].split('~');
+//     var element = temp[0];
+//     var styling = temp[1];
+//     console.log(element + " : "+styling);
+//     if (element === "bodyBackgroundColor"){
+//         document.body.style.background = styling;
+//     } else if (element ==="bodyTextColor"){
+//         document.body.style.color = styling;
+//     } else if ( element === "bodyBackgroundImage") {
+//         var tempCSS = "url('"+styling+"') repeat top left;";
+//         document.body.style.background="url('https://alexturney.com/menuAssets/coffee.jpg') repeat top left";
+//         $('body').css("background", "url(" + styling + ")");
+//         // THIS IS SUPER IMPORTANT ^^^^^^^^^^
+//     }
+//   }
+// }
+
+function styleButton(toStyle){
+    toStyle.style.color = buttonFontColor;
+    toStyle.style.background = buttonBackgroundColor;
+}
+
+
+function isEmailAddress(str) {
+    var pattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+    console.log("match: "+str.match(pattern));
+    return str.match(pattern);
+}
