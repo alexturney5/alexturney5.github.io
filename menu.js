@@ -684,8 +684,7 @@ function buildSocial(socialText,stylingText){
     if (platform === "ig" || platform === "fb"){
       $('#'+platform).css("display","inline-block");
       $('#'+platform).parent().attr("href",link);
-      $('#'+platform).parent().attr("class",platform+":anchor");
-      $('#'+platform).parent().attr("id",urlCompany);
+      $('#'+platform).attr("class",urlCompany+":"+platform);
       console.log("COLOR OF SOCIAL: " + stylingText);
       if (stylingText[0] === "white"){
         $('#'+platform).attr("src", platform+"W.png");
