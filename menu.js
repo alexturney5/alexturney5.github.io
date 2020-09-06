@@ -391,6 +391,7 @@ function createButtonFiltersSidePanel(filterText, filters){
                             aforfilterbutton.setAttribute('href', "?grouping="+urlType+"&company="+urlCompany+"&filter="+f);
                             aforfilterbutton.innerText=f;
                             aforfilterbutton.setAttribute('class', "normalFilter");
+                            aforfilterbutton.setAttribute('id', urlCompany + ":" + f);
                         }
                         if (isSideMenu) {
                           // IF filter exists and has been selected
@@ -628,7 +629,9 @@ function createConfigURL(urlCompany) {
 
 function gifCreation(urlcompany, urltype) {
   $("#gif").attr("src", "share2.png");
+  $("#gif").attr("id", urlCompany+":shareButton");
   $("#gifContainer").css("visibility","visible");
+
 }
 
 function buildAbout(detailsText, appendTo){
