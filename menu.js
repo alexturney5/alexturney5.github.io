@@ -629,7 +629,7 @@ function createConfigURL(urlCompany) {
 
 function gifCreation(urlcompany, urltype) {
   $("#gif").attr("src", "share2.png");
-  $("#gif").attr("id", urlCompany+":shareButton");
+  $("#gif").attr("class", urlCompany+":shareButton");
   $("#gifContainer").css("visibility","visible");
 
 }
