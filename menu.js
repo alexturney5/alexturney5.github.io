@@ -391,7 +391,7 @@ function createButtonFiltersSidePanel(filterText, filters){
                             aforfilterbutton.setAttribute('href', "?grouping="+urlType+"&company="+urlCompany+"&filter="+f);
                             aforfilterbutton.innerText=f;
                             aforfilterbutton.setAttribute('class', "normalFilter");
-                            aforfilterbutton.setAttribute('id', urlCompany + ":" + f);
+                            aforfilterbutton.setAttribute('id', urlCompany + ":filter:" + f);
                         }
                         if (isSideMenu) {
                           // IF filter exists and has been selected
