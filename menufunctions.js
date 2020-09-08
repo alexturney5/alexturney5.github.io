@@ -124,12 +124,13 @@ function createSubMenuItem(masterContainer, descriptionText, link, imgLink, rowI
         let textContainer = createNode('div'); // container for top
         textContainer.setAttribute('class', 'textContainer');
         let name = createNode('p'); // name of the menu item
-        name.setAttribute('class', 'name');
         append(containAll, menuItem);
         let clickableContainer = createNode('div');
         clickableContainer.setAttribute('class', 'clickableContainer');
         append(menuItem,textContainer);
         append(textContainer,clickableContainer);
+        clickableContainer.setAttribute('id', urlCompany + ":item:" + descriptionText);
+        name.setAttribute('class', 'name');
         append(clickableContainer,name);
         name.innerText = descriptionText;
         if ( pricesText != "n/a" ) {
