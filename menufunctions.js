@@ -51,6 +51,14 @@ function createMenuButton(masterContainer, descriptionText, link, rowCompany, im
         menuButtonContainer.setAttribute('class', 'menuButtonContainer');
         menuButtonContainer.setAttribute('id', 'buttonfirst');
     }
+    let menuMainContainer = createNode('a');
+    menuMainContainer.setAttribute('class','menuMainContainer')
+    menuMainContainer.setAttribute('href', link);
+    menuMainContainer.setAttribute('id',rowCompany + ":" + descriptionText);
+    styleButton(menuButton);
+    //attach buttons
+    append(masterContainer,menuMainContainer);
+    append(menuMainContainer,menuButtonContainer);
     if ( imgLink != "n/a" ) {
         let tempImgDiv = createNode('div');
         tempImgDiv.setAttribute('class', 'menuButtonImg');
@@ -65,10 +73,6 @@ function createMenuButton(masterContainer, descriptionText, link, rowCompany, im
         buttonTable.setAttribute('style',tempCSS);// do the #F6A091
         menuButton.setAttribute('style',tempCSS);
     }
-    // buton styling = black or white
-    styleButton(menuButton);
-    //attach buttons
-    append(masterContainer,menuButtonContainer);
     append(menuButtonContainer,buttonTable);
     append(buttonTable,menuButton);
     //assign data

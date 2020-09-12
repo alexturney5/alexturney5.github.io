@@ -468,6 +468,10 @@ button.active {
   background-color: #F0F0F0;
 }
 
+.menuMainContainer {
+  
+}
+
 .menuButtonContainer {
   background-position: center center;
   background-size: cover;
@@ -480,7 +484,7 @@ button.active {
 }
 
 #buttonfirst:last-of-type {
-  margin-bottom: 20px;
+  /*margin-bottom: 20px;*/
 }
 
 /* div that holds the button */
