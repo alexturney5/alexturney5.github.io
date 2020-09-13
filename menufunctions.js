@@ -62,6 +62,7 @@ function createMenuButton(masterContainer, descriptionText, link, rowCompany, im
     if ( imgLink != "n/a" ) {
         let tempImgDiv = createNode('div');
         tempImgDiv.setAttribute('class', 'menuButtonImg');
+        tempImgDiv.setAttribute('id',rowCompany + ":" + descriptionText);
         var tempCSS = "background-image: url("+imgLink+");"
         tempImgDiv.setAttribute('style',tempCSS);
         append(menuButtonContainer, tempImgDiv);
